@@ -1,0 +1,31 @@
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBookBck29-03-2015\RestoBook.Model\bin\Debug\RestoBook.Model.dll.config
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBookBck29-03-2015\RestoBook.Model\bin\Debug\RestoBook.Model.dll
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBookBck29-03-2015\RestoBook.Model\bin\Debug\RestoBook.Model.pdb
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBookBck29-03-2015\RestoBook.Model\bin\Debug\Ninject.dll
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBookBck29-03-2015\RestoBook.Model\bin\Debug\Ninject.xml
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBookBck29-03-2015\RestoBook.Model\obj\Debug\RestoBook.GUI.Model.csprojResolveAssemblyReference.cache
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBookBck29-03-2015\RestoBook.Model\obj\Debug\RestoBook.Model.dll
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBookBck29-03-2015\RestoBook.Model\obj\Debug\RestoBook.Model.pdb
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook\RestoBook.Model\bin\Debug\RestoBook.Model.dll.config
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook\RestoBook.Model\bin\Debug\RestoBook.Model.dll
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook\RestoBook.Model\bin\Debug\RestoBook.Model.pdb
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook\RestoBook.Model\bin\Debug\Ninject.dll
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook\RestoBook.Model\bin\Debug\Ninject.xml
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook\RestoBook.Model\obj\Debug\RestoBook.Model.dll
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook\RestoBook.Model\obj\Debug\RestoBook.Model.pdb
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook - Copie\RestoBook.Model\bin\Debug\RestoBook.Model.dll.config
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook - Copie\RestoBook.Model\bin\Debug\RestoBook.Model.dll
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook - Copie\RestoBook.Model\bin\Debug\RestoBook.Model.pdb
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook - Copie\RestoBook.Model\bin\Debug\Ninject.dll
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook - Copie\RestoBook.Model\bin\Debug\Ninject.xml
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook - Copie\RestoBook.Model\obj\Debug\RestoBook.GUI.Model.csprojResolveAssemblyReference.cache
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook - Copie\RestoBook.Model\obj\Debug\RestoBook.Model.dll
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook - Copie\RestoBook.Model\obj\Debug\RestoBook.Model.pdb
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook\RestoBook.Model\bin\Debug\RestoBook.Model.dll.config
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook\RestoBook.Model\bin\Debug\RestoBook.Model.dll
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook\RestoBook.Model\bin\Debug\RestoBook.Model.pdb
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook\RestoBook.Model\bin\Debug\Ninject.dll
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook\RestoBook.Model\bin\Debug\Ninject.xml
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook\RestoBook.Model\obj\Debug\RestoBook.GUI.Model.csprojResolveAssemblyReference.cache
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook\RestoBook.Model\obj\Debug\RestoBook.Model.dll
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook\RestoBook.Model\obj\Debug\RestoBook.Model.pdb

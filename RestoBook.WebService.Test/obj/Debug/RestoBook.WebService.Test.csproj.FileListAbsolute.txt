@@ -1,0 +1,5 @@
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook\RestoBook.WebService.Test\bin\Debug\RestoBook.WebService.Test.dll
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook\RestoBook.WebService.Test\bin\Debug\RestoBook.WebService.Test.pdb
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook\RestoBook.WebService.Test\obj\Debug\RestoBook.WebService.Test.dll
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook\RestoBook.WebService.Test\obj\Debug\RestoBook.WebService.Test.pdb
+C:\Users\Jean-Louis\Documents\Visual Studio 2013\Projects\RestoBook\RestoBook.WebService.Test\obj\Debug\RestoBook.WebService.Test.csprojResolveAssemblyReference.cache

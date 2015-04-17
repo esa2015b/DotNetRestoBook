@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoBook.WebService", "RestoBook\RestoBook.WebService.csproj", "{48F91125-47B6-49F4-93F4-0CD54CB2A8F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoBook.Common.Model", "RestoBook.Model\RestoBook.Common.Model.csproj", "{8DF10CC2-71EB-4FCD-80A1-74A90D9B831A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoBook.GUI.View", "RestoBook.GUI.View\RestoBook.GUI.View.csproj", "{54C416B7-5C6F-46E2-A202-9C0C025990A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoBook.Common.Business", "RestoBook.GUI.Business\RestoBook.Common.Business.csproj", "{C670E9A0-417C-4C07-81F2-9DC17F6796B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoBook.GUI.Test", "RestoBook.GUI.Test\RestoBook.GUI.Test.csproj", "{B8332585-D3AF-4D70-BA81-661EC3F75359}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoBook.WebService.Test", "RestoBook.WebService.Test\RestoBook.WebService.Test.csproj", "{D74FA307-55F9-4CD7-8D1B-10E58D4FF044}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48F91125-47B6-49F4-93F4-0CD54CB2A8F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48F91125-47B6-49F4-93F4-0CD54CB2A8F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48F91125-47B6-49F4-93F4-0CD54CB2A8F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48F91125-47B6-49F4-93F4-0CD54CB2A8F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DF10CC2-71EB-4FCD-80A1-74A90D9B831A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DF10CC2-71EB-4FCD-80A1-74A90D9B831A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DF10CC2-71EB-4FCD-80A1-74A90D9B831A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DF10CC2-71EB-4FCD-80A1-74A90D9B831A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54C416B7-5C6F-46E2-A202-9C0C025990A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54C416B7-5C6F-46E2-A202-9C0C025990A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54C416B7-5C6F-46E2-A202-9C0C025990A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54C416B7-5C6F-46E2-A202-9C0C025990A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C670E9A0-417C-4C07-81F2-9DC17F6796B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C670E9A0-417C-4C07-81F2-9DC17F6796B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C670E9A0-417C-4C07-81F2-9DC17F6796B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C670E9A0-417C-4C07-81F2-9DC17F6796B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8332585-D3AF-4D70-BA81-661EC3F75359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8332585-D3AF-4D70-BA81-661EC3F75359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8332585-D3AF-4D70-BA81-661EC3F75359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8332585-D3AF-4D70-BA81-661EC3F75359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D74FA307-55F9-4CD7-8D1B-10E58D4FF044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D74FA307-55F9-4CD7-8D1B-10E58D4FF044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D74FA307-55F9-4CD7-8D1B-10E58D4FF044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D74FA307-55F9-4CD7-8D1B-10E58D4FF044}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
