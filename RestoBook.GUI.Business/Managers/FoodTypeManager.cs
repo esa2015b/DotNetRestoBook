@@ -50,6 +50,75 @@ namespace RestoBook.Common.Business.Managers
                 Name = res.NAME
             };
         }
+
+        public List<FoodType> GetFoodTypeList()
+        {
+            List<FoodType> foodType = new List<FoodType>();
+
+            var query = from f in this.dp.ds.FOODTYPE
+                        select f;
+
+            query.ToList().ForEach(ft => foodType.Add(new FoodType()
+            {
+                Id = (int)ft.FOODTYPEID,
+                Name = ft.NAME,
+                Description = ft.DESCRIPTION,
+                IsEnabled = ft.ENABLE
+
+            }));
+            return foodType;
+        }
+
+        
+        public FoodType CreateFoodType(FoodType ft)
+        {
+            FoodType foodType = new FoodType();
+
+            DataRow row = this.dp.ds.FOODTYPE.NewRow();
+            row["NAME"] = ft.Name;
+            row["DESCRIPTION"] = ft.Description;
+            row["ENABLE"] = true;
+            this.dp.ds.FOODTYPE.Rows.Add(row);
+
+            if (row != null)
+            {
+                foodType = ft;
+                foodType.Id = (int)row["FOODTYPEID"];
+            }
+
+            return foodType;
+
+        }
+
+        
+        public Boolean DeleteFoodType(int id)
+        {
+            bool delete = false;
+            DataRow row = dp.ds.FOODTYPE.Select("FOODTYPEID = '" + id + "'").FirstOrDefault();
+
+            if (row != null) 
+            {
+                // TODO : Soft Delete.
+                dp.ds.FOODTYPE.Rows.Remove(row);
+                delete = true;
+            }
+
+            return delete;
+        }
+
+
+        public FoodType ModifyFoodTypeType(FoodType ft)
+        {
+            DataRow row = dp.ds.FOODTYPE.Select("FOODTYPEID = '" + ft.Id + "'").FirstOrDefault();
+
+            row["NAME"] = ft.Name;
+            row["DESCRIPTION"] = ft.Description;
+            row["ENABLED"] = ft.IsEnabled;
+            
+            FoodType foodtype = GetFoodTypeById(ft.Id);
+            return foodtype;
+        }
+
         #endregion PUBLIC METHODS
 
     }
