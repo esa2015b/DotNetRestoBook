@@ -80,25 +80,24 @@ namespace RestoBook.Common.Business.Managers
 
             var query = from r in this.dp.ds.RESTAURANT
                         where r.NAME.ToLower().Contains(restaurantName.ToLower())
+                        join o in this.dp.ds.OWNER on r.OWNERID equals o.OWNERID
+                        join f in this.dp.ds.FOODTYPE on r.FOODTYPEID equals f.FOODTYPEID
                         select r;
 
-            foreach(var q in query)
+            query.ToList().ForEach(r => restaurant.Add(new Restaurant()
             {
-                Restaurant resto = new Restaurant(){
-                    Id = (int)q.RESTAURANTID,
-                    Name = q.NAME,
-                    Mail = q.MAIL,
-                    Phone = q.PHONE,
-                    Description = q.DESCRIPTION,
-                    PlaceQuantity = (int)q.PLACEQUANTITY,
-                    DayOfClosing = q.DAYOFCLOSING,
-                    PictureLocation = q.PICTURELOCATION,
-                    IsEnabled = q.ENABLE,
-                    IsPremium = q.ISPREMIUM
-                };
+                Id = (int)r.RESTAURANTID,
+                Name = r.NAME,
+                Mail = r.MAIL,
+                Phone = r.PHONE,
+                Description = r.DESCRIPTION,
+                PlaceQuantity = (int)r.PLACEQUANTITY,
+                DayOfClosing = r.DAYOFCLOSING,
+                PictureLocation = r.PICTURELOCATION,
+                IsPremium = r.ISPREMIUM,
+                IsEnabled = r.ENABLE
 
-                restaurant.Add(resto);
-            }
+            }));
 
             if (restaurant == null)
             {
@@ -124,11 +123,18 @@ namespace RestoBook.Common.Business.Managers
                         join f in this.dp.ds.FOODTYPE on r.FOODTYPEID equals f.FOODTYPEID
                         where f.NAME.ToLower().Contains(foodTypeName)
                         select r;
-            query.ToList().ForEach(q => restaurant.Add(new Restaurant()
+            query.ToList().ForEach(r => restaurant.Add(new Restaurant()
             {
-                Id = (int)q.RESTAURANTID,
-                Name = q.NAME,
-                IsEnabled = q.ENABLE
+                Id = (int)r.RESTAURANTID,
+                Name = r.NAME,
+                Mail = r.MAIL,
+                Phone = r.PHONE,
+                Description = r.DESCRIPTION,
+                PlaceQuantity = (int)r.PLACEQUANTITY,
+                DayOfClosing = r.DAYOFCLOSING,
+                PictureLocation = r.PICTURELOCATION,
+                IsPremium = r.ISPREMIUM,
+                IsEnabled = r.ENABLE
 
             }));
 
@@ -148,11 +154,18 @@ namespace RestoBook.Common.Business.Managers
                         where r.FOODTYPEID == foodTypeID
                         select r;
             
-            query.ToList().ForEach(q => restaurant.Add(new Restaurant()
+            query.ToList().ForEach(r => restaurant.Add(new Restaurant()
             {
-                Id = (int)q.RESTAURANTID,
-                Name = q.NAME,
-                IsEnabled = q.ENABLE
+                Id = (int)r.RESTAURANTID,
+                Name = r.NAME,
+                Mail = r.MAIL,
+                Phone = r.PHONE,
+                Description = r.DESCRIPTION,
+                PlaceQuantity = (int)r.PLACEQUANTITY,
+                DayOfClosing = r.DAYOFCLOSING,
+                PictureLocation = r.PICTURELOCATION,
+                IsPremium = r.ISPREMIUM,
+                IsEnabled = r.ENABLE
 
             }));
 

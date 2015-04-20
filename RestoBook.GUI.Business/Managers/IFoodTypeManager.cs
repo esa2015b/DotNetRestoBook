@@ -18,5 +18,33 @@ namespace RestoBook.Common.Business.Managers
         /// <param name="foodTypeId">The foodtype identifier.</param>
         /// <returns>The FoodType for a restaurant.</returns>
         FoodType GetFoodTypeById(int foodTypeId);
+        
+        /// <summary>
+        /// Get all Food Types
+        /// </summary>
+        /// <returns></returns>
+        List<FoodType> GetFoodTypeList();
+
+        /// <summary>
+        /// Create a new Food Type
+        /// </summary>
+        /// <param name="ft"></param>
+        /// <returns></returns>
+        FoodType CreateFoodType (FoodType ft);
+
+        /// <summary>
+        /// Delete a Food Type
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Boolean DeleteFoodType (int id);
+
+        /// <summary>
+        /// Modify a Food Type
+        /// </summary>
+        /// <param name="ft"></param>
+        /// <returns></returns>
+        FoodType ModifyFoodTypeType(FoodType ft);
+
     }
 }
