@@ -132,6 +132,14 @@
             return restaurant;
         }
 
+        public List<FoodType> GetFoodTypeList()
+        {
+            List<FoodType> ft = foodTypeManager.GetFoodTypeList();
+
+            return ft;
+        }
+
+
         #endregion PUBLIC METHODS
     }
 }
