@@ -67,3 +67,15 @@ D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\RestoBook.GUI
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.GUI.View.exe.config
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.exe
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.pdb
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.GUI.View.exe
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.GUI.View.pdb
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\Ninject.dll
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.Common.Business.dll
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.Common.Model.dll
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.Common.Business.pdb
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.Common.Model.pdb
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\Ninject.xml
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.csprojResolveAssemblyReference.cache
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.MainForm.resources
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Properties.Resources.resources
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.csproj.GenerateResource.Cache
