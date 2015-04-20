@@ -23,5 +23,17 @@ namespace RestoBook
         [OperationContract()]
         Restaurant GetRestaurantById(int restaurantId);
 
+        [OperationContract()]
+        List<Restaurant> GetRestaurantByName(string restaurantName);
+
+        [OperationContract()]
+        List<Restaurant> GetRestaurantAdvanced(string name, string foodTypeName, string city);
+
+        [OperationContract()]
+        List<Restaurant> GetRestaurantByFoodType(int foodTypeId);
+
+        [OperationContract()]
+        Restaurant GetRandomRestaurant();
+
     }
 }

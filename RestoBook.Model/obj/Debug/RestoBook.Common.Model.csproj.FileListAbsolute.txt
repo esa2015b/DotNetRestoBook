@@ -5,3 +5,11 @@ D:\Formations\ESA\Year 3\Travail De Programmation\Restobook\RestoBook.Model\bin\
 D:\Formations\ESA\Year 3\Travail De Programmation\Restobook\RestoBook.Model\bin\Debug\Ninject.xml
 D:\Formations\ESA\Year 3\Travail De Programmation\Restobook\RestoBook.Model\obj\Debug\RestoBook.Common.Model.dll
 D:\Formations\ESA\Year 3\Travail De Programmation\Restobook\RestoBook.Model\obj\Debug\RestoBook.Common.Model.pdb
+C:\DotNetRestoBook\RestoBook.Model\bin\Debug\RestoBook.Common.Model.dll.config
+C:\DotNetRestoBook\RestoBook.Model\bin\Debug\RestoBook.Common.Model.dll
+C:\DotNetRestoBook\RestoBook.Model\bin\Debug\RestoBook.Common.Model.pdb
+C:\DotNetRestoBook\RestoBook.Model\bin\Debug\Ninject.dll
+C:\DotNetRestoBook\RestoBook.Model\bin\Debug\Ninject.xml
+C:\DotNetRestoBook\RestoBook.Model\obj\Debug\RestoBook.Common.Model.dll
+C:\DotNetRestoBook\RestoBook.Model\obj\Debug\RestoBook.Common.Model.pdb
+C:\DotNetRestoBook\RestoBook.Model\obj\Debug\RestoBook.Common.Model.csprojResolveAssemblyReference.cache
