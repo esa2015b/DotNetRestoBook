@@ -7,3 +7,12 @@ D:\Formations\ESA\Year 3\Travail De Programmation\Restobook\RestoBook.GUI.Busine
 D:\Formations\ESA\Year 3\Travail De Programmation\Restobook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.csprojResolveAssemblyReference.cache
 D:\Formations\ESA\Year 3\Travail De Programmation\Restobook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.dll
 D:\Formations\ESA\Year 3\Travail De Programmation\Restobook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.pdb
+C:\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Business.dll
+C:\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Business.pdb
+C:\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\Ninject.dll
+C:\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Model.dll
+C:\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Model.pdb
+C:\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\Ninject.xml
+C:\DotNetRestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.csprojResolveAssemblyReference.cache
+C:\DotNetRestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.dll
+C:\DotNetRestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.pdb

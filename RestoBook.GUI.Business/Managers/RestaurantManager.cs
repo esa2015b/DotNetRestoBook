@@ -68,6 +68,122 @@ namespace RestoBook.Common.Business.Managers
             }
             return resto;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="restaurantName"></param>
+        /// <returns></returns>
+        public List<Restaurant> GetRestaurantByName(String restaurantName)
+        {
+            List<Restaurant> restaurant = new List<Restaurant>();
+
+            var query = from r in this.dp.ds.RESTAURANT
+                        where r.NAME.ToLower().Contains(restaurantName.ToLower())
+                        select r;
+
+            foreach(var q in query)
+            {
+                Restaurant resto = new Restaurant(){
+                    Id = (int)q.RESTAURANTID,
+                    Name = q.NAME,
+                    Mail = q.MAIL,
+                    Phone = q.PHONE,
+                    Description = q.DESCRIPTION,
+                    PlaceQuantity = (int)q.PLACEQUANTITY,
+                    DayOfClosing = q.DAYOFCLOSING,
+                    PictureLocation = q.PICTURELOCATION,
+                    IsEnabled = q.ENABLE,
+                    IsPremium = q.ISPREMIUM
+                };
+
+                restaurant.Add(resto);
+            }
+
+            if (restaurant == null)
+            {
+                throw new Exception("No restaurant found with this name.");
+            }
+            return restaurant;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="foodTypeName"></param>
+        /// <param name="city"></param>
+        /// <returns></returns>
+        public List<Restaurant> GetRestaurantAdvanced(string name, string foodTypeName, string city)
+        {
+            List<Restaurant> restaurant = new List<Restaurant>();
+
+            var query = from r in this.dp.ds.RESTAURANT
+                        where r.NAME.ToLower().Contains(name.ToLower())
+                        join o in this.dp.ds.OWNER on r.OWNERID equals o.OWNERID
+                        join f in this.dp.ds.FOODTYPE on r.FOODTYPEID equals f.FOODTYPEID
+                        where f.NAME.ToLower().Contains(foodTypeName)
+                        select r;
+            query.ToList().ForEach(q => restaurant.Add(new Restaurant()
+            {
+                Id = (int)q.RESTAURANTID,
+                Name = q.NAME,
+                IsEnabled = q.ENABLE
+
+            }));
+
+            return restaurant;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ft"></param>
+        /// <returns></returns>
+        public List<Restaurant> GetRestaurantByFoodType(int foodTypeID)
+        {
+            List<Restaurant> restaurant = new List<Restaurant>();
+
+            var query = from r in this.dp.ds.RESTAURANT
+                        where r.FOODTYPEID == foodTypeID
+                        select r;
+            
+            query.ToList().ForEach(q => restaurant.Add(new Restaurant()
+            {
+                Id = (int)q.RESTAURANTID,
+                Name = q.NAME,
+                IsEnabled = q.ENABLE
+
+            }));
+
+            return restaurant;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public Restaurant GetRandomRestaurant()
+        {
+            Restaurant restaurant = new Restaurant();
+
+            restaurant = (from r in this.dp.ds.RESTAURANT
+                          select new Restaurant()
+                        {
+                            Id = (int)r.RESTAURANTID,
+                            Name = r.NAME,
+                            Mail = r.MAIL,
+                            Phone = r.PHONE,
+                            Description = r.DESCRIPTION,
+                            PlaceQuantity = (int)r.PLACEQUANTITY,
+                            DayOfClosing = r.DAYOFCLOSING,
+                            PictureLocation = r.PICTURELOCATION,
+                            IsPremium = r.ISPREMIUM,
+                            IsEnabled = r.ENABLE
+                        }).OrderBy(x => Guid.NewGuid()).First();
+
+            return restaurant;
+        }
         #endregion
     }
 }

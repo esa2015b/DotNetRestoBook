@@ -55,6 +55,83 @@
 
             return restaurant;
         }
+
+        public List<Restaurant> GetRestaurantByName(string restaurantName)
+        {
+
+            List<Restaurant> restaurant = this.restaurantManager.GetRestaurantByName(restaurantName);
+
+            if(restaurant != null)
+            {
+                foreach (Restaurant r in restaurant)
+                {
+                    int restaurantId = r.Id;
+
+                    r.FoodType = this.foodTypeManager.GetFoodTypeById(restaurantId);
+                    r.Owner = this.ownerManager.GetOwner(restaurantId);
+                    r.Employees = this.employeeManager.GetEmployees(restaurantId);
+                    r.PriceLists = this.priceListManager.GetPriceLists(restaurantId);
+                    r.Services = this.serviceManager.GetServices(restaurantId);
+                }
+
+            }
+
+            return restaurant;
+
+        }
+
+        public List<Restaurant> GetRestaurantAdvanced(string name, string foodTypeName, string city)
+        {
+            List<Restaurant> restaurant = this.restaurantManager.GetRestaurantAdvanced(name, foodTypeName, city);
+            
+            if (restaurant != null)
+            {
+                foreach (Restaurant r in restaurant)
+                {
+                    int restaurantId = r.Id;
+
+                    r.FoodType = this.foodTypeManager.GetFoodTypeById(restaurantId);
+                    r.Owner = this.ownerManager.GetOwner(restaurantId);
+                    r.Employees = this.employeeManager.GetEmployees(restaurantId);
+                    r.PriceLists = this.priceListManager.GetPriceLists(restaurantId);
+                    r.Services = this.serviceManager.GetServices(restaurantId);
+                }
+
+            }
+
+            return restaurant;
+        }
+
+        public List<Restaurant> GetRestaurantByFoodType(int foodTypeId)
+        {
+            List<Restaurant> restaurant = this.restaurantManager.GetRestaurantByFoodType(foodTypeId);
+
+            if (restaurant != null)
+            {
+                foreach (Restaurant r in restaurant)
+                {
+                    int restaurantId = r.Id;
+
+                    r.FoodType = this.foodTypeManager.GetFoodTypeById(restaurantId);
+                    r.Owner = this.ownerManager.GetOwner(restaurantId);
+                    r.Employees = this.employeeManager.GetEmployees(restaurantId);
+                    r.PriceLists = this.priceListManager.GetPriceLists(restaurantId);
+                    r.Services = this.serviceManager.GetServices(restaurantId);
+                }
+
+            }
+
+            return restaurant;
+        }
+
+
+        public Restaurant GetRandomRestaurant()
+        {
+            Restaurant restaurant = restaurantManager.GetRandomRestaurant();
+            
+            return restaurant;
+        }
+
         #endregion PUBLIC METHODS
     }
 }

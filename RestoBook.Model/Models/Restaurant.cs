@@ -141,6 +141,12 @@ namespace RestoBook.Common.Model.Models
         /// </summary>
         [DataMember(IsRequired = true)]
         public Owner Owner { get; set; }
+
+        /// <summary>
+        /// The restaurant's address.
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public Owner Address { get; set; }
         #endregion PROPERTIES
     }
 }

@@ -3116,7 +3116,7 @@ namespace RestoBook.Common.Model {
                     this[this.tableRESTAURANT.FOODTYPEIDColumn] = value;
                 }
             }
-            
+
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string NAME {
