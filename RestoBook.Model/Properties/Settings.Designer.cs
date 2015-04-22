@@ -32,5 +32,15 @@ namespace RestoBook.Common.Model.Properties {
                 return ((string)(this["RestoBookDBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAB-XP-MIRKO;Initial Catalog=RestoBookDB;Integrated Security=True")]
+        public string RestoBookDBConnectionString1 {
+            get {
+                return ((string)(this["RestoBookDBConnectionString1"]));
+            }
+        }
     }
 }

@@ -55,6 +55,10 @@ namespace RestoBook.Common.Business.Managers
         {
             List<FoodType> foodType = new List<FoodType>();
 
+            // refresh the dataset
+            this.dp.ds.Reset();
+            this.dp.PrepareFoodTypeDP();
+
             var query = from f in this.dp.ds.FOODTYPE
                         select f;
 
@@ -70,53 +74,42 @@ namespace RestoBook.Common.Business.Managers
         }
 
         
-        public FoodType CreateFoodType(FoodType ft)
+        public bool CreateFoodType(FoodType ft)
         {
-            FoodType foodType = new FoodType();
-
-            DataRow row = this.dp.ds.FOODTYPE.NewRow();
-            row["NAME"] = ft.Name;
-            row["DESCRIPTION"] = ft.Description;
-            row["ENABLE"] = true;
-            this.dp.ds.FOODTYPE.Rows.Add(row);
-
-            if (row != null)
+            int ftId = -1;
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.FOODTYPETableAdapter daFoodType = new RestoBook.Common.Model.DataSetRestoBookTableAdapters.FOODTYPETableAdapter())
             {
-                foodType = ft;
-                foodType.Id = (int)row["FOODTYPEID"];
+                ftId = daFoodType.Insert(ft.Name, ft.Description, true);
             }
-
-            return foodType;
-
+            return ft.Id == ftId;
         }
 
         
-        public Boolean DeleteFoodType(int id)
+        public bool DeleteFoodType(FoodType ft)
         {
-            bool delete = false;
-            DataRow row = dp.ds.FOODTYPE.Select("FOODTYPEID = '" + id + "'").FirstOrDefault();
-
-            if (row != null) 
+            int deletedFoodTypeId = -1;
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.FOODTYPETableAdapter daFoodType = new RestoBook.Common.Model.DataSetRestoBookTableAdapters.FOODTYPETableAdapter())
             {
-                // TODO : Soft Delete.
-                dp.ds.FOODTYPE.Rows.Remove(row);
-                delete = true;
+                deletedFoodTypeId = daFoodType.Delete(ft.Id, ft.Name, ft.Description, ft.IsEnabled);
             }
-
-            return delete;
+            return ft.Id == deletedFoodTypeId;
         }
 
 
-        public FoodType ModifyFoodTypeType(FoodType ft)
+        public bool ModifyFoodTypeType(FoodType ft)
         {
+            int ftId = -1;
             DataRow row = dp.ds.FOODTYPE.Select("FOODTYPEID = '" + ft.Id + "'").FirstOrDefault();
-
             row["NAME"] = ft.Name;
             row["DESCRIPTION"] = ft.Description;
-            row["ENABLED"] = ft.IsEnabled;
+            row["ENABLE"] = ft.IsEnabled;
             
-            FoodType foodtype = GetFoodTypeById(ft.Id);
-            return foodtype;
+            //FoodType foodtype = GetFoodTypeById(ft.Id);
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.FOODTYPETableAdapter daFoodType = new RestoBook.Common.Model.DataSetRestoBookTableAdapters.FOODTYPETableAdapter())
+            {
+                ftId = daFoodType.Update(row);
+            }
+            return ft.Id == ftId;
         }
 
         #endregion PUBLIC METHODS

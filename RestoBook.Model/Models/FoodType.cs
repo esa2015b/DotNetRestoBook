@@ -13,6 +13,12 @@ namespace RestoBook.Common.Model.Models
     [DataContract()]
     public class FoodType
     {
+        public FoodType()
+        {
+            this.Name = string.Empty;
+            this.Description = string.Empty;
+        }
+
         #region OLD PROPERTIES
         //public int Id { get; set; }
 

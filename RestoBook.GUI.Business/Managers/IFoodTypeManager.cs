@@ -28,23 +28,23 @@ namespace RestoBook.Common.Business.Managers
         /// <summary>
         /// Create a new Food Type
         /// </summary>
-        /// <param name="ft"></param>
-        /// <returns></returns>
-        FoodType CreateFoodType (FoodType ft);
+        /// <param name="ft">The foodtype to insert in the database.</param>
+        /// <returns>The newly created foodtype id.</returns>
+        bool CreateFoodType (FoodType ft);
 
         /// <summary>
         /// Delete a Food Type
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Boolean DeleteFoodType (int id);
+        bool DeleteFoodType (FoodType ft);
 
         /// <summary>
         /// Modify a Food Type
         /// </summary>
         /// <param name="ft"></param>
         /// <returns></returns>
-        FoodType ModifyFoodTypeType(FoodType ft);
+        bool ModifyFoodTypeType(FoodType ft);
 
     }
 }

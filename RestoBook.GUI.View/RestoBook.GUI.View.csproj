@@ -47,16 +47,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Controllers\FoodTypeController.cs" />
+    <Compile Include="Controllers\IFoodTypeController.cs" />
+    <Compile Include="Views\FoodTypeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\FoodTypeView.Designer.cs">
+      <DependentUpon>FoodTypeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="NinjectBindings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
+    <Compile Include="Views\RestaurantsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\RestaurantsView.Designer.cs">
+      <DependentUpon>RestaurantsView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\FoodTypeView.resx">
+      <DependentUpon>FoodTypeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -68,6 +85,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\RestaurantsView.resx">
+      <DependentUpon>RestaurantsView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -94,6 +114,7 @@
       <Name>RestoBook.Common.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
