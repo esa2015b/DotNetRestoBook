@@ -83,6 +83,27 @@ namespace RestoBook.Common.Business.Managers
             }
             return nbrRowsCreated > 0;
         }
+
+        /// <summary>
+        /// Deletes a pricelist for a given restaurant.
+        /// </summary>
+        /// <param name="priceList">The pricelist to delete.</param>
+        /// <param name="restaurantId">The pricelist's restaurant identifier.</param>
+        /// <returns>True in case of successful delete, false in case of failure.</returns>
+        public bool DeletePriceList(PriceList priceList, int restaurantId)
+        {
+            int nbrRowsDeleted = -1;
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.PRICELISTTableAdapter daPriceList = new RestoBook.Common.Model.DataSetRestoBookTableAdapters.PRICELISTTableAdapter())
+            {
+                nbrRowsDeleted = daPriceList.Delete(priceList.Id,
+                                                    restaurantId,
+                                                    priceList.Description,
+                                                    priceList.MinimumPrice,
+                                                    priceList.MaximumPrice,
+                                                    priceList.IsEnabled);
+            }
+            return nbrRowsDeleted > 0;
+        }
         #endregion PUBLIC METHODS
 
     }

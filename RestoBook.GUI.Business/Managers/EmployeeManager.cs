@@ -56,6 +56,30 @@ namespace RestoBook.Common.Business.Managers
             
             return employees;
         }
+
+        /// <summary>
+        /// Deletes an employee for a given restaurant.
+        /// </summary>
+        /// <param name="employee">The employee to delete.</param>
+        /// <param name="restaurantId">The employee's restaurant identifier.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool DeleteEmployee(Employee employee, int restaurantId)
+        {
+            int nbrRowsDeleted = -1;
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.EMPLOYEETableAdapter daEmployee = new Model.DataSetRestoBookTableAdapters.EMPLOYEETableAdapter())
+            {
+                nbrRowsDeleted = daEmployee.Delete(employee.Id,
+                                                   restaurantId,
+                                                   employee.FirstName,
+                                                   employee.LastName,
+                                                   employee.Email,
+                                                   employee.Mobile,
+                                                   employee.Login,
+                                                   employee.Password,
+                                                   employee.IsEnabled);
+            }
+            return nbrRowsDeleted > 0;
+        }
         #endregion PUBLIC METHODS
     }
 }

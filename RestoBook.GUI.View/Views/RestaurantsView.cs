@@ -18,6 +18,7 @@ namespace RestoBook.GUI.View.Views
         private Dictionary<int, string> restaurants;
         private Restaurant restaurantFocus;
         private RestaurantController restaurantController;
+        private List<FoodType> foodTypes;
         //private List<Restaurant> restaurants;
         #endregion PROPERTIES
 
@@ -41,10 +42,15 @@ namespace RestoBook.GUI.View.Views
         private void PopulateAndBindRestaurantList()
         {
             this.restaurants = this.restaurantController.GetAllRestaurants();
+            this.foodTypes = this.restaurantController.GetAllFoodTypes();
 
-            comboBoxRestaurants.DataSource = new BindingSource(this.restaurants, null);
+            this.comboBoxRestaurants.DataSource = new BindingSource(this.restaurants, null);
             this.comboBoxRestaurants.DisplayMember = "Value";
             this.comboBoxRestaurants.ValueMember = "Key";
+            
+            this.comboBoxFoodType.DataSource = this.foodTypes;
+            this.comboBoxFoodType.DisplayMember = "Name";
+            this.comboBoxFoodType.ValueMember = "Id";
         }
 
         /// <summary>
@@ -69,12 +75,13 @@ namespace RestoBook.GUI.View.Views
 
             // if the page has been loaded before, clear all existing bindings
             // in order to avoid conflicts.
-            if (textBoxFoodType.DataBindings.Count > 0)
+            if (textBoxRestaurantsName.DataBindings.Count > 0)
             {
                 this.ClearRestaurantsDataBindings();
             }
 
-            textBoxFoodType.DataBindings.Add("Text", this.restaurantFocus, "FoodType.Name");
+            comboBoxFoodType.SelectedValue = this.restaurantFocus.FoodType.Id;
+            //textBoxFoodType.DataBindings.Add("Text", this.restaurantFocus, "FoodType.Name");
             textBoxRestaurantsName.DataBindings.Add("Text", this.restaurantFocus, "Name");
             textBoxPlaceQuantity.DataBindings.Add("Text", this.restaurantFocus, "PlaceQuantity");
             textBoxDescription.DataBindings.Add("Text", this.restaurantFocus, "Description");
@@ -91,7 +98,8 @@ namespace RestoBook.GUI.View.Views
         /// </summary>
         private void ClearRestaurantsDataBindings()
         {
-            textBoxFoodType.DataBindings.Clear();
+            comboBoxFoodType.DataBindings.Clear();
+            //textBoxFoodType.DataBindings.Clear();
             textBoxRestaurantsName.DataBindings.Clear();
             textBoxPlaceQuantity.DataBindings.Clear();
             textBoxDescription.DataBindings.Clear();
@@ -101,6 +109,52 @@ namespace RestoBook.GUI.View.Views
             textBoxOwnersFirstName.DataBindings.Clear();
             textBoxOwnerLastName.DataBindings.Clear();
         }
+
+        private bool CheckCreationConditions()
+        {
+            if (!string.IsNullOrEmpty(restaurantFocus.DayOfClosing) &&
+                !string.IsNullOrEmpty(restaurantFocus.Description) &&
+                !string.IsNullOrEmpty(restaurantFocus.Mail) &&
+                !string.IsNullOrEmpty(restaurantFocus.Name) &&
+                !string.IsNullOrEmpty(restaurantFocus.Phone) &&
+                restaurantFocus.PlaceQuantity != 0 &&
+                restaurantFocus.Address != null &&
+                //!string.IsNullOrEmpty(restaurantFocus.Address.City) &&
+                //!string.IsNullOrEmpty(restaurantFocus.Address.Country) &&
+                //!string.IsNullOrEmpty(restaurantFocus.Address.Number) &&
+                //restaurantFocus.Employees != null &&
+                //restaurantFocus.Employees.Count >= 0 &&
+                //!string.IsNullOrEmpty(restaurantFocus.Employees[0].Email) &&
+                //!string.IsNullOrEmpty(restaurantFocus.Employees[0].FirstName) &&
+                //!string.IsNullOrEmpty(restaurantFocus.Employees[0].LastName) &&
+                //!string.IsNullOrEmpty(restaurantFocus.Employees[0].Login) &&
+                //!string.IsNullOrEmpty(restaurantFocus.Employees[0].Password) &&
+                restaurantFocus.FoodType != null &&
+                !string.IsNullOrEmpty(restaurantFocus.FoodType.Description) &&
+                !string.IsNullOrEmpty(restaurantFocus.FoodType.Name) &&
+                restaurantFocus.Owner != null &&
+                !string.IsNullOrEmpty(restaurantFocus.Owner.FirstName) &&
+                !string.IsNullOrEmpty(restaurantFocus.Owner.LastName) &&
+                restaurantFocus.PriceLists != null &&
+                restaurantFocus.PriceLists.Count > 0 &&
+                !string.IsNullOrEmpty(restaurantFocus.PriceLists[0].Description) &&
+                restaurantFocus.PriceLists[0].MaximumPrice > restaurantFocus.PriceLists[0].MinimumPrice &&
+                restaurantFocus.PriceLists[0].MinimumPrice > 0 &&
+                restaurantFocus.Services != null &&
+                restaurantFocus.Services.Count > 0 &&
+                !string.IsNullOrEmpty(restaurantFocus.Services[0].TypeService) &&
+                restaurantFocus.Services[0].BeginShift > restaurantFocus.Services[0].EndShift &&
+                restaurantFocus.Services[0].PlaceQuantity > 0 &&
+                restaurantFocus.Services[0].ServiceDate != null &&
+                restaurantFocus.Services[0].ServiceDate != DateTime.MinValue
+                //restaurantFocus.Services[0].ServiceDay != null
+                )
+            {
+                return true;
+            }
+            return false;
+        }
+
         #endregion METHODS
 
 
@@ -125,6 +179,8 @@ namespace RestoBook.GUI.View.Views
         private void buttonNewRestaurant_Click(object sender, EventArgs e)
         {
             this.comboBoxRestaurants.Enabled = false;
+            this.comboBoxFoodType.Enabled = true;
+            this.buttonAddRestaurant.Enabled = true;
             this.buttonDeleteRestaurant.Enabled = false;
             this.buttonModifyRestaurant.Enabled = false;
             this.buttonCancel.Enabled = true;
@@ -178,20 +234,6 @@ namespace RestoBook.GUI.View.Views
             };
 
             this.BindRestaurantDetails();
-
-            //this.textBoxRestaurantsName.Text = string.Empty;
-            //this.textBoxFoodType.Text = string.Empty;
-            //this.textBoxPlaceQuantity.Text = string.Empty;
-            //this.textBoxDayOfClosing.Text = string.Empty;
-            //this.textBoxDescription.Text = string.Empty;
-            //this.textBoxMail.Text = string.Empty;
-            //this.textBoxPhone.Text = string.Empty;
-            //this.textBoxOwnersFirstName.Text = string.Empty;
-            //this.textBoxOwnerLastName.Text = string.Empty;
-
-            //this.restaurantFocus.Address = new Address();
-            //this.restaurantFocus.PriceLists = new List<PriceList>();
-            //this.restaurantFocus.Services = new List<Service>();
         }
 
         /// <summary>
@@ -202,11 +244,28 @@ namespace RestoBook.GUI.View.Views
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.comboBoxRestaurants.Enabled = true;
+            this.comboBoxFoodType.Enabled = false;
             this.buttonDeleteRestaurant.Enabled = true;
             this.buttonModifyRestaurant.Enabled = true;
             this.buttonAddRestaurant.Enabled = false;
             this.buttonCancel.Enabled = false;
             this.PopulateAndBindRestaurantList();
+        }
+
+        /// <summary>
+        /// Creates a new restaurant in the database (sends the request to the controller in order to do so).
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddRestaurant_Click(object sender, EventArgs e)
+        {
+            if (this.CheckCreationConditions())
+            {
+                bool creationResult = this.restaurantController.CreateRestaurant(this.restaurantFocus);
+                string message = creationResult ? "Record successfully added." : "The record could not be added, please try again or contact your administrator.";
+                MessageBox.Show(message);
+                this.PopulateAndBindRestaurantList();
+            }
         }
 
         /// <summary>
@@ -226,8 +285,14 @@ namespace RestoBook.GUI.View.Views
         /// <param name="e"></param>
         private void buttonDeleteRestaurant_Click(object sender, EventArgs e)
         {
-
+            bool result = this.restaurantController.DeleteRestaurant(this.restaurantFocus);
+            string message = result ? "Record successfully deleted." : "The record could not be deleted, please try again or contact your administrator.";
+            MessageBox.Show(message);
+            this.PopulateAndBindRestaurantList();
         }
+
+
         #endregion EVENTS
+
     }
 }

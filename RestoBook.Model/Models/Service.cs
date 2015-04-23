@@ -13,28 +13,18 @@ namespace RestoBook.Common.Model.Models
     [DataContract()]
     public class Service
     {
-        #region OLD PROPERTIES
-        //public int RestaurantId {get; set; }
-
-        //public DateTime ServiceDay { get; set; }
-
-        //public string TypeService { get; set; }
-
-        //public int StartShift { get; set; }
-
-        //public int EndShift { get; set; }
-
-        //public int PlaceQuantity { get; set; }
-
-        //public bool Enable { get; set; }
-        #endregion OLD PROPERTIES
-
         #region PROPERTIES
         /// <summary>
         /// The Service identifier.
         /// </summary>
         [DataMember(IsRequired = true)]
         public int Id { get; set; }
+
+        /// <summary>
+        /// The service datetime
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public DateTime ServiceDate { get; set; }
 
         /// <summary>
         /// The service day
@@ -73,15 +63,5 @@ namespace RestoBook.Common.Model.Models
         public bool IsEnabled { get; set; }
         #endregion PROPERTIES
 
-        //public Service (int restaurantid, DayOfWeek serviceday, string typeservice, int startshift, int endshift, int placequantity, bool enable)
-        //{
-        //    this.Id = restaurantid;
-        //    this.ServiceDay = serviceday;
-        //    this.TypeService = typeservice;
-        //    this.BeginShift = startshift;
-        //    this.EndShift = endshift;
-        //    this.PlaceQuantity = placequantity;
-        //    this.IsEnabled = enable;
-        //}
     }
 }

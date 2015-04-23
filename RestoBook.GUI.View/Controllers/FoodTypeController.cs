@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace RestoBook.GUI.View.Controllers
 {
+    /// <summary>
+    /// The foodtype controller, to pass information between the views and the business logic layer.
+    /// </summary>
     public class FoodTypeController : IFoodTypeController
     {
         #region PROPERTIES

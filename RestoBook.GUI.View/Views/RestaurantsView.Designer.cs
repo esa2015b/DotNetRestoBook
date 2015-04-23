@@ -30,6 +30,7 @@
         {
             this.labelRestaurantsList = new System.Windows.Forms.Label();
             this.groupBoxRestaurant = new System.Windows.Forms.GroupBox();
+            this.comboBoxFoodType = new System.Windows.Forms.ComboBox();
             this.textBoxMail = new System.Windows.Forms.TextBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.labelPhone = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.textBoxPlaceQuantity = new System.Windows.Forms.TextBox();
             this.labelPlaceQuantity = new System.Windows.Forms.Label();
             this.labelFoodType = new System.Windows.Forms.Label();
-            this.textBoxFoodType = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxRestaurantsName = new System.Windows.Forms.TextBox();
             this.groupBoxOwner = new System.Windows.Forms.GroupBox();
@@ -81,6 +81,7 @@
             // 
             // groupBoxRestaurant
             // 
+            this.groupBoxRestaurant.Controls.Add(this.comboBoxFoodType);
             this.groupBoxRestaurant.Controls.Add(this.textBoxMail);
             this.groupBoxRestaurant.Controls.Add(this.textBoxPhone);
             this.groupBoxRestaurant.Controls.Add(this.labelPhone);
@@ -92,7 +93,6 @@
             this.groupBoxRestaurant.Controls.Add(this.textBoxPlaceQuantity);
             this.groupBoxRestaurant.Controls.Add(this.labelPlaceQuantity);
             this.groupBoxRestaurant.Controls.Add(this.labelFoodType);
-            this.groupBoxRestaurant.Controls.Add(this.textBoxFoodType);
             this.groupBoxRestaurant.Controls.Add(this.labelName);
             this.groupBoxRestaurant.Controls.Add(this.textBoxRestaurantsName);
             this.groupBoxRestaurant.Location = new System.Drawing.Point(12, 160);
@@ -103,6 +103,16 @@
             this.groupBoxRestaurant.TabIndex = 17;
             this.groupBoxRestaurant.TabStop = false;
             this.groupBoxRestaurant.Text = "Restaurant";
+            // 
+            // comboBoxFoodType
+            // 
+            this.comboBoxFoodType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxFoodType.Enabled = false;
+            this.comboBoxFoodType.FormattingEnabled = true;
+            this.comboBoxFoodType.Location = new System.Drawing.Point(93, 39);
+            this.comboBoxFoodType.Name = "comboBoxFoodType";
+            this.comboBoxFoodType.Size = new System.Drawing.Size(260, 21);
+            this.comboBoxFoodType.TabIndex = 30;
             // 
             // textBoxMail
             // 
@@ -204,14 +214,6 @@
             this.labelFoodType.Size = new System.Drawing.Size(54, 13);
             this.labelFoodType.TabIndex = 3;
             this.labelFoodType.Text = "Food type";
-            // 
-            // textBoxFoodType
-            // 
-            this.textBoxFoodType.Location = new System.Drawing.Point(93, 40);
-            this.textBoxFoodType.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxFoodType.Name = "textBoxFoodType";
-            this.textBoxFoodType.Size = new System.Drawing.Size(451, 20);
-            this.textBoxFoodType.TabIndex = 2;
             // 
             // labelName
             // 
@@ -367,6 +369,7 @@
             this.buttonAddRestaurant.TabIndex = 25;
             this.buttonAddRestaurant.Text = "Add Restaurant";
             this.buttonAddRestaurant.UseVisualStyleBackColor = false;
+            this.buttonAddRestaurant.Click += new System.EventHandler(this.buttonAddRestaurant_Click);
             // 
             // buttonModifyRestaurant
             // 
@@ -458,7 +461,6 @@
         private System.Windows.Forms.TextBox textBoxPlaceQuantity;
         private System.Windows.Forms.Label labelPlaceQuantity;
         private System.Windows.Forms.Label labelFoodType;
-        private System.Windows.Forms.TextBox textBoxFoodType;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox textBoxRestaurantsName;
         private System.Windows.Forms.GroupBox groupBoxOwner;
@@ -478,6 +480,7 @@
         private System.Windows.Forms.Button buttonDeleteRestaurant;
         private System.Windows.Forms.Button buttonNewRestaurant;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.ComboBox comboBoxFoodType;
 
     }
 }

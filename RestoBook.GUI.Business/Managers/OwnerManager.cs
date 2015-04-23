@@ -68,6 +68,24 @@ namespace RestoBook.Common.Business.Managers
             }
             return nbrRowsCreated > 1;
         }
+
+        /// <summary>
+        /// Deletes an owner.
+        /// </summary>
+        /// <param name="owner">The owner to delete.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool DeleteOwner(Owner owner)
+        {
+            int nbrRowsDeleted = -1;
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.OWNERTableAdapter daOwner = new Model.DataSetRestoBookTableAdapters.OWNERTableAdapter())
+            {
+                nbrRowsDeleted = daOwner.Delete(owner.Id,
+                                                owner.FirstName,
+                                                owner.LastName,
+                                                owner.IsEnabled);
+            }
+            return nbrRowsDeleted > 1;
+        }
         #endregion PUBLIC METHODS
     }
 }

@@ -32,5 +32,11 @@ namespace RestoBook.GUI.View.Controllers
 		/// <returns>True in case of successful update, false in case of failure.</returns>
 		bool CreateRestaurant(Restaurant newRestaurant);
 
+        /// <summary>
+        /// Gets the list of existing food types.
+        /// </summary>
+        /// <returns>A list of existing food type objects.</returns>
+        List<FoodType> GetAllFoodTypes();
+
 	}
 }

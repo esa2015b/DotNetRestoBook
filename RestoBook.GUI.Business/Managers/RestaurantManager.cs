@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System;
 using RestoBook.Common.Model.Models;
+using RestoBook.Model.Common.Models;
 
 namespace RestoBook.Common.Business.Managers
 {
@@ -56,6 +57,7 @@ namespace RestoBook.Common.Business.Managers
                                               where r.RESTAURANTID == restaurantId
                                               join o in this.dp.ds.OWNER on r.OWNERID equals o.OWNERID
                                               join f in this.dp.ds.FOODTYPE on r.FOODTYPEID equals f.FOODTYPEID
+                                              join e in this.dp.ds.EMPLOYEE on r.RESTAURANTID equals e.RESTAURANTID
                                               select new Restaurant()
                                               {
                                                   Id = (int)r.RESTAURANTID,
@@ -70,10 +72,24 @@ namespace RestoBook.Common.Business.Managers
                                                   IsEnabled = r.ENABLE,
                                                   FoodType = new FoodType() { Description = f.DESCRIPTION, Id = (int)f.FOODTYPEID, IsEnabled = f.ENABLE, Name = f.NAME },
                                                   Owner = new Owner() { FirstName = o.FIRSTNAME, Id = (int)o.OWNERID, IsEnabled = o.ENABLE, LastName = o.LASTNAME, OwnedRestaurants = new List<Restaurant>() },
+                                                  Employees = new List<RestoBook.Model.Common.Models.Employee>()
+                                                  {
+                                                      new Employee()
+                                                      {
+                                                          Id = (int)e.EMPLOYEEID,
+                                                          Email = e.MAIL,
+                                                          FirstName = e.FIRSTNAME,
+                                                          IsEnabled = e.ENABLE,
+                                                          LastName = e.LASTNAME,
+                                                          Login = e.LOGIN,
+                                                          Mobile = e.MOBILE,
+                                                          Password = e.PASSWORD
+                                                      }
+                                                  }
                                               }).FirstOrDefault();
             if (resto == null)
             {
-                throw new Exception("No restaurant found with this id.");
+                //throw new Exception("No restaurant found with this id.");
             }
             return resto;
         }

@@ -16,5 +16,14 @@ namespace RestoBook.Common.Business.Managers
         /// <param name="restaurantid">For which restaurant is the address?</param>
         /// <returns>True in case of successful update, false in case of failure.</returns>
         bool CreateAddres(Address address, int restaurantid);
+
+        /// <summary>
+        /// Deletes an address.
+        /// </summary>
+        /// <param name="address">The address to delete.</param>
+        /// <param name="restaurantId">The restaurant identifier.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        bool DeleteAddress(Address address, int restaurantId);
+
     }
 }

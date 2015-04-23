@@ -34,15 +34,15 @@ namespace RestoBook.Common.Business.Managers
         /// Creates a new address.
         /// </summary>
         /// <param name="address">The address to create.</param>
-        /// <param name="restaurantid">For which restaurant is the address?</param>
+        /// <param name="restaurantId">For which restaurant is the address?</param>
         /// <returns>True in case of successful update, false in case of failure.</returns>
-        public bool CreateAddres(Address address, int restaurantid)
+        public bool CreateAddres(Address address, int restaurantId)
         {
             int nbrRowsCreated = -1;
             using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.ADDRESSTableAdapter daAddress = new Model.DataSetRestoBookTableAdapters.ADDRESSTableAdapter())
             {
                 nbrRowsCreated = daAddress.Insert(address.Id,
-                                                  restaurantid,
+                                                  restaurantId,
                                                   address.Street,
                                                   address.Number,
                                                   address.ZipCode,
@@ -52,6 +52,30 @@ namespace RestoBook.Common.Business.Managers
                                                   address.IsEnabled);
             }
             return nbrRowsCreated > 0;
+        }
+
+        /// <summary>
+        /// Deletes an address.
+        /// </summary>
+        /// <param name="address">The address to delete.</param>
+        /// <param name="restaurantId">The restaurant identifier.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool DeleteAddress(Address address, int restaurantId)
+        {
+            int nbrRowsDeleted = -1;
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.ADDRESSTableAdapter daAddress = new Model.DataSetRestoBookTableAdapters.ADDRESSTableAdapter())
+            {
+                nbrRowsDeleted = daAddress.Delete(address.Id,
+                                                  restaurantId,
+                                                  address.Street,
+                                                  address.Number,
+                                                  address.ZipCode,
+                                                  address.City,
+                                                  address.Country,
+                                                  address.HeadOffice,
+                                                  address.IsEnabled);
+            }
+            return nbrRowsDeleted > 0;
         }
 
         #endregion PUBLIC METHODS

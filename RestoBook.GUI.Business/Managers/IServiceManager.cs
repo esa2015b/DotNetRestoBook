@@ -27,5 +27,13 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>True in case of successful update, false in case of failure.</returns>
         bool CreateService(Service service, int restaurantId);
 
+        /// <summary>
+        /// Deletes a given service for a specific restaurant.
+        /// </summary>
+        /// <param name="service">The service to delete.</param>
+        /// <param name="restaurantId">The service's restaurant identifier.</param>
+        /// <returns>True in case of successful delete, false in case of failure.</returns>
+        bool DeleteService(Service service, int restaurantId);
+
     }
 }

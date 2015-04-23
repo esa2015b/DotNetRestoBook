@@ -1,5 +1,6 @@
 ﻿using RestoBook.Common.Business.Managers;
 using RestoBook.Common.Model.Models;
+using RestoBook.Model.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace RestoBook.GUI.View.Controllers
 {
 	/// <summary>
-	/// The restaurant view controller.
+	/// The restaurant view controller, to process information between the views and the business logic layer.
 	/// </summary>
 	public class RestaurantController : IRestaurantController
 	{
@@ -19,6 +20,9 @@ namespace RestoBook.GUI.View.Controllers
 		private PriceListManager priceListManager;
 		private OwnerManager ownerManager;
 		private AddressManager addressManager;
+        private EmployeeManager employeeManager;
+        private FoodTypeManager foodTypeManager;
+        //private ReservationManager reservationManager;
 		#endregion PROPERTIES
 
 
@@ -30,6 +34,9 @@ namespace RestoBook.GUI.View.Controllers
 			this.priceListManager = new PriceListManager();
 			this.ownerManager = new OwnerManager();
 			this.addressManager = new AddressManager();
+            this.employeeManager = new EmployeeManager();
+            this.foodTypeManager = new FoodTypeManager();
+            //this.reservationManager = new ReservationManager();
 		}
 		#endregion CONSTRUCTOR
 
@@ -52,9 +59,12 @@ namespace RestoBook.GUI.View.Controllers
 		public Restaurant GetRestaurantById(int restaurantId)
 		{
 			Restaurant restaurant = this.restaurantManager.GetRestaurantById(restaurantId);
-			restaurant.PriceLists = this.priceListManager.GetPriceLists(restaurantId);
-			restaurant.Services = this.serviceManager.GetServices(restaurantId);
-			//restaurant.Owner = this.ownerManager.GetOwner(restaurant.)
+            if (restaurant != null)
+            {
+                restaurant.PriceLists = this.priceListManager.GetPriceLists(restaurantId);
+                restaurant.Services = this.serviceManager.GetServices(restaurantId);
+                //restaurant.Owner = this.ownerManager.GetOwner(restaurant.)
+            }
 			return restaurant;
 		}
 
@@ -93,6 +103,62 @@ namespace RestoBook.GUI.View.Controllers
 			}
 			return successful;
 		}
+
+        /// <summary>
+        /// Deletes a restaurant and all linked table objects.
+        /// </summary>
+        /// <param name="restaurant">The restaurant to delete.</param>
+        /// <returns>True if successful, false if failed.</returns>
+        public bool DeleteRestaurant(Restaurant restaurant)
+        {
+            bool successful = true;
+            foreach (PriceList priceList in restaurant.PriceLists)
+            {
+                if (successful)
+                {
+                    successful = this.priceListManager.DeletePriceList(priceList, restaurant.Id);
+                }
+            }
+            // TODO : implement the reservation manager & deletion of all reservations.
+            foreach (Service service in restaurant.Services)
+            {
+                if (successful)
+                {
+                    successful = this.serviceManager.DeleteService(service, restaurant.Id);
+                }
+            }
+            foreach (Employee employee in restaurant.Employees)
+            {
+                if (successful)
+                {
+                    successful = this.employeeManager.DeleteEmployee(employee, restaurant.Id);
+                }
+            }
+            if (successful)
+            {
+                successful = this.addressManager.DeleteAddress(restaurant.Address, restaurant.Id);
+            }
+            if (successful)
+            {
+                successful = this.restaurantManager.DeleteRestaurant(restaurant);
+            }
+            if (successful)
+            {
+                successful = this.ownerManager.DeleteOwner(restaurant.Owner);
+            }
+            return successful;
+        }
+
+
+        /// <summary>
+        /// Gets the list of existing food types.
+        /// </summary>
+        /// <returns>A list of existing food type objects.</returns>
+        public List<FoodType> GetAllFoodTypes()
+        {
+            return this.foodTypeManager.GetFoodTypeList();
+        }
+
 		#endregion PUBLIC METHODS
 	}
 }
