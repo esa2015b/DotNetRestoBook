@@ -62,6 +62,27 @@ namespace RestoBook.Common.Business.Managers
 
             return priceLists;
         }
+
+        /// <summary>
+        /// Creates a new pricelist for a given restaurant.
+        /// </summary>
+        /// <param name="priceList">The pricelist to create.</param>
+        /// <param name="restaurantId">The pricelist's restaurant.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool CreatePriceList(PriceList priceList, int restaurantId)
+        {
+            int nbrRowsCreated = -1;
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.PRICELISTTableAdapter daPriceList = new RestoBook.Common.Model.DataSetRestoBookTableAdapters.PRICELISTTableAdapter())
+            {
+                nbrRowsCreated = daPriceList.Insert(priceList.Id,
+                                                    restaurantId,
+                                                    priceList.Description,
+                                                    priceList.MinimumPrice,
+                                                    priceList.MaximumPrice,
+                                                    priceList.IsEnabled);
+            }
+            return nbrRowsCreated > 0;
+        }
         #endregion PUBLIC METHODS
 
     }

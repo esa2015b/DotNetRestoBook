@@ -53,6 +53,31 @@ namespace RestoBook.Common.Business.Managers
                                                             }));
             return services;
         }
+
+        /// <summary>
+        /// Creates a new service row.
+        /// </summary>
+        /// <param name="service">The service row to create.</param>
+        /// <param name="restaurantId">The service's restaurant identifier.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool CreateService(Service service, int restaurantId)
+        {
+            int nbrRowsCreated = -1;
+
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.SERVICETableAdapter daService = new Model.DataSetRestoBookTableAdapters.SERVICETableAdapter())
+            {
+                // TODO : implement the datetime / dayofweek system ! ! !
+                nbrRowsCreated = daService.Insert(service.Id,
+                                                  restaurantId,
+                                                  new DateTime(),
+                                                  service.TypeService,
+                                                  service.BeginShift,
+                                                  service.EndShift,
+                                                  service.PlaceQuantity,
+                                                  service.IsEnabled);
+            }
+            return nbrRowsCreated > 0;
+        }
         #endregion PUBLIC METHODS
     }
 }

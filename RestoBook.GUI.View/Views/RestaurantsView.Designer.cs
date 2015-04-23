@@ -54,15 +54,18 @@
             this.dataGridViewListPrice = new System.Windows.Forms.DataGridView();
             this.dataGridViewListAddresses = new System.Windows.Forms.DataGridView();
             this.groupBoxAddresses = new System.Windows.Forms.GroupBox();
-            this.dataGridViewListRestaurants = new System.Windows.Forms.DataGridView();
             this.dataGridViewListServices = new System.Windows.Forms.DataGridView();
+            this.comboBoxRestaurants = new System.Windows.Forms.ComboBox();
+            this.buttonAddRestaurant = new System.Windows.Forms.Button();
+            this.buttonModifyRestaurant = new System.Windows.Forms.Button();
+            this.buttonDeleteRestaurant = new System.Windows.Forms.Button();
+            this.buttonNewRestaurant = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxRestaurant.SuspendLayout();
             this.groupBoxOwner.SuspendLayout();
             this.groupBoxPriceList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListAddresses)).BeginInit();
-            this.groupBoxAddresses.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListRestaurants)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListServices)).BeginInit();
             this.SuspendLayout();
             // 
@@ -285,7 +288,7 @@
             this.groupBoxServices.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxServices.Name = "groupBoxServices";
             this.groupBoxServices.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxServices.Size = new System.Drawing.Size(580, 241);
+            this.groupBoxServices.Size = new System.Drawing.Size(743, 241);
             this.groupBoxServices.TabIndex = 20;
             this.groupBoxServices.TabStop = false;
             this.groupBoxServices.Text = "Services";
@@ -297,7 +300,7 @@
             this.groupBoxPriceList.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxPriceList.Name = "groupBoxPriceList";
             this.groupBoxPriceList.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxPriceList.Size = new System.Drawing.Size(472, 115);
+            this.groupBoxPriceList.Size = new System.Drawing.Size(633, 115);
             this.groupBoxPriceList.TabIndex = 22;
             this.groupBoxPriceList.TabStop = false;
             this.groupBoxPriceList.Text = "Prices\'s list";
@@ -308,42 +311,30 @@
             this.dataGridViewListPrice.Location = new System.Drawing.Point(4, 17);
             this.dataGridViewListPrice.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewListPrice.Name = "dataGridViewListPrice";
-            this.dataGridViewListPrice.Size = new System.Drawing.Size(463, 93);
+            this.dataGridViewListPrice.Size = new System.Drawing.Size(625, 93);
             this.dataGridViewListPrice.TabIndex = 14;
             // 
             // dataGridViewListAddresses
             // 
             this.dataGridViewListAddresses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewListAddresses.Location = new System.Drawing.Point(5, 17);
+            this.dataGridViewListAddresses.Location = new System.Drawing.Point(653, 419);
             this.dataGridViewListAddresses.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewListAddresses.Name = "dataGridViewListAddresses";
             this.dataGridViewListAddresses.RowHeadersVisible = false;
             this.dataGridViewListAddresses.RowTemplate.Height = 24;
-            this.dataGridViewListAddresses.Size = new System.Drawing.Size(646, 93);
+            this.dataGridViewListAddresses.Size = new System.Drawing.Size(648, 93);
             this.dataGridViewListAddresses.TabIndex = 0;
             // 
             // groupBoxAddresses
             // 
-            this.groupBoxAddresses.Controls.Add(this.dataGridViewListAddresses);
-            this.groupBoxAddresses.Location = new System.Drawing.Point(489, 402);
+            this.groupBoxAddresses.Location = new System.Drawing.Point(649, 405);
             this.groupBoxAddresses.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxAddresses.Name = "groupBoxAddresses";
             this.groupBoxAddresses.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxAddresses.Size = new System.Drawing.Size(656, 115);
+            this.groupBoxAddresses.Size = new System.Drawing.Size(658, 115);
             this.groupBoxAddresses.TabIndex = 19;
             this.groupBoxAddresses.TabStop = false;
             this.groupBoxAddresses.Text = "Adresses";
-            // 
-            // dataGridViewListRestaurants
-            // 
-            this.dataGridViewListRestaurants.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewListRestaurants.Location = new System.Drawing.Point(12, 26);
-            this.dataGridViewListRestaurants.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridViewListRestaurants.Name = "dataGridViewListRestaurants";
-            this.dataGridViewListRestaurants.RowHeadersVisible = false;
-            this.dataGridViewListRestaurants.RowTemplate.Height = 24;
-            this.dataGridViewListRestaurants.Size = new System.Drawing.Size(1133, 130);
-            this.dataGridViewListRestaurants.TabIndex = 16;
             // 
             // dataGridViewListServices
             // 
@@ -353,23 +344,92 @@
             this.dataGridViewListServices.Name = "dataGridViewListServices";
             this.dataGridViewListServices.RowHeadersVisible = false;
             this.dataGridViewListServices.RowTemplate.Height = 24;
-            this.dataGridViewListServices.Size = new System.Drawing.Size(572, 215);
+            this.dataGridViewListServices.Size = new System.Drawing.Size(733, 215);
             this.dataGridViewListServices.TabIndex = 23;
+            // 
+            // comboBoxRestaurants
+            // 
+            this.comboBoxRestaurants.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRestaurants.FormattingEnabled = true;
+            this.comboBoxRestaurants.Location = new System.Drawing.Point(16, 36);
+            this.comboBoxRestaurants.Name = "comboBoxRestaurants";
+            this.comboBoxRestaurants.Size = new System.Drawing.Size(255, 21);
+            this.comboBoxRestaurants.TabIndex = 24;
+            this.comboBoxRestaurants.SelectedIndexChanged += new System.EventHandler(this.comboBoxRestaurants_SelectedIndexChanged);
+            // 
+            // buttonAddRestaurant
+            // 
+            this.buttonAddRestaurant.BackColor = System.Drawing.Color.Chartreuse;
+            this.buttonAddRestaurant.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonAddRestaurant.Location = new System.Drawing.Point(20, 538);
+            this.buttonAddRestaurant.Name = "buttonAddRestaurant";
+            this.buttonAddRestaurant.Size = new System.Drawing.Size(118, 23);
+            this.buttonAddRestaurant.TabIndex = 25;
+            this.buttonAddRestaurant.Text = "Add Restaurant";
+            this.buttonAddRestaurant.UseVisualStyleBackColor = false;
+            // 
+            // buttonModifyRestaurant
+            // 
+            this.buttonModifyRestaurant.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.buttonModifyRestaurant.Location = new System.Drawing.Point(197, 538);
+            this.buttonModifyRestaurant.Name = "buttonModifyRestaurant";
+            this.buttonModifyRestaurant.Size = new System.Drawing.Size(118, 23);
+            this.buttonModifyRestaurant.TabIndex = 26;
+            this.buttonModifyRestaurant.Text = "Modify Restaurant";
+            this.buttonModifyRestaurant.UseVisualStyleBackColor = false;
+            this.buttonModifyRestaurant.Click += new System.EventHandler(this.buttonModifyRestaurant_Click);
+            // 
+            // buttonDeleteRestaurant
+            // 
+            this.buttonDeleteRestaurant.BackColor = System.Drawing.Color.Crimson;
+            this.buttonDeleteRestaurant.Location = new System.Drawing.Point(375, 538);
+            this.buttonDeleteRestaurant.Name = "buttonDeleteRestaurant";
+            this.buttonDeleteRestaurant.Size = new System.Drawing.Size(118, 23);
+            this.buttonDeleteRestaurant.TabIndex = 27;
+            this.buttonDeleteRestaurant.Text = "Delete Restaurant";
+            this.buttonDeleteRestaurant.UseVisualStyleBackColor = false;
+            this.buttonDeleteRestaurant.Click += new System.EventHandler(this.buttonDeleteRestaurant_Click);
+            // 
+            // buttonNewRestaurant
+            // 
+            this.buttonNewRestaurant.Location = new System.Drawing.Point(20, 119);
+            this.buttonNewRestaurant.Name = "buttonNewRestaurant";
+            this.buttonNewRestaurant.Size = new System.Drawing.Size(118, 23);
+            this.buttonNewRestaurant.TabIndex = 28;
+            this.buttonNewRestaurant.Text = "New Restaurant";
+            this.buttonNewRestaurant.UseVisualStyleBackColor = true;
+            this.buttonNewRestaurant.Click += new System.EventHandler(this.buttonNewRestaurant_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(166, 119);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(118, 23);
+            this.buttonCancel.TabIndex = 29;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // RestaurantsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonNewRestaurant);
+            this.Controls.Add(this.buttonDeleteRestaurant);
+            this.Controls.Add(this.buttonModifyRestaurant);
+            this.Controls.Add(this.buttonAddRestaurant);
+            this.Controls.Add(this.dataGridViewListAddresses);
+            this.Controls.Add(this.comboBoxRestaurants);
             this.Controls.Add(this.dataGridViewListServices);
             this.Controls.Add(this.groupBoxAddresses);
             this.Controls.Add(this.groupBoxPriceList);
             this.Controls.Add(this.groupBoxServices);
             this.Controls.Add(this.groupBoxOwner);
             this.Controls.Add(this.groupBoxRestaurant);
-            this.Controls.Add(this.dataGridViewListRestaurants);
             this.Controls.Add(this.labelRestaurantsList);
             this.Name = "RestaurantsView";
-            this.Size = new System.Drawing.Size(1169, 533);
+            this.Size = new System.Drawing.Size(1309, 587);
             this.groupBoxRestaurant.ResumeLayout(false);
             this.groupBoxRestaurant.PerformLayout();
             this.groupBoxOwner.ResumeLayout(false);
@@ -377,8 +437,6 @@
             this.groupBoxPriceList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListAddresses)).EndInit();
-            this.groupBoxAddresses.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListRestaurants)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListServices)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -413,8 +471,13 @@
         private System.Windows.Forms.DataGridView dataGridViewListPrice;
         private System.Windows.Forms.DataGridView dataGridViewListAddresses;
         private System.Windows.Forms.GroupBox groupBoxAddresses;
-        private System.Windows.Forms.DataGridView dataGridViewListRestaurants;
         private System.Windows.Forms.DataGridView dataGridViewListServices;
+        private System.Windows.Forms.ComboBox comboBoxRestaurants;
+        private System.Windows.Forms.Button buttonAddRestaurant;
+        private System.Windows.Forms.Button buttonModifyRestaurant;
+        private System.Windows.Forms.Button buttonDeleteRestaurant;
+        private System.Windows.Forms.Button buttonNewRestaurant;
+        private System.Windows.Forms.Button buttonCancel;
 
     }
 }

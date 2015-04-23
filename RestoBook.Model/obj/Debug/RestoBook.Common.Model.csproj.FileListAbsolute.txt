@@ -18,6 +18,5 @@ D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBo
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.Model\bin\Debug\RestoBook.Common.Model.pdb
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.Model\bin\Debug\Ninject.dll
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.Model\bin\Debug\Ninject.xml
-D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.Model\obj\Debug\RestoBook.Common.Model.csprojResolveAssemblyReference.cache
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.Model\obj\Debug\RestoBook.Common.Model.dll
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.Model\obj\Debug\RestoBook.Common.Model.pdb

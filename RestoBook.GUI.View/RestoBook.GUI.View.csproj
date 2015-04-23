@@ -49,6 +49,10 @@
   <ItemGroup>
     <Compile Include="Controllers\FoodTypeController.cs" />
     <Compile Include="Controllers\IFoodTypeController.cs" />
+    <Compile Include="Controllers\IReservationController.cs" />
+    <Compile Include="Controllers\IRestaurantController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
+    <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Views\FoodTypeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -88,6 +92,7 @@
     <EmbeddedResource Include="Views\RestaurantsView.resx">
       <DependentUpon>RestaurantsView.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

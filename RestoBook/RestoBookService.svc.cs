@@ -118,7 +118,6 @@
                     r.PriceLists = this.priceListManager.GetPriceLists(restaurantId);
                     r.Services = this.serviceManager.GetServices(restaurantId);
                 }
-
             }
 
             return restaurant;

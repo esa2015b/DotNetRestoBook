@@ -29,9 +29,18 @@ namespace RestoBook.Common.Business.Managers
         /// No modification to datas 
         /// </summary>
         /// <returns>DataSet</returns>
-        public DataSet GetAllRestaurants()
+        public DataSet GetAllRestaurants2()
         {
             return this.dp.ds;
+        }
+
+        public Dictionary<int,string> GetAllRestaurants()
+        {
+            Dictionary<int, string> restaurants = new Dictionary<int, string>();
+            this.dp.ds.RESTAURANT.Select(r => new { r.RESTAURANTID, r.NAME })
+                                 .ToList()
+                                 .ForEach(r => restaurants.Add((int)r.RESTAURANTID, r.NAME));
+            return restaurants;
         }
 
         /// <summary>
@@ -60,7 +69,7 @@ namespace RestoBook.Common.Business.Managers
                                                   IsPremium = r.ISPREMIUM,
                                                   IsEnabled = r.ENABLE,
                                                   FoodType = new FoodType() { Description = f.DESCRIPTION, Id = (int)f.FOODTYPEID, IsEnabled = f.ENABLE, Name = f.NAME },
-                                                  Owner = new Owner() { FirstName = o.FIRSTNAME, Id = (int)o.OWNERID, IsEnabled = o.ENABLE, LastName = o.LASTNAME, OwnedRestaurants = new List<Restaurant>() }
+                                                  Owner = new Owner() { FirstName = o.FIRSTNAME, Id = (int)o.OWNERID, IsEnabled = o.ENABLE, LastName = o.LASTNAME, OwnedRestaurants = new List<Restaurant>() },
                                               }).FirstOrDefault();
             if (resto == null)
             {
@@ -196,6 +205,86 @@ namespace RestoBook.Common.Business.Managers
                         }).OrderBy(x => Guid.NewGuid()).First();
 
             return restaurant;
+        }
+
+        /// <summary>
+        /// Creates a new restaurant.
+        /// </summary>
+        /// <param name="r">The restaurant to create.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool CreateRestaurant(Restaurant r)
+        {
+            int nbrRowsCreated = -1;
+
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESTAURANTTableAdapter daRestaurant = new Model.DataSetRestoBookTableAdapters.RESTAURANTTableAdapter())
+            {
+                nbrRowsCreated = daRestaurant.Insert(r.Id,
+                                                     r.Owner.Id,
+                                                     r.FoodType.Id,
+                                                     r.Name,
+                                                     r.Mail,
+                                                     r.Phone,
+                                                     r.Description,
+                                                     r.PlaceQuantity,
+                                                     r.DayOfClosing,
+                                                     r.PictureLocation,
+                                                     r.IsEnabled,
+                                                     r.IsPremium);
+            }
+            return nbrRowsCreated > 0;
+        }
+
+        /// <summary>
+        /// Deletes a restaurant.
+        /// </summary>
+        /// <param name="r">The restaurant to delete.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool DeleteRestaurant(Restaurant r)
+        {
+            int nbrRowsDeleted = -1;
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESTAURANTTableAdapter daRestaurant = new Model.DataSetRestoBookTableAdapters.RESTAURANTTableAdapter())
+            {
+                nbrRowsDeleted = daRestaurant.Delete(r.Id, 
+                                                     r.Owner.Id,
+                                                     r.FoodType.Id,
+                                                     r.Name,
+                                                     r.Mail,
+                                                     r.Phone,
+                                                     r.Description,
+                                                     r.PlaceQuantity,
+                                                     r.DayOfClosing,
+                                                     r.PictureLocation,
+                                                     r.IsEnabled,
+                                                     r.IsPremium);
+            }
+            return nbrRowsDeleted > 0;
+        }
+
+        /// <summary>
+        /// Modifies a restaurant.
+        /// </summary>
+        /// <param name="r">The modified restaurant.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool ModifyRestaurant(Restaurant r)
+        {
+            int nbrRowsUpdated = -1;
+
+            DataRow row = dp.ds.FOODTYPE.Select(string.Format("RESTAURANTID = '{0}'", r.Id)).FirstOrDefault();
+            row["NAME"] = r.Name;
+            row["MAIL"] = r.Mail;
+            row["PHONE"] = r.Phone;
+            row["DESCRIPTION"] = r.Description;
+            row["PLACEQUANTITY"] = r.PlaceQuantity;
+            row["DAYOFCLOSING"] = r.DayOfClosing;
+            row["PICTURELOCATION"] = r.PictureLocation;
+            row["ENABLE"] = r.IsEnabled;
+            row["ISPREMIUM"] = r.IsPremium;
+
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESTAURANTTableAdapter daRestaurant = new Model.DataSetRestoBookTableAdapters.RESTAURANTTableAdapter())
+            {
+                nbrRowsUpdated = daRestaurant.Update(row);
+            }
+            return nbrRowsUpdated > 0;
         }
         #endregion
     }

@@ -50,6 +50,24 @@ namespace RestoBook.Common.Business.Managers
                 LastName = res.LASTNAME
             };
         }
+
+        /// <summary>
+        /// Creates a new owner.
+        /// </summary>
+        /// <param name="owner">The owner to create.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool CreateOwner(Owner owner)
+        {
+            int nbrRowsCreated = -1;
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.OWNERTableAdapter daOwner = new Model.DataSetRestoBookTableAdapters.OWNERTableAdapter())
+            {
+                nbrRowsCreated = daOwner.Insert(owner.Id,
+                                                owner.FirstName,
+                                                owner.LastName,
+                                                owner.IsEnabled);
+            }
+            return nbrRowsCreated > 1;
+        }
         #endregion PUBLIC METHODS
     }
 }

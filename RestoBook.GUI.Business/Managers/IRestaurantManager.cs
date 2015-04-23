@@ -51,7 +51,7 @@ namespace RestoBook.Common.Business.Managers
         Restaurant GetRandomRestaurant();
 
 
-        DataSet GetAllRestaurants();
+        Dictionary<int, string> GetAllRestaurants();
 
     }
 }
