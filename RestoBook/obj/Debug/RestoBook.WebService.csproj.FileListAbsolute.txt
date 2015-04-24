@@ -58,3 +58,15 @@ D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBo
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook\obj\Debug\RestoBook.WebService.csprojResolveAssemblyReference.cache
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook\obj\Debug\RestoBook.dll
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook\obj\Debug\RestoBook.pdb
+C:\Projects\RestoBook\RestoBook\bin\RestoBook.dll.config
+C:\Projects\RestoBook\RestoBook\bin\RestoBook.dll
+C:\Projects\RestoBook\RestoBook\bin\RestoBook.pdb
+C:\Projects\RestoBook\RestoBook\bin\Ninject.dll
+C:\Projects\RestoBook\RestoBook\bin\RestoBook.Common.Business.dll
+C:\Projects\RestoBook\RestoBook\bin\RestoBook.Common.Model.dll
+C:\Projects\RestoBook\RestoBook\bin\RestoBook.Common.Business.pdb
+C:\Projects\RestoBook\RestoBook\bin\RestoBook.Common.Model.pdb
+C:\Projects\RestoBook\RestoBook\bin\Ninject.xml
+C:\Projects\RestoBook\RestoBook\obj\Debug\RestoBook.WebService.csprojResolveAssemblyReference.cache
+C:\Projects\RestoBook\RestoBook\obj\Debug\RestoBook.dll
+C:\Projects\RestoBook\RestoBook\obj\Debug\RestoBook.pdb

@@ -96,3 +96,5 @@ D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBo
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Views.FoodTypeView.resources
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Views.MainForm.resources
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Views.RestaurantsView.resources
+C:\Projects\RestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.csprojResolveAssemblyReference.cache
+C:\Projects\RestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.GUI.View.exe.config

@@ -12,3 +12,8 @@ D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBo
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.WebService.Test\bin\Debug\RestoBook.WebService.Test.pdb
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.WebService.Test\obj\Debug\RestoBook.WebService.Test.dll
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.WebService.Test\obj\Debug\RestoBook.WebService.Test.pdb
+C:\Projects\RestoBook\RestoBook.WebService.Test\bin\Debug\RestoBook.WebService.Test.dll
+C:\Projects\RestoBook\RestoBook.WebService.Test\bin\Debug\RestoBook.WebService.Test.pdb
+C:\Projects\RestoBook\RestoBook.WebService.Test\obj\Debug\RestoBook.WebService.Test.dll
+C:\Projects\RestoBook\RestoBook.WebService.Test\obj\Debug\RestoBook.WebService.Test.pdb
+C:\Projects\RestoBook\RestoBook.WebService.Test\obj\Debug\RestoBook.WebService.Test.csprojResolveAssemblyReference.cache
