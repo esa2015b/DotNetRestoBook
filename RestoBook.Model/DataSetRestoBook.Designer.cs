@@ -8409,7 +8409,7 @@ SELECT FOODTYPEID, NAME, DESCRIPTION, ENABLE FROM FOODTYPE WHERE (FOODTYPEID = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString1;
+            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

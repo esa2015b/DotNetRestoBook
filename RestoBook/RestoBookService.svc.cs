@@ -128,7 +128,18 @@
         public Restaurant GetRandomRestaurant()
         {
             Restaurant restaurant = restaurantManager.GetRandomRestaurant();
-            
+
+            if (restaurant != null)
+            {
+                int id = restaurant.Id;
+
+                restaurant.FoodType = this.foodTypeManager.GetFoodTypeById(id);
+                restaurant.Owner = this.ownerManager.GetOwner(id);
+                restaurant.Employees = this.employeeManager.GetEmployees(id);
+                restaurant.PriceLists = this.priceListManager.GetPriceLists(id);
+                restaurant.Services = this.serviceManager.GetServices(id);
+            }
+
             return restaurant;
         }
 
