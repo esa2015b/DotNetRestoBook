@@ -28,6 +28,13 @@ namespace RestoBook.Common.Business.Managers
         List<Owner> GetOwnerByFirstAndLastName(string firstName, string lastName);
         
         /// <summary>
+        /// Modifies an owner.
+        /// </summary>
+        /// <param name="owner">The modified owner.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        bool ModifyOwner(Owner owner);
+
+        /// <summary>
         /// Deletes an owner.
         /// </summary>
         /// <param name="owner">The owner to delete.</param>

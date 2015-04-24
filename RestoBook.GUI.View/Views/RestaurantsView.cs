@@ -401,7 +401,14 @@ namespace RestoBook.GUI.View.Views
         /// <param name="e"></param>
         private void buttonModifyRestaurant_Click(object sender, EventArgs e)
         {
-
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to modify this restaurant?", "Modify restaurant", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                bool result = this.restaurantController.ModifyRestaurant(this.restaurantFocus);
+                this.CreationResultShowMessage(result, "modified");
+                this.PopulateAndBindRestaurantDetails();
+                //this.DisableAddressCreation();
+            }
         }
 
         /// <summary>

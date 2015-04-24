@@ -91,6 +91,27 @@ namespace RestoBook.Common.Business.Managers
         }
 
         /// <summary>
+        /// Modifies an owner.
+        /// </summary>
+        /// <param name="owner">The modified owner.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool ModifyOwner(Owner owner)
+        {
+            int nbrRowsUpdated = -1;
+
+            DataRow row = dp.ds.OWNER.Select(string.Format("OWNERID = '{0}'", owner.Id)).FirstOrDefault();
+            row["FIRSTNAME"] = owner.FirstName;
+            row["ENABLE"] = owner.IsEnabled;
+            row["LASTNAME"] = owner.LastName;
+
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.OWNERTableAdapter daOwner = new Model.DataSetRestoBookTableAdapters.OWNERTableAdapter())
+            {
+                nbrRowsUpdated = daOwner.Update(row);
+            }
+            return nbrRowsUpdated > 0;
+        }
+
+        /// <summary>
         /// Deletes an owner.
         /// </summary>
         /// <param name="owner">The owner to delete.</param>

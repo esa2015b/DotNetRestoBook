@@ -279,7 +279,7 @@ namespace RestoBook.Common.Business.Managers
         {
             int nbrRowsUpdated = -1;
 
-            DataRow row = dp.ds.FOODTYPE.Select(string.Format("RESTAURANTID = '{0}'", r.Id)).FirstOrDefault();
+            DataRow row = dp.ds.RESTAURANT.Select(string.Format("RESTAURANTID = '{0}'", r.Id)).FirstOrDefault();
             row["NAME"] = r.Name;
             row["MAIL"] = r.Mail;
             row["PHONE"] = r.Phone;

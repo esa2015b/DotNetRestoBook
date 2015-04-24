@@ -74,7 +74,7 @@ namespace RestoBook.GUI.View.Controllers
 		/// Creates a new restaurant, and all depending objects.
 		/// </summary>
 		/// <param name="newRestaurant">The new restaurant to create.</param>
-		/// <returns>True in case of successful update, false in case of failure.</returns>
+		/// <returns>True in case of successful creation, false in case of failure.</returns>
 		public bool CreateRestaurant(Restaurant newRestaurant)
 		{
 			bool successful = false;
@@ -111,6 +111,22 @@ namespace RestoBook.GUI.View.Controllers
 			return successful;
 		}
 
+        /// <summary>
+        /// Modifies a restaurant, and all depending objects, in database.
+        /// </summary>
+        /// <param name="restaurant">The full restaurant to modify.</param>
+        /// <returns>True in case of successful modification, false in case of failure.</returns>
+        public bool ModifyRestaurant(Restaurant restaurant)
+        {
+            bool successful = false;
+            successful = this.restaurantManager.ModifyRestaurant(restaurant);
+
+            if (successful)
+                successful = this.ownerManager.ModifyOwner(restaurant.Owner);
+
+            return true;
+        }
+        
 		/// <summary>
 		/// Deletes a restaurant and all linked table objects.
 		/// </summary>
