@@ -49,7 +49,6 @@ namespace RestoBook.Common.Business.Managers
                                               where r.RESTAURANTID == restaurantId
                                               join o in this.dp.ds.OWNER on r.OWNERID equals o.OWNERID
                                               join f in this.dp.ds.FOODTYPE on r.FOODTYPEID equals f.FOODTYPEID
-                                              //join e in this.dp.ds.EMPLOYEE on r.RESTAURANTID equals e.RESTAURANTID
                                               select new Restaurant()
                                               {
                                                   Id = (int)r.RESTAURANTID,

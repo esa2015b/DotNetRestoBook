@@ -64,8 +64,6 @@ namespace RestoBook.GUI.View.Controllers
 			{
                 restaurant.Addresses = this.addressManager.GetAddressesByRestaurantId(restaurantId);
                 restaurant.Employees = this.employeeManager.GetEmployees(restaurantId);
-                //restaurant.FoodType = this.foodTypeManager.GetFoodTypeById(restaurant.FoodType.Id);
-                //restaurant.Owner = this.ownerManager.GetOwner(restaurant.Owner.Id);
                 restaurant.PriceLists = this.priceListManager.GetPriceLists(restaurantId);
                 restaurant.Services = this.serviceManager.GetServices(restaurantId);
 			}
@@ -185,6 +183,30 @@ namespace RestoBook.GUI.View.Controllers
             return daysOfWeek;
         }
 
+
+        /// <summary>
+        /// Creates a new address for a given restaurant.
+        /// </summary>
+        /// <param name="address">The address to create.</param>
+        /// <param name="restaurantId">The address's restaurant identifier.</param>
+        /// <returns></returns>
+        public bool CreateAddress(Address address, int restaurantId)
+        {
+            bool successful = this.addressManager.CreateAddres(address, restaurantId);
+            return successful;
+        }
+
+        /// <summary>
+        /// Deletes a given address from the database.
+        /// </summary>
+        /// <param name="address">The address to delete.</param>
+        /// <param name="restaurantId">The address's restaurant identifier.</param>
+        /// <returns></returns>
+        public bool DeleteAddress(Address address, int restaurantId)
+        {
+            bool successful = this.addressManager.DeleteAddress(address, restaurantId);
+            return successful;
+        }
 		#endregion PUBLIC METHODS
 	}
 }

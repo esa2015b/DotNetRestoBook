@@ -29,8 +29,10 @@ namespace RestoBook.GUI.View.Views
             InitializeComponent();
             this.restaurantController = new RestaurantController();
             this.PopulateAndBindRestaurantList();
-            this.buttonCancel.Enabled = false;
-            this.buttonAddRestaurant.Enabled = false;
+            //this.buttonCancel.Enabled = false;
+            //this.buttonAddRestaurant.Enabled = false;
+            this.EnableRestaurantSelection();
+            this.DisableAddressCreation();
         }
         #endregion CONSTRUCTOR
 
@@ -83,9 +85,15 @@ namespace RestoBook.GUI.View.Views
             // if the page has been loaded before, clear all existing bindings
             // in order to avoid conflicts.
             if (textBoxRestaurantsName.DataBindings.Count > 0)
-            {
                 this.ClearRestaurantsDataBindings();
+
+            // create a new address object if there are no addresses present.
+            if (this.restaurantFocus.Addresses.Count < 1)
+            {
+                this.buttonNewAddress_Click(null, null);
+                MessageBox.Show("Please add an address for this restaurant.");
             }
+
             this.comboBoxAddresses.DataSource = this.restaurantFocus.Addresses;
             this.comboBoxAddresses.DisplayMember = "City";
             this.comboBoxAddresses.ValueMember = "Id";
@@ -108,6 +116,8 @@ namespace RestoBook.GUI.View.Views
             textBoxZipCode.DataBindings.Add("Text", this.restaurantFocus.Addresses, "Zipcode");
             textBoxCity.DataBindings.Add("Text", this.restaurantFocus.Addresses, "City");
             textBoxCountry.DataBindings.Add("Text", this.restaurantFocus.Addresses, "Country");
+            checkBoxAddressIsEnabled.DataBindings.Add("CheckState", this.restaurantFocus.Addresses, "IsEnabled", true);
+            checkBoxHeadOffice.DataBindings.Add("CheckState", this.restaurantFocus.Addresses, "HeadOffice", true);
 
         }
 
@@ -133,6 +143,8 @@ namespace RestoBook.GUI.View.Views
             textBoxCity.DataBindings.Clear();
             textBoxZipCode.DataBindings.Clear();
             textBoxCountry.DataBindings.Clear();
+            checkBoxAddressIsEnabled.DataBindings.Clear();
+            checkBoxHeadOffice.DataBindings.Clear();
         }
 
         private bool CheckCreationConditions()
@@ -194,6 +206,7 @@ namespace RestoBook.GUI.View.Views
             this.buttonModifyRestaurant.Enabled = true;
             this.buttonAddRestaurant.Enabled = false;
             this.buttonCancel.Enabled = false;
+            this.groupBoxAddress.Enabled = true;
             this.PopulateAndBindRestaurantList();
         }
 
@@ -208,8 +221,78 @@ namespace RestoBook.GUI.View.Views
             this.buttonAddRestaurant.Enabled = true;
             this.buttonDeleteRestaurant.Enabled = false;
             this.buttonModifyRestaurant.Enabled = false;
+            this.groupBoxAddress.Enabled = false;
             this.buttonCancel.Enabled = true;
         }       
+
+        /// <summary>
+        /// Enables the address creation items.
+        /// </summary>
+        private void EnableAddressCreation()
+        {
+            this.comboBoxAddresses.Enabled = false;
+            this.groupBoxOwner.Enabled = false;
+            this.groupBoxPriceList.Enabled = false;
+            this.groupBoxRestaurant.Enabled = false;
+            this.groupBoxServices.Enabled = false;
+            this.buttonNewRestaurant.Enabled = false;
+            this.comboBoxRestaurants.Enabled = false;
+            this.checkBoxAddressIsEnabled.Enabled = true;
+            this.checkBoxHeadOffice.Enabled = true;
+            this.buttonModifyRestaurant.Enabled = false;
+            this.buttonDeleteRestaurant.Enabled = false;
+
+            this.buttonAddAddress.Enabled = true;
+            this.buttonDeleteAddress.Enabled = false;
+            this.buttonNewAddress.Enabled = false;
+            this.buttonCancelAddress.Enabled = true;
+        }
+
+        /// <summary>
+        /// Disables the address creation items.
+        /// </summary>
+        private void DisableAddressCreation()
+        {
+            this.comboBoxAddresses.Enabled = true;
+            this.groupBoxOwner.Enabled = true;
+            this.groupBoxPriceList.Enabled = true;
+            this.groupBoxRestaurant.Enabled = true;
+            this.groupBoxServices.Enabled = true;
+            this.buttonNewRestaurant.Enabled = true;
+            this.comboBoxRestaurants.Enabled = true;
+            this.checkBoxAddressIsEnabled.Enabled = false;
+            this.checkBoxHeadOffice.Enabled = false;
+            this.buttonModifyRestaurant.Enabled = true;
+            this.buttonDeleteRestaurant.Enabled = true;
+
+            this.buttonAddAddress.Enabled = false;
+            this.buttonDeleteAddress.Enabled = true;
+            this.buttonNewAddress.Enabled = true;
+            this.buttonCancelAddress.Enabled = false;
+        }
+
+        /// <summary>
+        /// Resets the address combobox datasource.
+        /// </summary>
+        private void ResetAddressDataSource()
+        {
+            this.comboBoxAddresses.DataSource = null;
+            this.comboBoxAddresses.DataSource = this.restaurantFocus.Addresses;
+            this.comboBoxAddresses.DisplayMember = "City";
+            this.comboBoxAddresses.ValueMember = "Id";
+        }
+
+        /// <summary>
+        /// Shows the creation result message in a messagebox.
+        /// </summary>
+        /// <param name="creationResult">True for successful message, false for unsuccessful.</param>
+        private void CreationResultShowMessage(bool creationResult, string action)
+        {
+            string message = creationResult ?
+                                string.Format("Record successfully {0}.", action) :
+                                string.Format("The record could not be {0}, please try again or contact your administrator.", action);
+            MessageBox.Show(message);
+        }
         #endregion METHODS
 
 
@@ -305,8 +388,7 @@ namespace RestoBook.GUI.View.Views
             if (this.CheckCreationConditions())
             {
                 bool creationResult = this.restaurantController.CreateRestaurant(this.restaurantFocus);
-                string message = creationResult ? "Record successfully added." : "The record could not be added, please try again or contact your administrator.";
-                MessageBox.Show(message);
+                CreationResultShowMessage(creationResult, "created");
                 this.PopulateAndBindRestaurantList();
                 this.EnableRestaurantSelection();
             }
@@ -329,13 +411,101 @@ namespace RestoBook.GUI.View.Views
         /// <param name="e"></param>
         private void buttonDeleteRestaurant_Click(object sender, EventArgs e)
         {
-            bool result = this.restaurantController.DeleteRestaurant(this.restaurantFocus);
-            string message = result ? "Record successfully deleted." : "The record could not be deleted, please try again or contact your administrator.";
-            MessageBox.Show(message);
-            this.PopulateAndBindRestaurantList();
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this restaurant?", "Delete restaurant", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                bool result = this.restaurantController.DeleteRestaurant(this.restaurantFocus);
+                string message = result ? "Record successfully deleted." : "The record could not be deleted, please try again or contact your administrator.";
+                MessageBox.Show(message);
+                this.PopulateAndBindRestaurantList();
+            }
         }
 
+
+        /// <summary>
+        /// In order to create a new address.
+        /// This event clears all the fields of the address, and disables certain buttons
+        /// in order to avoid interference.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonNewAddress_Click(object sender, EventArgs e)
+        {
+            this.EnableAddressCreation();
+            this.restaurantFocus.Addresses.Add(new Address()
+                {
+                    City = "<new>",
+                    Country = string.Empty,
+                    HeadOffice = true,
+                    IsEnabled = true,
+                    Number = string.Empty,
+                    Street = string.Empty,
+                    ZipCode = string.Empty
+                });
+
+            this.ResetAddressDataSource();
+            this.comboBoxAddresses.DataBindings.Clear();
+            if (this.restaurantFocus.Addresses != null && this.restaurantFocus.Addresses.Count > 0)
+                this.comboBoxAddresses.SelectedIndex = this.restaurantFocus.Addresses.Count - 1;
+            this.comboBoxAddresses.Enabled = false;
+        }
+
+        /// <summary>
+        /// Cancels the "create new address" settings.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCancelAddress_Click(object sender, EventArgs e)
+        {
+            this.DisableAddressCreation();
+            this.restaurantFocus.Addresses.RemoveAt(this.restaurantFocus.Addresses.Count - 1);
+
+            this.ResetAddressDataSource();
+
+            if (this.restaurantFocus.Addresses != null && this.restaurantFocus.Addresses.Count > 0)
+                this.comboBoxAddresses.SelectedIndex = 0;
+            this.comboBoxAddresses.Enabled = true;
+        }
+
+        /// <summary>
+        /// Creates an address, by calling the controller, to the database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddAddress_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(this.textBoxStreet.Text) &&
+                !string.IsNullOrEmpty(this.textBoxStreetNumber.Text) &&
+                !string.IsNullOrEmpty(this.textBoxZipCode.Text) &&
+                !string.IsNullOrEmpty(this.textBoxCity.Text) &&
+                !string.IsNullOrEmpty(this.textBoxCountry.Text)
+                )
+            {
+                bool creationResult = this.restaurantController.CreateAddress(this.restaurantFocus.Addresses.LastOrDefault(), this.restaurantFocus.Id);
+                this.CreationResultShowMessage(creationResult, "created");
+                this.PopulateAndBindRestaurantDetails();
+                this.DisableAddressCreation();
+            }
+        }
+
+        /// <summary>
+        /// Deletes an address, by calling the controller, from the database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonDeleteAddress_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this address?", "Delete address", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                bool result = this.restaurantController.DeleteAddress(this.restaurantFocus.Addresses.Where(a => a.Id == (int)this.comboBoxAddresses.SelectedValue).FirstOrDefault(), this.restaurantFocus.Id);
+                this.CreationResultShowMessage(result, "deleted");
+                this.PopulateAndBindRestaurantDetails();
+                //this.DisableAddressCreation();
+            }
+        }
         #endregion EVENTS
+
 
     }
 }

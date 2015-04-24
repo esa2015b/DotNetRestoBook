@@ -50,39 +50,42 @@
             this.labelOwnersFirstName = new System.Windows.Forms.Label();
             this.textBoxOwnersFirstName = new System.Windows.Forms.TextBox();
             this.groupBoxServices = new System.Windows.Forms.GroupBox();
+            this.buttonRemoveService = new System.Windows.Forms.Button();
+            this.buttonAddService = new System.Windows.Forms.Button();
+            this.dataGridViewListServices = new System.Windows.Forms.DataGridView();
             this.groupBoxPriceList = new System.Windows.Forms.GroupBox();
             this.dataGridViewListPrice = new System.Windows.Forms.DataGridView();
             this.groupBoxAddress = new System.Windows.Forms.GroupBox();
-            this.dataGridViewListServices = new System.Windows.Forms.DataGridView();
+            this.buttonCancelAddress = new System.Windows.Forms.Button();
+            this.buttonDeleteAddress = new System.Windows.Forms.Button();
+            this.buttonNewAddress = new System.Windows.Forms.Button();
+            this.buttonAddAddress = new System.Windows.Forms.Button();
+            this.comboBoxAddresses = new System.Windows.Forms.ComboBox();
+            this.checkBoxAddressIsEnabled = new System.Windows.Forms.CheckBox();
+            this.checkBoxHeadOffice = new System.Windows.Forms.CheckBox();
+            this.textBoxCity = new System.Windows.Forms.TextBox();
+            this.labelCity = new System.Windows.Forms.Label();
+            this.textBoxStreetNumber = new System.Windows.Forms.TextBox();
+            this.labelStreetNumber = new System.Windows.Forms.Label();
+            this.textBoxCountry = new System.Windows.Forms.TextBox();
+            this.textBoxZipCode = new System.Windows.Forms.TextBox();
+            this.textBoxStreet = new System.Windows.Forms.TextBox();
+            this.labelCountry = new System.Windows.Forms.Label();
+            this.labelZipCode = new System.Windows.Forms.Label();
+            this.labelStreet = new System.Windows.Forms.Label();
             this.comboBoxRestaurants = new System.Windows.Forms.ComboBox();
             this.buttonAddRestaurant = new System.Windows.Forms.Button();
             this.buttonModifyRestaurant = new System.Windows.Forms.Button();
             this.buttonDeleteRestaurant = new System.Windows.Forms.Button();
             this.buttonNewRestaurant = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.buttonAddService = new System.Windows.Forms.Button();
-            this.buttonRemoveService = new System.Windows.Forms.Button();
-            this.labelStreet = new System.Windows.Forms.Label();
-            this.labelZipCode = new System.Windows.Forms.Label();
-            this.labelCountry = new System.Windows.Forms.Label();
-            this.textBoxStreet = new System.Windows.Forms.TextBox();
-            this.textBoxZipCode = new System.Windows.Forms.TextBox();
-            this.textBoxCountry = new System.Windows.Forms.TextBox();
-            this.labelStreetNumber = new System.Windows.Forms.Label();
-            this.textBoxStreetNumber = new System.Windows.Forms.TextBox();
-            this.labelCity = new System.Windows.Forms.Label();
-            this.textBoxCity = new System.Windows.Forms.TextBox();
-            this.checkBoxHeadOffice = new System.Windows.Forms.CheckBox();
-            this.checkBoxAddressIsEnabled = new System.Windows.Forms.CheckBox();
-            this.comboBoxAddresses = new System.Windows.Forms.ComboBox();
-            this.buttonAddAddress = new System.Windows.Forms.Button();
             this.groupBoxRestaurant.SuspendLayout();
             this.groupBoxOwner.SuspendLayout();
             this.groupBoxServices.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListServices)).BeginInit();
             this.groupBoxPriceList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListPrice)).BeginInit();
             this.groupBoxAddress.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListServices)).BeginInit();
             this.SuspendLayout();
             // 
             // labelRestaurantsList
@@ -316,6 +319,35 @@
             this.groupBoxServices.TabStop = false;
             this.groupBoxServices.Text = "Services";
             // 
+            // buttonRemoveService
+            // 
+            this.buttonRemoveService.Location = new System.Drawing.Point(166, 212);
+            this.buttonRemoveService.Name = "buttonRemoveService";
+            this.buttonRemoveService.Size = new System.Drawing.Size(135, 23);
+            this.buttonRemoveService.TabIndex = 31;
+            this.buttonRemoveService.Text = "Remove a service";
+            this.buttonRemoveService.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddService
+            // 
+            this.buttonAddService.Location = new System.Drawing.Point(16, 212);
+            this.buttonAddService.Name = "buttonAddService";
+            this.buttonAddService.Size = new System.Drawing.Size(135, 23);
+            this.buttonAddService.TabIndex = 30;
+            this.buttonAddService.Text = "Add a service";
+            this.buttonAddService.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewListServices
+            // 
+            this.dataGridViewListServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewListServices.Location = new System.Drawing.Point(4, 17);
+            this.dataGridViewListServices.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridViewListServices.Name = "dataGridViewListServices";
+            this.dataGridViewListServices.RowHeadersVisible = false;
+            this.dataGridViewListServices.RowTemplate.Height = 24;
+            this.dataGridViewListServices.Size = new System.Drawing.Size(791, 188);
+            this.dataGridViewListServices.TabIndex = 23;
+            // 
             // groupBoxPriceList
             // 
             this.groupBoxPriceList.Controls.Add(this.dataGridViewListPrice);
@@ -339,6 +371,9 @@
             // 
             // groupBoxAddress
             // 
+            this.groupBoxAddress.Controls.Add(this.buttonCancelAddress);
+            this.groupBoxAddress.Controls.Add(this.buttonDeleteAddress);
+            this.groupBoxAddress.Controls.Add(this.buttonNewAddress);
             this.groupBoxAddress.Controls.Add(this.buttonAddAddress);
             this.groupBoxAddress.Controls.Add(this.comboBoxAddresses);
             this.groupBoxAddress.Controls.Add(this.checkBoxAddressIsEnabled);
@@ -362,16 +397,156 @@
             this.groupBoxAddress.TabStop = false;
             this.groupBoxAddress.Text = "Adress";
             // 
-            // dataGridViewListServices
+            // buttonCancelAddress
             // 
-            this.dataGridViewListServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewListServices.Location = new System.Drawing.Point(4, 17);
-            this.dataGridViewListServices.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridViewListServices.Name = "dataGridViewListServices";
-            this.dataGridViewListServices.RowHeadersVisible = false;
-            this.dataGridViewListServices.RowTemplate.Height = 24;
-            this.dataGridViewListServices.Size = new System.Drawing.Size(791, 188);
-            this.dataGridViewListServices.TabIndex = 23;
+            this.buttonCancelAddress.Location = new System.Drawing.Point(354, 84);
+            this.buttonCancelAddress.Name = "buttonCancelAddress";
+            this.buttonCancelAddress.Size = new System.Drawing.Size(56, 23);
+            this.buttonCancelAddress.TabIndex = 18;
+            this.buttonCancelAddress.Text = "Cancel";
+            this.buttonCancelAddress.UseVisualStyleBackColor = true;
+            this.buttonCancelAddress.Click += new System.EventHandler(this.buttonCancelAddress_Click);
+            // 
+            // buttonDeleteAddress
+            // 
+            this.buttonDeleteAddress.BackColor = System.Drawing.Color.Crimson;
+            this.buttonDeleteAddress.Location = new System.Drawing.Point(545, 84);
+            this.buttonDeleteAddress.Name = "buttonDeleteAddress";
+            this.buttonDeleteAddress.Size = new System.Drawing.Size(97, 23);
+            this.buttonDeleteAddress.TabIndex = 17;
+            this.buttonDeleteAddress.Text = "Delete Address";
+            this.buttonDeleteAddress.UseVisualStyleBackColor = false;
+            this.buttonDeleteAddress.Click += new System.EventHandler(this.buttonDeleteAddress_Click);
+            // 
+            // buttonNewAddress
+            // 
+            this.buttonNewAddress.Location = new System.Drawing.Point(292, 84);
+            this.buttonNewAddress.Name = "buttonNewAddress";
+            this.buttonNewAddress.Size = new System.Drawing.Size(56, 23);
+            this.buttonNewAddress.TabIndex = 16;
+            this.buttonNewAddress.Text = "New";
+            this.buttonNewAddress.UseVisualStyleBackColor = true;
+            this.buttonNewAddress.Click += new System.EventHandler(this.buttonNewAddress_Click);
+            // 
+            // buttonAddAddress
+            // 
+            this.buttonAddAddress.BackColor = System.Drawing.Color.Chartreuse;
+            this.buttonAddAddress.Location = new System.Drawing.Point(442, 84);
+            this.buttonAddAddress.Name = "buttonAddAddress";
+            this.buttonAddAddress.Size = new System.Drawing.Size(97, 23);
+            this.buttonAddAddress.TabIndex = 15;
+            this.buttonAddAddress.Text = "Add Address";
+            this.buttonAddAddress.UseVisualStyleBackColor = false;
+            this.buttonAddAddress.Click += new System.EventHandler(this.buttonAddAddress_Click);
+            // 
+            // comboBoxAddresses
+            // 
+            this.comboBoxAddresses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAddresses.FormattingEnabled = true;
+            this.comboBoxAddresses.Location = new System.Drawing.Point(532, 14);
+            this.comboBoxAddresses.Name = "comboBoxAddresses";
+            this.comboBoxAddresses.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxAddresses.TabIndex = 14;
+            // 
+            // checkBoxAddressIsEnabled
+            // 
+            this.checkBoxAddressIsEnabled.AutoSize = true;
+            this.checkBoxAddressIsEnabled.Location = new System.Drawing.Point(125, 88);
+            this.checkBoxAddressIsEnabled.Name = "checkBoxAddressIsEnabled";
+            this.checkBoxAddressIsEnabled.Size = new System.Drawing.Size(65, 17);
+            this.checkBoxAddressIsEnabled.TabIndex = 13;
+            this.checkBoxAddressIsEnabled.Text = "Enabled";
+            this.checkBoxAddressIsEnabled.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxHeadOffice
+            // 
+            this.checkBoxHeadOffice.AutoSize = true;
+            this.checkBoxHeadOffice.Location = new System.Drawing.Point(9, 88);
+            this.checkBoxHeadOffice.Name = "checkBoxHeadOffice";
+            this.checkBoxHeadOffice.Size = new System.Drawing.Size(81, 17);
+            this.checkBoxHeadOffice.TabIndex = 12;
+            this.checkBoxHeadOffice.Text = "Head office";
+            this.checkBoxHeadOffice.UseVisualStyleBackColor = true;
+            // 
+            // textBoxCity
+            // 
+            this.textBoxCity.Location = new System.Drawing.Point(175, 39);
+            this.textBoxCity.Name = "textBoxCity";
+            this.textBoxCity.Size = new System.Drawing.Size(260, 20);
+            this.textBoxCity.TabIndex = 11;
+            // 
+            // labelCity
+            // 
+            this.labelCity.AutoSize = true;
+            this.labelCity.Location = new System.Drawing.Point(145, 42);
+            this.labelCity.Name = "labelCity";
+            this.labelCity.Size = new System.Drawing.Size(24, 13);
+            this.labelCity.TabIndex = 10;
+            this.labelCity.Text = "City";
+            // 
+            // textBoxStreetNumber
+            // 
+            this.textBoxStreetNumber.Location = new System.Drawing.Point(354, 16);
+            this.textBoxStreetNumber.Name = "textBoxStreetNumber";
+            this.textBoxStreetNumber.Size = new System.Drawing.Size(81, 20);
+            this.textBoxStreetNumber.TabIndex = 9;
+            // 
+            // labelStreetNumber
+            // 
+            this.labelStreetNumber.AutoSize = true;
+            this.labelStreetNumber.Location = new System.Drawing.Point(304, 19);
+            this.labelStreetNumber.Name = "labelStreetNumber";
+            this.labelStreetNumber.Size = new System.Drawing.Size(44, 13);
+            this.labelStreetNumber.TabIndex = 8;
+            this.labelStreetNumber.Text = "Number";
+            // 
+            // textBoxCountry
+            // 
+            this.textBoxCountry.Location = new System.Drawing.Point(76, 62);
+            this.textBoxCountry.Name = "textBoxCountry";
+            this.textBoxCountry.Size = new System.Drawing.Size(210, 20);
+            this.textBoxCountry.TabIndex = 6;
+            // 
+            // textBoxZipCode
+            // 
+            this.textBoxZipCode.Location = new System.Drawing.Point(76, 39);
+            this.textBoxZipCode.Name = "textBoxZipCode";
+            this.textBoxZipCode.Size = new System.Drawing.Size(63, 20);
+            this.textBoxZipCode.TabIndex = 5;
+            // 
+            // textBoxStreet
+            // 
+            this.textBoxStreet.Location = new System.Drawing.Point(76, 16);
+            this.textBoxStreet.Name = "textBoxStreet";
+            this.textBoxStreet.Size = new System.Drawing.Size(210, 20);
+            this.textBoxStreet.TabIndex = 4;
+            // 
+            // labelCountry
+            // 
+            this.labelCountry.AutoSize = true;
+            this.labelCountry.Location = new System.Drawing.Point(6, 65);
+            this.labelCountry.Name = "labelCountry";
+            this.labelCountry.Size = new System.Drawing.Size(43, 13);
+            this.labelCountry.TabIndex = 2;
+            this.labelCountry.Text = "Country";
+            // 
+            // labelZipCode
+            // 
+            this.labelZipCode.AutoSize = true;
+            this.labelZipCode.Location = new System.Drawing.Point(6, 42);
+            this.labelZipCode.Name = "labelZipCode";
+            this.labelZipCode.Size = new System.Drawing.Size(46, 13);
+            this.labelZipCode.TabIndex = 1;
+            this.labelZipCode.Text = "Zipcode";
+            // 
+            // labelStreet
+            // 
+            this.labelStreet.AutoSize = true;
+            this.labelStreet.Location = new System.Drawing.Point(6, 19);
+            this.labelStreet.Name = "labelStreet";
+            this.labelStreet.Size = new System.Drawing.Size(35, 13);
+            this.labelStreet.TabIndex = 0;
+            this.labelStreet.Text = "Street";
             // 
             // comboBoxRestaurants
             // 
@@ -437,142 +612,6 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // buttonAddService
-            // 
-            this.buttonAddService.Location = new System.Drawing.Point(16, 212);
-            this.buttonAddService.Name = "buttonAddService";
-            this.buttonAddService.Size = new System.Drawing.Size(135, 23);
-            this.buttonAddService.TabIndex = 30;
-            this.buttonAddService.Text = "Add a service";
-            this.buttonAddService.UseVisualStyleBackColor = true;
-            // 
-            // buttonRemoveService
-            // 
-            this.buttonRemoveService.Location = new System.Drawing.Point(166, 212);
-            this.buttonRemoveService.Name = "buttonRemoveService";
-            this.buttonRemoveService.Size = new System.Drawing.Size(135, 23);
-            this.buttonRemoveService.TabIndex = 31;
-            this.buttonRemoveService.Text = "Remove a service";
-            this.buttonRemoveService.UseVisualStyleBackColor = true;
-            // 
-            // labelStreet
-            // 
-            this.labelStreet.AutoSize = true;
-            this.labelStreet.Location = new System.Drawing.Point(6, 19);
-            this.labelStreet.Name = "labelStreet";
-            this.labelStreet.Size = new System.Drawing.Size(35, 13);
-            this.labelStreet.TabIndex = 0;
-            this.labelStreet.Text = "Street";
-            // 
-            // labelZipCode
-            // 
-            this.labelZipCode.AutoSize = true;
-            this.labelZipCode.Location = new System.Drawing.Point(6, 42);
-            this.labelZipCode.Name = "labelZipCode";
-            this.labelZipCode.Size = new System.Drawing.Size(46, 13);
-            this.labelZipCode.TabIndex = 1;
-            this.labelZipCode.Text = "Zipcode";
-            // 
-            // labelCountry
-            // 
-            this.labelCountry.AutoSize = true;
-            this.labelCountry.Location = new System.Drawing.Point(6, 65);
-            this.labelCountry.Name = "labelCountry";
-            this.labelCountry.Size = new System.Drawing.Size(43, 13);
-            this.labelCountry.TabIndex = 2;
-            this.labelCountry.Text = "Country";
-            // 
-            // textBoxStreet
-            // 
-            this.textBoxStreet.Location = new System.Drawing.Point(76, 16);
-            this.textBoxStreet.Name = "textBoxStreet";
-            this.textBoxStreet.Size = new System.Drawing.Size(210, 20);
-            this.textBoxStreet.TabIndex = 4;
-            // 
-            // textBoxZipCode
-            // 
-            this.textBoxZipCode.Location = new System.Drawing.Point(76, 39);
-            this.textBoxZipCode.Name = "textBoxZipCode";
-            this.textBoxZipCode.Size = new System.Drawing.Size(63, 20);
-            this.textBoxZipCode.TabIndex = 5;
-            // 
-            // textBoxCountry
-            // 
-            this.textBoxCountry.Location = new System.Drawing.Point(76, 62);
-            this.textBoxCountry.Name = "textBoxCountry";
-            this.textBoxCountry.Size = new System.Drawing.Size(210, 20);
-            this.textBoxCountry.TabIndex = 6;
-            // 
-            // labelStreetNumber
-            // 
-            this.labelStreetNumber.AutoSize = true;
-            this.labelStreetNumber.Location = new System.Drawing.Point(304, 19);
-            this.labelStreetNumber.Name = "labelStreetNumber";
-            this.labelStreetNumber.Size = new System.Drawing.Size(44, 13);
-            this.labelStreetNumber.TabIndex = 8;
-            this.labelStreetNumber.Text = "Number";
-            // 
-            // textBoxStreetNumber
-            // 
-            this.textBoxStreetNumber.Location = new System.Drawing.Point(354, 16);
-            this.textBoxStreetNumber.Name = "textBoxStreetNumber";
-            this.textBoxStreetNumber.Size = new System.Drawing.Size(81, 20);
-            this.textBoxStreetNumber.TabIndex = 9;
-            // 
-            // labelCity
-            // 
-            this.labelCity.AutoSize = true;
-            this.labelCity.Location = new System.Drawing.Point(145, 42);
-            this.labelCity.Name = "labelCity";
-            this.labelCity.Size = new System.Drawing.Size(24, 13);
-            this.labelCity.TabIndex = 10;
-            this.labelCity.Text = "City";
-            // 
-            // textBoxCity
-            // 
-            this.textBoxCity.Location = new System.Drawing.Point(175, 39);
-            this.textBoxCity.Name = "textBoxCity";
-            this.textBoxCity.Size = new System.Drawing.Size(260, 20);
-            this.textBoxCity.TabIndex = 11;
-            // 
-            // checkBoxHeadOffice
-            // 
-            this.checkBoxHeadOffice.AutoSize = true;
-            this.checkBoxHeadOffice.Location = new System.Drawing.Point(9, 88);
-            this.checkBoxHeadOffice.Name = "checkBoxHeadOffice";
-            this.checkBoxHeadOffice.Size = new System.Drawing.Size(81, 17);
-            this.checkBoxHeadOffice.TabIndex = 12;
-            this.checkBoxHeadOffice.Text = "Head office";
-            this.checkBoxHeadOffice.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAddressIsEnabled
-            // 
-            this.checkBoxAddressIsEnabled.AutoSize = true;
-            this.checkBoxAddressIsEnabled.Location = new System.Drawing.Point(125, 88);
-            this.checkBoxAddressIsEnabled.Name = "checkBoxAddressIsEnabled";
-            this.checkBoxAddressIsEnabled.Size = new System.Drawing.Size(65, 17);
-            this.checkBoxAddressIsEnabled.TabIndex = 13;
-            this.checkBoxAddressIsEnabled.Text = "Enabled";
-            this.checkBoxAddressIsEnabled.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxAddresses
-            // 
-            this.comboBoxAddresses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxAddresses.FormattingEnabled = true;
-            this.comboBoxAddresses.Location = new System.Drawing.Point(532, 14);
-            this.comboBoxAddresses.Name = "comboBoxAddresses";
-            this.comboBoxAddresses.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxAddresses.TabIndex = 14;
-            // 
-            // buttonAddAddress
-            // 
-            this.buttonAddAddress.Location = new System.Drawing.Point(354, 84);
-            this.buttonAddAddress.Name = "buttonAddAddress";
-            this.buttonAddAddress.Size = new System.Drawing.Size(128, 23);
-            this.buttonAddAddress.TabIndex = 15;
-            this.buttonAddAddress.Text = "Add Address";
-            this.buttonAddAddress.UseVisualStyleBackColor = true;
-            // 
             // RestaurantsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -596,11 +635,11 @@
             this.groupBoxOwner.ResumeLayout(false);
             this.groupBoxOwner.PerformLayout();
             this.groupBoxServices.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListServices)).EndInit();
             this.groupBoxPriceList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListPrice)).EndInit();
             this.groupBoxAddress.ResumeLayout(false);
             this.groupBoxAddress.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListServices)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -656,6 +695,9 @@
         private System.Windows.Forms.ComboBox comboBoxAddresses;
         private System.Windows.Forms.CheckBox checkBoxAddressIsEnabled;
         private System.Windows.Forms.CheckBox checkBoxHeadOffice;
+        private System.Windows.Forms.Button buttonNewAddress;
+        private System.Windows.Forms.Button buttonDeleteAddress;
+        private System.Windows.Forms.Button buttonCancelAddress;
 
     }
 }
