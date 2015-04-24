@@ -52,7 +52,7 @@
             this.tabPageReservations.Location = new System.Drawing.Point(4, 22);
             this.tabPageReservations.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageReservations.Name = "tabPageReservations";
-            this.tabPageReservations.Size = new System.Drawing.Size(1141, 517);
+            this.tabPageReservations.Size = new System.Drawing.Size(1322, 709);
             this.tabPageReservations.TabIndex = 2;
             this.tabPageReservations.Text = "Reservations";
             this.tabPageReservations.UseVisualStyleBackColor = true;
@@ -63,7 +63,7 @@
             this.tabPageRestaurants.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageRestaurants.Name = "tabPageRestaurants";
             this.tabPageRestaurants.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageRestaurants.Size = new System.Drawing.Size(1141, 517);
+            this.tabPageRestaurants.Size = new System.Drawing.Size(1322, 709);
             this.tabPageRestaurants.TabIndex = 1;
             this.tabPageRestaurants.Text = "Restaurants";
             this.tabPageRestaurants.UseVisualStyleBackColor = true;
@@ -74,7 +74,7 @@
             this.tabPageFoodType.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageFoodType.Name = "tabPageFoodType";
             this.tabPageFoodType.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageFoodType.Size = new System.Drawing.Size(1322, 709);
+            this.tabPageFoodType.Size = new System.Drawing.Size(1452, 709);
             this.tabPageFoodType.TabIndex = 0;
             this.tabPageFoodType.Text = "Food type";
             this.tabPageFoodType.UseVisualStyleBackColor = true;
@@ -88,7 +88,7 @@
             this.tcRestoBook.Margin = new System.Windows.Forms.Padding(2);
             this.tcRestoBook.Name = "tcRestoBook";
             this.tcRestoBook.SelectedIndex = 0;
-            this.tcRestoBook.Size = new System.Drawing.Size(1330, 735);
+            this.tcRestoBook.Size = new System.Drawing.Size(1460, 735);
             this.tcRestoBook.TabIndex = 0;
             this.tcRestoBook.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControlOneRestaurantOwnerFirstName_Selecting);
             // 
@@ -96,7 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1344, 757);
+            this.ClientSize = new System.Drawing.Size(1484, 757);
             this.Controls.Add(this.tcRestoBook);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";

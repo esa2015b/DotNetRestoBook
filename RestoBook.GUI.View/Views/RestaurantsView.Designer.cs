@@ -30,12 +30,12 @@
         {
             this.labelRestaurantsList = new System.Windows.Forms.Label();
             this.groupBoxRestaurant = new System.Windows.Forms.GroupBox();
+            this.comboBoxDayOfClosing = new System.Windows.Forms.ComboBox();
             this.comboBoxFoodType = new System.Windows.Forms.ComboBox();
             this.textBoxMail = new System.Windows.Forms.TextBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.labelPhone = new System.Windows.Forms.Label();
             this.labelMail = new System.Windows.Forms.Label();
-            this.textBoxDayOfClosing = new System.Windows.Forms.TextBox();
             this.labelDayOfClosing = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.labelDescription = new System.Windows.Forms.Label();
@@ -52,8 +52,7 @@
             this.groupBoxServices = new System.Windows.Forms.GroupBox();
             this.groupBoxPriceList = new System.Windows.Forms.GroupBox();
             this.dataGridViewListPrice = new System.Windows.Forms.DataGridView();
-            this.dataGridViewListAddresses = new System.Windows.Forms.DataGridView();
-            this.groupBoxAddresses = new System.Windows.Forms.GroupBox();
+            this.groupBoxAddress = new System.Windows.Forms.GroupBox();
             this.dataGridViewListServices = new System.Windows.Forms.DataGridView();
             this.comboBoxRestaurants = new System.Windows.Forms.ComboBox();
             this.buttonAddRestaurant = new System.Windows.Forms.Button();
@@ -61,11 +60,28 @@
             this.buttonDeleteRestaurant = new System.Windows.Forms.Button();
             this.buttonNewRestaurant = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonAddService = new System.Windows.Forms.Button();
+            this.buttonRemoveService = new System.Windows.Forms.Button();
+            this.labelStreet = new System.Windows.Forms.Label();
+            this.labelZipCode = new System.Windows.Forms.Label();
+            this.labelCountry = new System.Windows.Forms.Label();
+            this.textBoxStreet = new System.Windows.Forms.TextBox();
+            this.textBoxZipCode = new System.Windows.Forms.TextBox();
+            this.textBoxCountry = new System.Windows.Forms.TextBox();
+            this.labelStreetNumber = new System.Windows.Forms.Label();
+            this.textBoxStreetNumber = new System.Windows.Forms.TextBox();
+            this.labelCity = new System.Windows.Forms.Label();
+            this.textBoxCity = new System.Windows.Forms.TextBox();
+            this.checkBoxHeadOffice = new System.Windows.Forms.CheckBox();
+            this.checkBoxAddressIsEnabled = new System.Windows.Forms.CheckBox();
+            this.comboBoxAddresses = new System.Windows.Forms.ComboBox();
+            this.buttonAddAddress = new System.Windows.Forms.Button();
             this.groupBoxRestaurant.SuspendLayout();
             this.groupBoxOwner.SuspendLayout();
+            this.groupBoxServices.SuspendLayout();
             this.groupBoxPriceList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListPrice)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListAddresses)).BeginInit();
+            this.groupBoxAddress.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListServices)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,12 +97,12 @@
             // 
             // groupBoxRestaurant
             // 
+            this.groupBoxRestaurant.Controls.Add(this.comboBoxDayOfClosing);
             this.groupBoxRestaurant.Controls.Add(this.comboBoxFoodType);
             this.groupBoxRestaurant.Controls.Add(this.textBoxMail);
             this.groupBoxRestaurant.Controls.Add(this.textBoxPhone);
             this.groupBoxRestaurant.Controls.Add(this.labelPhone);
             this.groupBoxRestaurant.Controls.Add(this.labelMail);
-            this.groupBoxRestaurant.Controls.Add(this.textBoxDayOfClosing);
             this.groupBoxRestaurant.Controls.Add(this.labelDayOfClosing);
             this.groupBoxRestaurant.Controls.Add(this.textBoxDescription);
             this.groupBoxRestaurant.Controls.Add(this.labelDescription);
@@ -103,6 +119,16 @@
             this.groupBoxRestaurant.TabIndex = 17;
             this.groupBoxRestaurant.TabStop = false;
             this.groupBoxRestaurant.Text = "Restaurant";
+            // 
+            // comboBoxDayOfClosing
+            // 
+            this.comboBoxDayOfClosing.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDayOfClosing.Enabled = false;
+            this.comboBoxDayOfClosing.FormattingEnabled = true;
+            this.comboBoxDayOfClosing.Location = new System.Drawing.Point(239, 63);
+            this.comboBoxDayOfClosing.Name = "comboBoxDayOfClosing";
+            this.comboBoxDayOfClosing.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDayOfClosing.TabIndex = 31;
             // 
             // comboBoxFoodType
             // 
@@ -149,14 +175,6 @@
             this.labelMail.Size = new System.Drawing.Size(26, 13);
             this.labelMail.TabIndex = 16;
             this.labelMail.Text = "Mail";
-            // 
-            // textBoxDayOfClosing
-            // 
-            this.textBoxDayOfClosing.Location = new System.Drawing.Point(237, 63);
-            this.textBoxDayOfClosing.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxDayOfClosing.Name = "textBoxDayOfClosing";
-            this.textBoxDayOfClosing.Size = new System.Drawing.Size(116, 20);
-            this.textBoxDayOfClosing.TabIndex = 15;
             // 
             // labelDayOfClosing
             // 
@@ -286,11 +304,14 @@
             // 
             // groupBoxServices
             // 
+            this.groupBoxServices.Controls.Add(this.buttonRemoveService);
+            this.groupBoxServices.Controls.Add(this.buttonAddService);
+            this.groupBoxServices.Controls.Add(this.dataGridViewListServices);
             this.groupBoxServices.Location = new System.Drawing.Point(564, 160);
             this.groupBoxServices.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxServices.Name = "groupBoxServices";
             this.groupBoxServices.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxServices.Size = new System.Drawing.Size(743, 241);
+            this.groupBoxServices.Size = new System.Drawing.Size(799, 241);
             this.groupBoxServices.TabIndex = 20;
             this.groupBoxServices.TabStop = false;
             this.groupBoxServices.Text = "Services";
@@ -316,37 +337,40 @@
             this.dataGridViewListPrice.Size = new System.Drawing.Size(625, 93);
             this.dataGridViewListPrice.TabIndex = 14;
             // 
-            // dataGridViewListAddresses
+            // groupBoxAddress
             // 
-            this.dataGridViewListAddresses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewListAddresses.Location = new System.Drawing.Point(653, 419);
-            this.dataGridViewListAddresses.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridViewListAddresses.Name = "dataGridViewListAddresses";
-            this.dataGridViewListAddresses.RowHeadersVisible = false;
-            this.dataGridViewListAddresses.RowTemplate.Height = 24;
-            this.dataGridViewListAddresses.Size = new System.Drawing.Size(648, 93);
-            this.dataGridViewListAddresses.TabIndex = 0;
-            // 
-            // groupBoxAddresses
-            // 
-            this.groupBoxAddresses.Location = new System.Drawing.Point(649, 405);
-            this.groupBoxAddresses.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBoxAddresses.Name = "groupBoxAddresses";
-            this.groupBoxAddresses.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxAddresses.Size = new System.Drawing.Size(658, 115);
-            this.groupBoxAddresses.TabIndex = 19;
-            this.groupBoxAddresses.TabStop = false;
-            this.groupBoxAddresses.Text = "Adresses";
+            this.groupBoxAddress.Controls.Add(this.buttonAddAddress);
+            this.groupBoxAddress.Controls.Add(this.comboBoxAddresses);
+            this.groupBoxAddress.Controls.Add(this.checkBoxAddressIsEnabled);
+            this.groupBoxAddress.Controls.Add(this.checkBoxHeadOffice);
+            this.groupBoxAddress.Controls.Add(this.textBoxCity);
+            this.groupBoxAddress.Controls.Add(this.labelCity);
+            this.groupBoxAddress.Controls.Add(this.textBoxStreetNumber);
+            this.groupBoxAddress.Controls.Add(this.labelStreetNumber);
+            this.groupBoxAddress.Controls.Add(this.textBoxCountry);
+            this.groupBoxAddress.Controls.Add(this.textBoxZipCode);
+            this.groupBoxAddress.Controls.Add(this.textBoxStreet);
+            this.groupBoxAddress.Controls.Add(this.labelCountry);
+            this.groupBoxAddress.Controls.Add(this.labelZipCode);
+            this.groupBoxAddress.Controls.Add(this.labelStreet);
+            this.groupBoxAddress.Location = new System.Drawing.Point(649, 405);
+            this.groupBoxAddress.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxAddress.Name = "groupBoxAddress";
+            this.groupBoxAddress.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxAddress.Size = new System.Drawing.Size(658, 115);
+            this.groupBoxAddress.TabIndex = 19;
+            this.groupBoxAddress.TabStop = false;
+            this.groupBoxAddress.Text = "Adress";
             // 
             // dataGridViewListServices
             // 
             this.dataGridViewListServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewListServices.Location = new System.Drawing.Point(568, 180);
+            this.dataGridViewListServices.Location = new System.Drawing.Point(4, 17);
             this.dataGridViewListServices.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewListServices.Name = "dataGridViewListServices";
             this.dataGridViewListServices.RowHeadersVisible = false;
             this.dataGridViewListServices.RowTemplate.Height = 24;
-            this.dataGridViewListServices.Size = new System.Drawing.Size(733, 215);
+            this.dataGridViewListServices.Size = new System.Drawing.Size(791, 188);
             this.dataGridViewListServices.TabIndex = 23;
             // 
             // comboBoxRestaurants
@@ -413,6 +437,142 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // buttonAddService
+            // 
+            this.buttonAddService.Location = new System.Drawing.Point(16, 212);
+            this.buttonAddService.Name = "buttonAddService";
+            this.buttonAddService.Size = new System.Drawing.Size(135, 23);
+            this.buttonAddService.TabIndex = 30;
+            this.buttonAddService.Text = "Add a service";
+            this.buttonAddService.UseVisualStyleBackColor = true;
+            // 
+            // buttonRemoveService
+            // 
+            this.buttonRemoveService.Location = new System.Drawing.Point(166, 212);
+            this.buttonRemoveService.Name = "buttonRemoveService";
+            this.buttonRemoveService.Size = new System.Drawing.Size(135, 23);
+            this.buttonRemoveService.TabIndex = 31;
+            this.buttonRemoveService.Text = "Remove a service";
+            this.buttonRemoveService.UseVisualStyleBackColor = true;
+            // 
+            // labelStreet
+            // 
+            this.labelStreet.AutoSize = true;
+            this.labelStreet.Location = new System.Drawing.Point(6, 19);
+            this.labelStreet.Name = "labelStreet";
+            this.labelStreet.Size = new System.Drawing.Size(35, 13);
+            this.labelStreet.TabIndex = 0;
+            this.labelStreet.Text = "Street";
+            // 
+            // labelZipCode
+            // 
+            this.labelZipCode.AutoSize = true;
+            this.labelZipCode.Location = new System.Drawing.Point(6, 42);
+            this.labelZipCode.Name = "labelZipCode";
+            this.labelZipCode.Size = new System.Drawing.Size(46, 13);
+            this.labelZipCode.TabIndex = 1;
+            this.labelZipCode.Text = "Zipcode";
+            // 
+            // labelCountry
+            // 
+            this.labelCountry.AutoSize = true;
+            this.labelCountry.Location = new System.Drawing.Point(6, 65);
+            this.labelCountry.Name = "labelCountry";
+            this.labelCountry.Size = new System.Drawing.Size(43, 13);
+            this.labelCountry.TabIndex = 2;
+            this.labelCountry.Text = "Country";
+            // 
+            // textBoxStreet
+            // 
+            this.textBoxStreet.Location = new System.Drawing.Point(76, 16);
+            this.textBoxStreet.Name = "textBoxStreet";
+            this.textBoxStreet.Size = new System.Drawing.Size(210, 20);
+            this.textBoxStreet.TabIndex = 4;
+            // 
+            // textBoxZipCode
+            // 
+            this.textBoxZipCode.Location = new System.Drawing.Point(76, 39);
+            this.textBoxZipCode.Name = "textBoxZipCode";
+            this.textBoxZipCode.Size = new System.Drawing.Size(63, 20);
+            this.textBoxZipCode.TabIndex = 5;
+            // 
+            // textBoxCountry
+            // 
+            this.textBoxCountry.Location = new System.Drawing.Point(76, 62);
+            this.textBoxCountry.Name = "textBoxCountry";
+            this.textBoxCountry.Size = new System.Drawing.Size(210, 20);
+            this.textBoxCountry.TabIndex = 6;
+            // 
+            // labelStreetNumber
+            // 
+            this.labelStreetNumber.AutoSize = true;
+            this.labelStreetNumber.Location = new System.Drawing.Point(304, 19);
+            this.labelStreetNumber.Name = "labelStreetNumber";
+            this.labelStreetNumber.Size = new System.Drawing.Size(44, 13);
+            this.labelStreetNumber.TabIndex = 8;
+            this.labelStreetNumber.Text = "Number";
+            // 
+            // textBoxStreetNumber
+            // 
+            this.textBoxStreetNumber.Location = new System.Drawing.Point(354, 16);
+            this.textBoxStreetNumber.Name = "textBoxStreetNumber";
+            this.textBoxStreetNumber.Size = new System.Drawing.Size(81, 20);
+            this.textBoxStreetNumber.TabIndex = 9;
+            // 
+            // labelCity
+            // 
+            this.labelCity.AutoSize = true;
+            this.labelCity.Location = new System.Drawing.Point(145, 42);
+            this.labelCity.Name = "labelCity";
+            this.labelCity.Size = new System.Drawing.Size(24, 13);
+            this.labelCity.TabIndex = 10;
+            this.labelCity.Text = "City";
+            // 
+            // textBoxCity
+            // 
+            this.textBoxCity.Location = new System.Drawing.Point(175, 39);
+            this.textBoxCity.Name = "textBoxCity";
+            this.textBoxCity.Size = new System.Drawing.Size(260, 20);
+            this.textBoxCity.TabIndex = 11;
+            // 
+            // checkBoxHeadOffice
+            // 
+            this.checkBoxHeadOffice.AutoSize = true;
+            this.checkBoxHeadOffice.Location = new System.Drawing.Point(9, 88);
+            this.checkBoxHeadOffice.Name = "checkBoxHeadOffice";
+            this.checkBoxHeadOffice.Size = new System.Drawing.Size(81, 17);
+            this.checkBoxHeadOffice.TabIndex = 12;
+            this.checkBoxHeadOffice.Text = "Head office";
+            this.checkBoxHeadOffice.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAddressIsEnabled
+            // 
+            this.checkBoxAddressIsEnabled.AutoSize = true;
+            this.checkBoxAddressIsEnabled.Location = new System.Drawing.Point(125, 88);
+            this.checkBoxAddressIsEnabled.Name = "checkBoxAddressIsEnabled";
+            this.checkBoxAddressIsEnabled.Size = new System.Drawing.Size(65, 17);
+            this.checkBoxAddressIsEnabled.TabIndex = 13;
+            this.checkBoxAddressIsEnabled.Text = "Enabled";
+            this.checkBoxAddressIsEnabled.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxAddresses
+            // 
+            this.comboBoxAddresses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAddresses.FormattingEnabled = true;
+            this.comboBoxAddresses.Location = new System.Drawing.Point(532, 14);
+            this.comboBoxAddresses.Name = "comboBoxAddresses";
+            this.comboBoxAddresses.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxAddresses.TabIndex = 14;
+            // 
+            // buttonAddAddress
+            // 
+            this.buttonAddAddress.Location = new System.Drawing.Point(354, 84);
+            this.buttonAddAddress.Name = "buttonAddAddress";
+            this.buttonAddAddress.Size = new System.Drawing.Size(128, 23);
+            this.buttonAddAddress.TabIndex = 15;
+            this.buttonAddAddress.Text = "Add Address";
+            this.buttonAddAddress.UseVisualStyleBackColor = true;
+            // 
             // RestaurantsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -422,24 +582,24 @@
             this.Controls.Add(this.buttonDeleteRestaurant);
             this.Controls.Add(this.buttonModifyRestaurant);
             this.Controls.Add(this.buttonAddRestaurant);
-            this.Controls.Add(this.dataGridViewListAddresses);
             this.Controls.Add(this.comboBoxRestaurants);
-            this.Controls.Add(this.dataGridViewListServices);
-            this.Controls.Add(this.groupBoxAddresses);
+            this.Controls.Add(this.groupBoxAddress);
             this.Controls.Add(this.groupBoxPriceList);
             this.Controls.Add(this.groupBoxServices);
             this.Controls.Add(this.groupBoxOwner);
             this.Controls.Add(this.groupBoxRestaurant);
             this.Controls.Add(this.labelRestaurantsList);
             this.Name = "RestaurantsView";
-            this.Size = new System.Drawing.Size(1309, 587);
+            this.Size = new System.Drawing.Size(1365, 587);
             this.groupBoxRestaurant.ResumeLayout(false);
             this.groupBoxRestaurant.PerformLayout();
             this.groupBoxOwner.ResumeLayout(false);
             this.groupBoxOwner.PerformLayout();
+            this.groupBoxServices.ResumeLayout(false);
             this.groupBoxPriceList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListPrice)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListAddresses)).EndInit();
+            this.groupBoxAddress.ResumeLayout(false);
+            this.groupBoxAddress.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListServices)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -454,7 +614,6 @@
         private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.Label labelPhone;
         private System.Windows.Forms.Label labelMail;
-        private System.Windows.Forms.TextBox textBoxDayOfClosing;
         private System.Windows.Forms.Label labelDayOfClosing;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Label labelDescription;
@@ -471,8 +630,7 @@
         private System.Windows.Forms.GroupBox groupBoxServices;
         private System.Windows.Forms.GroupBox groupBoxPriceList;
         private System.Windows.Forms.DataGridView dataGridViewListPrice;
-        private System.Windows.Forms.DataGridView dataGridViewListAddresses;
-        private System.Windows.Forms.GroupBox groupBoxAddresses;
+        private System.Windows.Forms.GroupBox groupBoxAddress;
         private System.Windows.Forms.DataGridView dataGridViewListServices;
         private System.Windows.Forms.ComboBox comboBoxRestaurants;
         private System.Windows.Forms.Button buttonAddRestaurant;
@@ -481,6 +639,23 @@
         private System.Windows.Forms.Button buttonNewRestaurant;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.ComboBox comboBoxFoodType;
+        private System.Windows.Forms.ComboBox comboBoxDayOfClosing;
+        private System.Windows.Forms.Button buttonRemoveService;
+        private System.Windows.Forms.Button buttonAddService;
+        private System.Windows.Forms.Label labelCity;
+        private System.Windows.Forms.TextBox textBoxStreetNumber;
+        private System.Windows.Forms.Label labelStreetNumber;
+        private System.Windows.Forms.TextBox textBoxCountry;
+        private System.Windows.Forms.TextBox textBoxZipCode;
+        private System.Windows.Forms.TextBox textBoxStreet;
+        private System.Windows.Forms.Label labelCountry;
+        private System.Windows.Forms.Label labelZipCode;
+        private System.Windows.Forms.Label labelStreet;
+        private System.Windows.Forms.TextBox textBoxCity;
+        private System.Windows.Forms.Button buttonAddAddress;
+        private System.Windows.Forms.ComboBox comboBoxAddresses;
+        private System.Windows.Forms.CheckBox checkBoxAddressIsEnabled;
+        private System.Windows.Forms.CheckBox checkBoxHeadOffice;
 
     }
 }

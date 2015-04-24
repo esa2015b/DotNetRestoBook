@@ -38,6 +38,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>A list of employees.</returns>
         public List<Employee> GetEmployees(int restaurantId)
         {
+            this.RefreshDataSet();
             List<Employee> employees = new List<Employee>();
             this.dp.ds.EMPLOYEE.Where(e => e.RESTAURANTID == restaurantId)
                                .ToList()
@@ -81,5 +82,19 @@ namespace RestoBook.Common.Business.Managers
             return nbrRowsDeleted > 0;
         }
         #endregion PUBLIC METHODS
+
+
+        #region PRIVATE METHODS
+        /// <summary>
+        /// Refreshes the dataset, so that the new data from database becomes available.
+        /// </summary>
+        private void RefreshDataSet()
+        {
+            // refresh the dataset
+            this.dp.ds.Reset();
+            this.dp.PrepareEmployeeDP();
+        }
+        #endregion PRIVATE METHODS
+
     }
 }

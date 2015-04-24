@@ -79,6 +79,12 @@ C:\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.csprojResolve
 C:\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.MainForm.resources
 C:\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Properties.Resources.resources
 C:\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.csproj.GenerateResource.Cache
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.csprojResolveAssemblyReference.cache
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Views.FoodTypeView.resources
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Views.MainForm.resources
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Properties.Resources.resources
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Views.RestaurantsView.resources
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.csproj.GenerateResource.Cache
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.GUI.View.exe.config
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.GUI.View.exe
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.GUI.View.pdb
@@ -88,11 +94,5 @@ D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBo
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.Common.Business.pdb
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\RestoBook.Common.Model.pdb
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\bin\Debug\Ninject.xml
-D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.csprojResolveAssemblyReference.cache
-D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Views.FoodTypeView.resources
-D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Views.MainForm.resources
-D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Properties.Resources.resources
-D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Views.RestaurantsView.resources
-D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.csproj.GenerateResource.Cache
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.exe
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.pdb

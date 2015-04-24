@@ -10,6 +10,14 @@ namespace RestoBook.Common.Business.Managers
     public interface IAddressManager
     {
         /// <summary>
+        /// Gets a list of the restaurant's addresses by the restaurant's identifier.
+        /// </summary>
+        /// <param name="restaurantId">The restaurant identifier.</param>
+        /// <returns>The list of restaurant's addresses.</returns>
+        List<Address> GetAddressesByRestaurantId(int restaurantId);
+
+
+        /// <summary>
         /// Creates a new address.
         /// </summary>
         /// <param name="address">The address to create.</param>

@@ -3,6 +3,7 @@ using RestoBook.Common.Model.Models;
 using RestoBook.Model.Common.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,9 @@ namespace RestoBook.GUI.View.Controllers
 		private PriceListManager priceListManager;
 		private OwnerManager ownerManager;
 		private AddressManager addressManager;
-        private EmployeeManager employeeManager;
-        private FoodTypeManager foodTypeManager;
-        //private ReservationManager reservationManager;
+		private EmployeeManager employeeManager;
+		private FoodTypeManager foodTypeManager;
+		//private ReservationManager reservationManager;
 		#endregion PROPERTIES
 
 
@@ -34,9 +35,9 @@ namespace RestoBook.GUI.View.Controllers
 			this.priceListManager = new PriceListManager();
 			this.ownerManager = new OwnerManager();
 			this.addressManager = new AddressManager();
-            this.employeeManager = new EmployeeManager();
-            this.foodTypeManager = new FoodTypeManager();
-            //this.reservationManager = new ReservationManager();
+			this.employeeManager = new EmployeeManager();
+			this.foodTypeManager = new FoodTypeManager();
+			//this.reservationManager = new ReservationManager();
 		}
 		#endregion CONSTRUCTOR
 
@@ -59,12 +60,15 @@ namespace RestoBook.GUI.View.Controllers
 		public Restaurant GetRestaurantById(int restaurantId)
 		{
 			Restaurant restaurant = this.restaurantManager.GetRestaurantById(restaurantId);
-            if (restaurant != null)
-            {
+			if (restaurant != null)
+			{
+                restaurant.Addresses = this.addressManager.GetAddressesByRestaurantId(restaurantId);
+                restaurant.Employees = this.employeeManager.GetEmployees(restaurantId);
+                //restaurant.FoodType = this.foodTypeManager.GetFoodTypeById(restaurant.FoodType.Id);
+                //restaurant.Owner = this.ownerManager.GetOwner(restaurant.Owner.Id);
                 restaurant.PriceLists = this.priceListManager.GetPriceLists(restaurantId);
                 restaurant.Services = this.serviceManager.GetServices(restaurantId);
-                //restaurant.Owner = this.ownerManager.GetOwner(restaurant.)
-            }
+			}
 			return restaurant;
 		}
 
@@ -72,19 +76,24 @@ namespace RestoBook.GUI.View.Controllers
 		/// Creates a new restaurant, and all depending objects.
 		/// </summary>
 		/// <param name="newRestaurant">The new restaurant to create.</param>
-        /// <returns>True in case of successful update, false in case of failure.</returns>
-        public bool CreateRestaurant(Restaurant newRestaurant)
+		/// <returns>True in case of successful update, false in case of failure.</returns>
+		public bool CreateRestaurant(Restaurant newRestaurant)
 		{
 			bool successful = false;
 			successful = this.ownerManager.CreateOwner(newRestaurant.Owner);
+            newRestaurant.Owner.Id = this.ownerManager.GetOwnerByFirstAndLastName(newRestaurant.Owner.FirstName, newRestaurant.Owner.LastName).LastOrDefault().Id;
 
 			if (successful)
 			{
 				successful = this.restaurantManager.CreateRestaurant(newRestaurant);
+                newRestaurant.Id = this.restaurantManager.GetRestaurantByName(newRestaurant.Name).LastOrDefault().Id;
 			}
 			if (successful)
 			{
-				successful = this.addressManager.CreateAddres(newRestaurant.Address, newRestaurant.Id);
+                foreach (Address a in newRestaurant.Addresses)
+                {
+                    successful = this.addressManager.CreateAddres(a, newRestaurant.Id);
+                }
 			}
 
 			foreach (Service service in newRestaurant.Services)
@@ -104,59 +113,76 @@ namespace RestoBook.GUI.View.Controllers
 			return successful;
 		}
 
-        /// <summary>
-        /// Deletes a restaurant and all linked table objects.
-        /// </summary>
-        /// <param name="restaurant">The restaurant to delete.</param>
-        /// <returns>True if successful, false if failed.</returns>
-        public bool DeleteRestaurant(Restaurant restaurant)
-        {
-            bool successful = true;
-            foreach (PriceList priceList in restaurant.PriceLists)
-            {
-                if (successful)
+		/// <summary>
+		/// Deletes a restaurant and all linked table objects.
+		/// </summary>
+		/// <param name="restaurant">The restaurant to delete.</param>
+		/// <returns>True if successful, false if failed.</returns>
+		public bool DeleteRestaurant(Restaurant restaurant)
+		{
+			bool successful = true;
+			foreach (PriceList priceList in restaurant.PriceLists)
+			{
+				if (successful)
+				{
+					successful = this.priceListManager.DeletePriceList(priceList, restaurant.Id);
+				}
+			}
+			// TODO : implement the reservation manager & deletion of all reservations.
+			foreach (Service service in restaurant.Services)
+			{
+				if (successful)
+				{
+					successful = this.serviceManager.DeleteService(service, restaurant.Id);
+				}
+			}
+			foreach (Employee employee in restaurant.Employees)
+			{
+				if (successful)
+				{
+					successful = this.employeeManager.DeleteEmployee(employee, restaurant.Id);
+				}
+			}
+			if (successful)
+			{
+                foreach (Address a in restaurant.Addresses)
                 {
-                    successful = this.priceListManager.DeletePriceList(priceList, restaurant.Id);
+                    successful = this.addressManager.DeleteAddress(a, restaurant.Id);
                 }
-            }
-            // TODO : implement the reservation manager & deletion of all reservations.
-            foreach (Service service in restaurant.Services)
-            {
-                if (successful)
-                {
-                    successful = this.serviceManager.DeleteService(service, restaurant.Id);
-                }
-            }
-            foreach (Employee employee in restaurant.Employees)
-            {
-                if (successful)
-                {
-                    successful = this.employeeManager.DeleteEmployee(employee, restaurant.Id);
-                }
-            }
-            if (successful)
-            {
-                successful = this.addressManager.DeleteAddress(restaurant.Address, restaurant.Id);
-            }
-            if (successful)
-            {
-                successful = this.restaurantManager.DeleteRestaurant(restaurant);
-            }
-            if (successful)
-            {
-                successful = this.ownerManager.DeleteOwner(restaurant.Owner);
-            }
-            return successful;
-        }
+			}
+			if (successful)
+			{
+				successful = this.restaurantManager.DeleteRestaurant(restaurant);
+			}
+			if (successful)
+			{
+				successful = this.ownerManager.DeleteOwner(restaurant.Owner);
+			}
+			return successful;
+		}
 
+		/// <summary>
+		/// Gets the list of existing food types.
+		/// </summary>
+		/// <returns>A list of existing food type objects.</returns>
+		public List<FoodType> GetAllFoodTypes()
+		{
+			return this.foodTypeManager.GetFoodTypeList();
+		}
 
         /// <summary>
-        /// Gets the list of existing food types.
+        /// Returns a list containing the days of the week.
         /// </summary>
-        /// <returns>A list of existing food type objects.</returns>
-        public List<FoodType> GetAllFoodTypes()
+        /// <returns>The list containing every day of the week.</returns>
+        public Dictionary<string,string> GetDaysOfWeek()
         {
-            return this.foodTypeManager.GetFoodTypeList();
+            Dictionary<string, string> daysOfWeek = new Dictionary<string, string>();
+            CultureInfo belge = new CultureInfo("fr");
+            foreach (var day in belge.DateTimeFormat.DayNames)
+            {
+                daysOfWeek.Add(day.ToString(), day.ToString());
+            }
+            return daysOfWeek;
         }
 
 		#endregion PUBLIC METHODS

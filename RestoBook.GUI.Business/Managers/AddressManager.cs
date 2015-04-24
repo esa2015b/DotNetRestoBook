@@ -31,6 +31,30 @@ namespace RestoBook.Common.Business.Managers
 
         #region PUBLIC METHODS
         /// <summary>
+        /// Gets a list of the restaurant's addresses by the restaurant's identifier.
+        /// </summary>
+        /// <param name="restaurantId">The restaurant identifier.</param>
+        /// <returns>The list of restaurant's addresses.</returns>
+        public List<Address> GetAddressesByRestaurantId(int restaurantId)
+        {
+            this.RefreshDataSet();
+            List<Address> addresses = new List<Address>();
+            var tempAddress = this.dp.ds.ADDRESS.Where(a => a.RESTAURANTID == restaurantId).ToList();
+            tempAddress.ForEach(a =>  addresses.Add(new Address()
+                        {
+                            City = a.CITY,
+                            Country = a.COUNTRY,
+                            HeadOffice = a.HEADOFFICE,
+                            Id = a.ADDRESSID,
+                            IsEnabled = a.ENABLE,
+                            Number = a.NUMBER,
+                            Street = a.STREET,
+                            ZipCode = a.ZIPCODE
+                        }));
+            return addresses;
+        }
+
+        /// <summary>
         /// Creates a new address.
         /// </summary>
         /// <param name="address">The address to create.</param>
@@ -41,8 +65,7 @@ namespace RestoBook.Common.Business.Managers
             int nbrRowsCreated = -1;
             using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.ADDRESSTableAdapter daAddress = new Model.DataSetRestoBookTableAdapters.ADDRESSTableAdapter())
             {
-                nbrRowsCreated = daAddress.Insert(address.Id,
-                                                  restaurantId,
+                nbrRowsCreated = daAddress.Insert(restaurantId,
                                                   address.Street,
                                                   address.Number,
                                                   address.ZipCode,
@@ -79,5 +102,19 @@ namespace RestoBook.Common.Business.Managers
         }
 
         #endregion PUBLIC METHODS
+
+
+        #region PRIVATE METHODS
+        /// <summary>
+        /// Refreshes the dataset, so that the new data from database becomes available.
+        /// </summary>
+        private void RefreshDataSet()
+        {
+            // refresh the dataset
+            this.dp.ds.Reset();
+            this.dp.PrepareAddressDP();
+        }
+        #endregion PRIVATE METHODS
+
     }
 }

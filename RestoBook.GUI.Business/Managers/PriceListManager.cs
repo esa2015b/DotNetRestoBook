@@ -47,6 +47,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>A list of pricelists.</returns>
         public List<PriceList> GetPriceLists(int restaurantId)
         {
+            this.RefreshDataSet();
             List<PriceList> priceLists = new List<PriceList>();
             this.dp.ds.PRICELIST.Where(pl => pl.RESTAURANTID == restaurantId)
                                 .ToList()
@@ -74,8 +75,7 @@ namespace RestoBook.Common.Business.Managers
             int nbrRowsCreated = -1;
             using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.PRICELISTTableAdapter daPriceList = new RestoBook.Common.Model.DataSetRestoBookTableAdapters.PRICELISTTableAdapter())
             {
-                nbrRowsCreated = daPriceList.Insert(priceList.Id,
-                                                    restaurantId,
+                nbrRowsCreated = daPriceList.Insert(restaurantId,
                                                     priceList.Description,
                                                     priceList.MinimumPrice,
                                                     priceList.MaximumPrice,
@@ -105,6 +105,19 @@ namespace RestoBook.Common.Business.Managers
             return nbrRowsDeleted > 0;
         }
         #endregion PUBLIC METHODS
+
+
+        #region PRIVATE METHODS
+        /// <summary>
+        /// Refreshes the dataset, so that the new data from database becomes available.
+        /// </summary>
+        private void RefreshDataSet()
+        {
+            // refresh the dataset
+            this.dp.ds.Reset();
+            this.dp.PreparePriceListDP();
+        }
+        #endregion PRIVATE METHODS
 
     }
 }

@@ -16,7 +16,7 @@ namespace RestoBook.GUI.View.Controllers
 		/// Gets a list containing all the existing restaurants names and ids.
 		/// </summary>
 		/// <returns>A dictionnary containing all the restaurant's id & names.</returns>
-		Dictionary<int, string> GetAllRestaurants();
+        Dictionary<int, string> GetAllRestaurants();
 
 		/// <summary>
 		/// Gets a given restaurant by it's identifier.
@@ -37,6 +37,13 @@ namespace RestoBook.GUI.View.Controllers
         /// </summary>
         /// <returns>A list of existing food type objects.</returns>
         List<FoodType> GetAllFoodTypes();
+
+        /// <summary>
+        /// Returns a dictionnary containing the days of the week.
+        /// </summary>
+        /// <returns>The dictionnary containing every day of the week.</returns>
+        Dictionary<string,string> GetDaysOfWeek();
+
 
 	}
 }

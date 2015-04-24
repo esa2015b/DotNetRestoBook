@@ -23,6 +23,7 @@
         private ServiceManager serviceManager;
         private PriceListManager priceListManager;
         private FoodTypeManager foodTypeManager;
+        private AddressManager addressManager;
         #endregion PROPERTIES
 
         #region CONSTRUCTOR
@@ -34,6 +35,7 @@
             this.serviceManager = new ServiceManager();
             this.priceListManager = new PriceListManager();
             this.foodTypeManager = new FoodTypeManager();
+            this.addressManager = new AddressManager();
         }
         #endregion CONSTRUCTOR
 
@@ -48,6 +50,7 @@
             Restaurant restaurant = this.restaurantManager.GetRestaurantById(restaurantId);
             if (restaurant != null)
             {
+                restaurant.Addresses = this.addressManager.GetAddressesByRestaurantId(restaurantId);
                 restaurant.Employees = this.employeeManager.GetEmployees(restaurantId);
                 restaurant.PriceLists = this.priceListManager.GetPriceLists(restaurantId);
                 restaurant.Services = this.serviceManager.GetServices(restaurantId);

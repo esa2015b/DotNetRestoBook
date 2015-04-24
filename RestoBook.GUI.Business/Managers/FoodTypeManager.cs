@@ -39,6 +39,8 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>The FoodType for a restaurant.</returns>
         public FoodType GetFoodTypeById(int foodTypeId)
         {
+            this.RefreshDataSet();
+
             var res = this.dp.ds.FOODTYPE.Where(ft => ft.FOODTYPEID == foodTypeId).FirstOrDefault();
             // if previously searched res is null, return a null object,
             // else create a new foodtype object and return it.
@@ -58,10 +60,7 @@ namespace RestoBook.Common.Business.Managers
         public List<FoodType> GetFoodTypeList()
         {
             List<FoodType> foodType = new List<FoodType>();
-
-            // refresh the dataset
-            this.dp.ds.Reset();
-            this.dp.PrepareFoodTypeDP();
+            this.RefreshDataSet();
 
             var query = from f in this.dp.ds.FOODTYPE
                         select f;
@@ -130,5 +129,17 @@ namespace RestoBook.Common.Business.Managers
 
         #endregion PUBLIC METHODS
 
+
+        #region PRIVATE METHODS
+        /// <summary>
+        /// Refreshes the dataset, so that the new data from database becomes available.
+        /// </summary>
+        private void RefreshDataSet()
+        {
+            // refresh the dataset
+            this.dp.ds.Reset();
+            this.dp.PrepareFoodTypeDP();
+        }
+        #endregion PRIVATE METHODS
     }
 }

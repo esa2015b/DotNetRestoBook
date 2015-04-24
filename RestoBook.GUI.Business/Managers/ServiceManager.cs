@@ -37,6 +37,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>A list of services.</returns>
         public List<Service> GetServices(int restaurantId)
         {
+            this.RefreshDataSet();
             List<Service> services = new List<Service>();
 
             this.dp.ds.SERVICE.Where(s => s.RESTAURANTID == restaurantId)
@@ -67,8 +68,7 @@ namespace RestoBook.Common.Business.Managers
 
             using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.SERVICETableAdapter daService = new Model.DataSetRestoBookTableAdapters.SERVICETableAdapter())
             {
-                nbrRowsCreated = daService.Insert(service.Id,
-                                                  restaurantId,
+                nbrRowsCreated = daService.Insert(restaurantId,
                                                   service.ServiceDate,
                                                   service.TypeService,
                                                   service.BeginShift,
@@ -103,5 +103,19 @@ namespace RestoBook.Common.Business.Managers
             return nbrRowsDeleted > 0;
         }
         #endregion PUBLIC METHODS
+
+
+        #region PRIVATE METHODS
+        /// <summary>
+        /// Refreshes the dataset, so that the new data from database becomes available.
+        /// </summary>
+        private void RefreshDataSet()
+        {
+            // refresh the dataset
+            this.dp.ds.Reset();
+            this.dp.PrepareServiceDP();
+        }
+        #endregion PRIVATE METHODS
+
     }
 }
