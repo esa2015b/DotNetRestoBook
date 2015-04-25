@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System;
 using RestoBook.Common.Model.Models;
+using RestoBook.Model.Common.Models;
 
 namespace RestoBook.Common.Business.Managers
 {
@@ -23,15 +24,15 @@ namespace RestoBook.Common.Business.Managers
         #endregion CONSTRUCTOR
 
         #region PUBLIC METHODS
-        /// <summary>
-        /// Static method that retrieve datas using method getRestaurantList 
-        /// from RestoBook.GUI.Model layer
-        /// No modification to datas 
-        /// </summary>
-        /// <returns>DataSet</returns>
-        public DataSet GetAllRestaurants()
+
+        public Dictionary<int,string> GetAllRestaurants()
         {
-            return this.dp.ds;
+            this.RefreshDataSet();
+            Dictionary<int, string> restaurants = new Dictionary<int, string>();
+            this.dp.ds.RESTAURANT.Select(r => new { r.RESTAURANTID, r.NAME })
+                                 .ToList()
+                                 .ForEach(r => restaurants.Add((int)r.RESTAURANTID, r.NAME));
+            return restaurants;
         }
 
         /// <summary>
@@ -42,6 +43,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns></returns>
         public Restaurant GetRestaurantById(int restaurantId)
         {
+            this.RefreshDataSet();
             Restaurant resto = new Restaurant();
             resto =  (from r in this.dp.ds.RESTAURANT
                                               where r.RESTAURANTID == restaurantId
@@ -61,10 +63,24 @@ namespace RestoBook.Common.Business.Managers
                                                   IsEnabled = r.ENABLE,
                                                   FoodType = new FoodType() { Description = f.DESCRIPTION, Id = (int)f.FOODTYPEID, IsEnabled = f.ENABLE, Name = f.NAME },
                                                   Owner = new Owner() { FirstName = o.FIRSTNAME, Id = (int)o.OWNERID, IsEnabled = o.ENABLE, LastName = o.LASTNAME, OwnedRestaurants = new List<Restaurant>() }
+                                                  //Employees = new List<RestoBook.Model.Common.Models.Employee>()
+                                                  //{
+                                                  //    new Employee()
+                                                  //    {
+                                                  //        Id = (int)e.EMPLOYEEID,
+                                                  //        Email = e.MAIL,
+                                                  //        FirstName = e.FIRSTNAME,
+                                                  //        IsEnabled = e.ENABLE,
+                                                  //        LastName = e.LASTNAME,
+                                                  //        Login = e.LOGIN,
+                                                  //        Mobile = e.MOBILE,
+                                                  //        Password = e.PASSWORD
+                                                  //    }
+                                                  //}
                                               }).FirstOrDefault();
             if (resto == null)
             {
-                throw new Exception("No restaurant found with this id.");
+                //throw new Exception("No restaurant found with this id.");
             }
             return resto;
         }
@@ -76,6 +92,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns></returns>
         public List<Restaurant> GetRestaurantByName(String restaurantName)
         {
+            this.RefreshDataSet();
             List<Restaurant> restaurant = new List<Restaurant>();
 
             var query = from r in this.dp.ds.RESTAURANT
@@ -115,6 +132,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns></returns>
         public List<Restaurant> GetRestaurantAdvanced(string name, string foodTypeName, string city)
         {
+            this.RefreshDataSet();
             List<Restaurant> restaurant = new List<Restaurant>();
 
             var query = from r in this.dp.ds.RESTAURANT
@@ -148,6 +166,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns></returns>
         public List<Restaurant> GetRestaurantByFoodType(int foodTypeID)
         {
+            this.RefreshDataSet();
             List<Restaurant> restaurant = new List<Restaurant>();
 
             var query = from r in this.dp.ds.RESTAURANT
@@ -178,6 +197,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns></returns>
         public Restaurant GetRandomRestaurant()
         {
+            this.RefreshDataSet();
             Restaurant restaurant = new Restaurant();
 
             restaurant = (from r in this.dp.ds.RESTAURANT
@@ -196,6 +216,99 @@ namespace RestoBook.Common.Business.Managers
                         }).OrderBy(x => Guid.NewGuid()).First();
             return restaurant;
         }
-        #endregion
+
+        /// <summary>
+        /// Creates a new restaurant.
+        /// </summary>
+        /// <param name="r">The restaurant to create.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool CreateRestaurant(Restaurant r)
+        {
+            int nbrRowsCreated = -1;
+
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESTAURANTTableAdapter daRestaurant = new Model.DataSetRestoBookTableAdapters.RESTAURANTTableAdapter())
+            {
+                nbrRowsCreated = daRestaurant.Insert(r.Owner.Id,
+                                                     r.FoodType.Id,
+                                                     r.Name,
+                                                     r.Mail,
+                                                     r.Phone,
+                                                     r.Description,
+                                                     r.PlaceQuantity,
+                                                     r.DayOfClosing,
+                                                     r.PictureLocation == null ? string.Empty : r.PictureLocation,
+                                                     r.IsEnabled,
+                                                     r.IsPremium);
+            }
+            return nbrRowsCreated > 0;
+        }
+
+        /// <summary>
+        /// Deletes a restaurant.
+        /// </summary>
+        /// <param name="r">The restaurant to delete.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool DeleteRestaurant(Restaurant r)
+        {
+            int nbrRowsDeleted = -1;
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESTAURANTTableAdapter daRestaurant = new Model.DataSetRestoBookTableAdapters.RESTAURANTTableAdapter())
+            {
+                nbrRowsDeleted = daRestaurant.Delete(r.Id, 
+                                                     r.Owner.Id,
+                                                     r.FoodType.Id,
+                                                     r.Name,
+                                                     r.Mail,
+                                                     r.Phone,
+                                                     r.Description,
+                                                     r.PlaceQuantity,
+                                                     r.DayOfClosing,
+                                                     r.PictureLocation,
+                                                     r.IsEnabled,
+                                                     r.IsPremium);
+            }
+            return nbrRowsDeleted > 0;
+        }
+
+        /// <summary>
+        /// Modifies a restaurant.
+        /// </summary>
+        /// <param name="r">The modified restaurant.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        public bool ModifyRestaurant(Restaurant r)
+        {
+            int nbrRowsUpdated = -1;
+
+            DataRow row = dp.ds.RESTAURANT.Select(string.Format("RESTAURANTID = '{0}'", r.Id)).FirstOrDefault();
+            row["NAME"] = r.Name;
+            row["MAIL"] = r.Mail;
+            row["PHONE"] = r.Phone;
+            row["DESCRIPTION"] = r.Description;
+            row["PLACEQUANTITY"] = r.PlaceQuantity;
+            row["DAYOFCLOSING"] = r.DayOfClosing;
+            row["PICTURELOCATION"] = r.PictureLocation;
+            row["ENABLE"] = r.IsEnabled;
+            row["ISPREMIUM"] = r.IsPremium;
+
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESTAURANTTableAdapter daRestaurant = new Model.DataSetRestoBookTableAdapters.RESTAURANTTableAdapter())
+            {
+                nbrRowsUpdated = daRestaurant.Update(row);
+            }
+            return nbrRowsUpdated > 0;
+        }
+        #endregion PUBLIC METHODS
+
+
+        #region PRIVATE METHODS
+        /// <summary>
+        /// Refreshes the dataset, so that the new data from database becomes available.
+        /// </summary>
+        private void RefreshDataSet()
+        {
+            // refresh the dataset
+            this.dp.ds.Reset();
+            this.dp.PrepareFullDataProvider();
+        }
+        #endregion PRIVATE METHODS
+
     }
 }

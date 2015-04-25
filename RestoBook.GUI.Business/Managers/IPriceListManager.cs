@@ -18,5 +18,22 @@ namespace RestoBook.Common.Business.Managers
         /// <param name="restaurantId">The restaurant identifier.</param>
         /// <returns>A list of pricelists.</returns>
         List<PriceList> GetPriceLists(int restaurantId);
+
+        /// <summary>
+        /// Creates a new pricelist for a given restaurant.
+        /// </summary>
+        /// <param name="priceList">The pricelist to create.</param>
+        /// <param name="restaurantId">The pricelist's restaurant.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
+        bool CreatePriceList(PriceList priceList, int restaurantId);
+
+        /// <summary>
+        /// Deletes a pricelist for a given restaurant.
+        /// </summary>
+        /// <param name="priceList">The pricelist to delete.</param>
+        /// <param name="restaurantId">The pricelist's restaurant identifier.</param>
+        /// <returns>True in case of successful delete, false in case of failure.</returns>
+        bool DeletePriceList(PriceList priceList, int restaurantId);
+
     }
 }

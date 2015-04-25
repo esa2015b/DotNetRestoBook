@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace RestoBook.GUI.View.Controllers
 {
+    /// <summary>
+    /// The foodtype controller, to pass information between the views and the business logic layer.
+    /// </summary>
     public class FoodTypeController : IFoodTypeController
     {
         #region PROPERTIES
@@ -31,6 +34,11 @@ namespace RestoBook.GUI.View.Controllers
             return this.foodTypeManager.GetFoodTypeList();
         }
 
+        /// <summary>
+        /// Creates a FoodType object in the database.
+        /// </summary>
+        /// <param name="foodType">The new foodtype to create.</param>
+        /// <returns>True if successful, false if failed.</returns>
         public bool CreateFoodType(FoodType foodType)
         {
             bool result = this.foodTypeManager.CreateFoodType(foodType);
@@ -39,12 +47,22 @@ namespace RestoBook.GUI.View.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Modifies a given foodtype as requested.
+        /// </summary>
+        /// <param name="foodType">The foodtype to modify.</param>
+        /// <returns>True if successful, false if failed.</returns>
         public bool ModifyFoodType(FoodType foodType)
         {
-            bool result = this.foodTypeManager.ModifyFoodTypeType(foodType);
+            bool result = this.foodTypeManager.ModifyFoodType(foodType);
             return result;
         }
 
+        /// <summary>
+        /// Deletes a given foodtype in the database.
+        /// </summary>
+        /// <param name="foodTypeId">The identifier for the foodtype to delete.</param>
+        /// <returns>True if successful, false if failed.</returns>
         public bool DeleteFoodType(FoodType foodType)
         {
             bool result = this.foodTypeManager.DeleteFoodType(foodType);

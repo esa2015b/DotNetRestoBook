@@ -19,24 +19,24 @@ namespace RestoBook.GUI.View.Controllers
         List<FoodType> GetAllFoodTypes();
 
         /// <summary>
-        /// 
+        /// Creates a FoodType object in the database.
         /// </summary>
-        /// <param name="foodType"></param>
-        /// <returns></returns>
+        /// <param name="foodType">The new foodtype to create.</param>
+        /// <returns>True if successful, false if failed.</returns>
         bool CreateFoodType(FoodType foodType);
 
         /// <summary>
-        /// 
+        /// Modifies a given foodtype as requested.
         /// </summary>
-        /// <param name="foodType"></param>
-        /// <returns></returns>
+        /// <param name="foodType">The foodtype to modify.</param>
+        /// <returns>True if successful, false if failed.</returns>
         bool ModifyFoodType(FoodType foodType);
 
         /// <summary>
-        /// 
+        /// Deletes a given foodtype in the database.
         /// </summary>
-        /// <param name="foodTypeId"></param>
-        /// <returns></returns>
+        /// <param name="foodTypeId">The identifier for the foodtype to delete.</param>
+        /// <returns>True if successful, false if failed.</returns>
         bool DeleteFoodType(FoodType foodType);
     }
 }

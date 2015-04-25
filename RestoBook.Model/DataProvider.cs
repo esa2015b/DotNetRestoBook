@@ -93,6 +93,17 @@ namespace RestoBook.Common.Model
         }
 
         /// <summary>
+        /// Prepares the address dataprovider.
+        /// </summary>
+        public void PrepareAddressDP()
+        {
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.ADDRESSTableAdapter daAddress = new RestoBook.Common.Model.DataSetRestoBookTableAdapters.ADDRESSTableAdapter())
+            {
+                daAddress.Fill(ds.ADDRESS);
+            }
+        }
+
+        /// <summary>
         /// Prepares the full dataprovider.
         /// </summary>
         public void PrepareFullDataProvider()

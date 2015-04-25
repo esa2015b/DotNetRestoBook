@@ -62,5 +62,14 @@ namespace RestoBook
         /// <returns>List of Food Type</returns>
         [OperationContract()]
         List<FoodType> GetFoodTypeList();
+
+        [OperationContract()]
+        List<LightRestaurant> GetLightRestaurantAdvanced(string name, string foodTypeName, string city);
+
+        [OperationContract()]
+        List<LightRestaurant> GetLightRestaurantByFoodType(int foodTypeId);
+
+        [OperationContract()]
+        List<LightRestaurant> GetLightRestaurantByName(string restaurantName);
     }
 }

@@ -23,6 +23,8 @@
         private ServiceManager serviceManager;
         private PriceListManager priceListManager;
         private FoodTypeManager foodTypeManager;
+        private AddressManager addressManager;
+        private LightRestaurantManager lightRestaurantManager;
         #endregion PROPERTIES
 
         #region CONSTRUCTOR
@@ -34,6 +36,8 @@
             this.serviceManager = new ServiceManager();
             this.priceListManager = new PriceListManager();
             this.foodTypeManager = new FoodTypeManager();
+            this.addressManager = new AddressManager();
+            this.lightRestaurantManager = new LightRestaurantManager();
         }
         #endregion CONSTRUCTOR
 
@@ -48,6 +52,7 @@
             Restaurant restaurant = this.restaurantManager.GetRestaurantById(restaurantId);
             if (restaurant != null)
             {
+                restaurant.Addresses = this.addressManager.GetAddressesByRestaurantId(restaurantId);
                 restaurant.Employees = this.employeeManager.GetEmployees(restaurantId);
                 restaurant.PriceLists = this.priceListManager.GetPriceLists(restaurantId);
                 restaurant.Services = this.serviceManager.GetServices(restaurantId);
@@ -118,12 +123,10 @@
                     r.PriceLists = this.priceListManager.GetPriceLists(restaurantId);
                     r.Services = this.serviceManager.GetServices(restaurantId);
                 }
-
             }
 
             return restaurant;
         }
-
 
         public Restaurant GetRandomRestaurant()
         {
@@ -148,6 +151,54 @@
             List<FoodType> ft = foodTypeManager.GetFoodTypeList();
 
             return ft;
+        }
+
+        public List<LightRestaurant> GetLightRestaurantAdvanced(string name, string foodTypeName, string city)
+        {
+            List<LightRestaurant> restaurant = lightRestaurantManager.GetLightRestaurantAdvanced(name, foodTypeName, city);
+            if (restaurant != null)
+            {
+                foreach (LightRestaurant r in restaurant)
+                {
+                    r.FoodTypeName = this.foodTypeManager.GetFoodTypeById(r.Id).Name;
+                }
+
+            }
+
+            return restaurant;
+        }
+
+        public List<LightRestaurant> GetLightRestaurantByFoodType(int foodTypeId)
+        {
+            List<LightRestaurant> restaurant = this.lightRestaurantManager.GetLightRestaurantByFoodType(foodTypeId);
+
+            if (restaurant != null)
+            {
+                foreach (LightRestaurant r in restaurant)
+                {
+                    r.FoodTypeName = this.foodTypeManager.GetFoodTypeById(r.Id).Name;
+                }
+            }
+
+            return restaurant;
+        }
+
+        public List<LightRestaurant> GetLightRestaurantByName(string restaurantName)
+        {
+
+            List<LightRestaurant> restaurant = this.lightRestaurantManager.GetLightRestaurantByName(restaurantName);
+
+            if (restaurant != null)
+            {
+                foreach (LightRestaurant r in restaurant)
+                {
+                    r.FoodTypeName = this.foodTypeManager.GetFoodTypeById(r.Id).Name;
+                }
+
+            }
+
+            return restaurant;
+
         }
 
 

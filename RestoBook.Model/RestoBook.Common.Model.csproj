@@ -56,6 +56,7 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\FoodType.cs" />
+    <Compile Include="Models\LightRestaurant.cs" />
     <Compile Include="Models\Owner.cs" />
     <Compile Include="Models\PriceList.cs" />
     <Compile Include="Models\Restaurant.cs" />

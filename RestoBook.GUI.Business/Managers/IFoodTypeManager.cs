@@ -44,7 +44,7 @@ namespace RestoBook.Common.Business.Managers
         /// </summary>
         /// <param name="ft"></param>
         /// <returns></returns>
-        bool ModifyFoodTypeType(FoodType ft);
+        bool ModifyFoodType(FoodType ft);
 
     }
 }

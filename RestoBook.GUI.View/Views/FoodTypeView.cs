@@ -61,6 +61,7 @@ namespace RestoBook.GUI.View.Views
         }
         #endregion PUBLIC METHODS
 
+        #region EVENTS
         /// <summary>
         /// 
         /// </summary>
@@ -133,5 +134,7 @@ namespace RestoBook.GUI.View.Views
             this.foodTypeController.DeleteFoodType(this.foodTypes[this.cbbExistingFoodTypes.SelectedIndex]);
             this.PopulateAndBindFoodTypes();
         }
+
+        #endregion EVENTS
     }
 }

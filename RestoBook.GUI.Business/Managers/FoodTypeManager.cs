@@ -39,6 +39,8 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>The FoodType for a restaurant.</returns>
         public FoodType GetFoodTypeById(int foodTypeId)
         {
+            this.RefreshDataSet();
+
             var res = this.dp.ds.FOODTYPE.Where(ft => ft.FOODTYPEID == foodTypeId).FirstOrDefault();
             // if previously searched res is null, return a null object,
             // else create a new foodtype object and return it.
@@ -51,13 +53,14 @@ namespace RestoBook.Common.Business.Managers
             };
         }
 
+        /// <summary>
+        /// Get all Food Types
+        /// </summary>
+        /// <returns></returns>
         public List<FoodType> GetFoodTypeList()
         {
             List<FoodType> foodType = new List<FoodType>();
-
-            // refresh the dataset
-            this.dp.ds.Reset();
-            this.dp.PrepareFoodTypeDP();
+            this.RefreshDataSet();
 
             var query = from f in this.dp.ds.FOODTYPE
                         select f;
@@ -73,32 +76,44 @@ namespace RestoBook.Common.Business.Managers
             return foodType;
         }
 
-        
+        /// <summary>
+        /// Creates a new Food Type
+        /// </summary>
+        /// <param name="ft">The foodtype to insert in the database.</param>
+        /// <returns>True in case of successful update, false in case of failure.</returns>
         public bool CreateFoodType(FoodType ft)
         {
-            int ftId = -1;
+            int nbrRowsCreated = -1;
             using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.FOODTYPETableAdapter daFoodType = new RestoBook.Common.Model.DataSetRestoBookTableAdapters.FOODTYPETableAdapter())
             {
-                ftId = daFoodType.Insert(ft.Name, ft.Description, true);
+                nbrRowsCreated = daFoodType.Insert(ft.Name, ft.Description, true);
             }
-            return ft.Id == ftId;
+            return nbrRowsCreated > 0;
         }
 
-        
+        /// <summary>
+        /// Delete a Food Type
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool DeleteFoodType(FoodType ft)
         {
-            int deletedFoodTypeId = -1;
+            int nbrRowsDeleted = -1;
             using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.FOODTYPETableAdapter daFoodType = new RestoBook.Common.Model.DataSetRestoBookTableAdapters.FOODTYPETableAdapter())
             {
-                deletedFoodTypeId = daFoodType.Delete(ft.Id, ft.Name, ft.Description, ft.IsEnabled);
+                nbrRowsDeleted = daFoodType.Delete(ft.Id, ft.Name, ft.Description, ft.IsEnabled);
             }
-            return ft.Id == deletedFoodTypeId;
+            return nbrRowsDeleted > 0;
         }
 
-
-        public bool ModifyFoodTypeType(FoodType ft)
+        /// <summary>
+        /// Modify a Food Type
+        /// </summary>
+        /// <param name="ft"></param>
+        /// <returns></returns>
+        public bool ModifyFoodType(FoodType ft)
         {
-            int ftId = -1;
+            int nbrRowsUpdated = -1;
             DataRow row = dp.ds.FOODTYPE.Select("FOODTYPEID = '" + ft.Id + "'").FirstOrDefault();
             row["NAME"] = ft.Name;
             row["DESCRIPTION"] = ft.Description;
@@ -107,12 +122,24 @@ namespace RestoBook.Common.Business.Managers
             //FoodType foodtype = GetFoodTypeById(ft.Id);
             using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.FOODTYPETableAdapter daFoodType = new RestoBook.Common.Model.DataSetRestoBookTableAdapters.FOODTYPETableAdapter())
             {
-                ftId = daFoodType.Update(row);
+                nbrRowsUpdated = daFoodType.Update(row);
             }
-            return ft.Id == ftId;
+            return nbrRowsUpdated > 0;
         }
 
         #endregion PUBLIC METHODS
 
+
+        #region PRIVATE METHODS
+        /// <summary>
+        /// Refreshes the dataset, so that the new data from database becomes available.
+        /// </summary>
+        private void RefreshDataSet()
+        {
+            // refresh the dataset
+            this.dp.ds.Reset();
+            this.dp.PrepareFoodTypeDP();
+        }
+        #endregion PRIVATE METHODS
     }
 }

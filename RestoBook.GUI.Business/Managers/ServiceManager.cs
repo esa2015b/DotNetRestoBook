@@ -37,6 +37,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>A list of services.</returns>
         public List<Service> GetServices(int restaurantId)
         {
+            this.RefreshDataSet();
             List<Service> services = new List<Service>();
 
             this.dp.ds.SERVICE.Where(s => s.RESTAURANTID == restaurantId)
@@ -49,10 +50,72 @@ namespace RestoBook.Common.Business.Managers
                                                                 IsEnabled = s.ENABLE,
                                                                 PlaceQuantity = s.PLACEQUANTITY,
                                                                 ServiceDay = s.SERVICEDAY.DayOfWeek,
+                                                                ServiceDate = s.SERVICEDAY,
                                                                 TypeService = s.TYPESERVICE
                                                             }));
             return services;
         }
+
+        /// <summary>
+        /// Creates a new service row.
+        /// </summary>
+        /// <param name="service">The service row to create.</param>
+        /// <param name="restaurantId">The service's restaurant identifier.</param>
+        /// <returns>True in case of successful creation, false in case of failure.</returns>
+        public bool CreateService(Service service, int restaurantId)
+        {
+            int nbrRowsCreated = -1;
+
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.SERVICETableAdapter daService = new Model.DataSetRestoBookTableAdapters.SERVICETableAdapter())
+            {
+                nbrRowsCreated = daService.Insert(restaurantId,
+                                                  service.ServiceDate,
+                                                  service.TypeService,
+                                                  service.BeginShift,
+                                                  service.EndShift,
+                                                  service.PlaceQuantity,
+                                                  service.IsEnabled);
+            }
+            return nbrRowsCreated > 0;
+        }
+
+        /// <summary>
+        /// Deletes a given service for a specific restaurant.
+        /// </summary>
+        /// <param name="service">The service to delete.</param>
+        /// <param name="restaurantId">The service's restaurant identifier.</param>
+        /// <returns>True in case of successful delete, false in case of failure.</returns>
+        public bool DeleteService(Service service, int restaurantId)
+        {
+            int nbrRowsDeleted = -1;
+
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.SERVICETableAdapter daService = new Model.DataSetRestoBookTableAdapters.SERVICETableAdapter())
+            {
+                nbrRowsDeleted = daService.Delete(service.Id,
+                                                  restaurantId,
+                                                  service.ServiceDate,
+                                                  service.TypeService,
+                                                  service.BeginShift,
+                                                  service.EndShift,
+                                                  service.PlaceQuantity,
+                                                  service.IsEnabled);
+            }
+            return nbrRowsDeleted > 0;
+        }
         #endregion PUBLIC METHODS
+
+
+        #region PRIVATE METHODS
+        /// <summary>
+        /// Refreshes the dataset, so that the new data from database becomes available.
+        /// </summary>
+        private void RefreshDataSet()
+        {
+            // refresh the dataset
+            this.dp.ds.Reset();
+            this.dp.PrepareServiceDP();
+        }
+        #endregion PRIVATE METHODS
+
     }
 }
