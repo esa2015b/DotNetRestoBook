@@ -61,6 +61,13 @@ namespace RestoBook.Common.Model.Models
         /// </summary>
         [DataMember(IsRequired = true)]
         public bool IsEnabled { get; set; }
+
+        /// <summary>
+        /// The list of reservation for this service
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public List<Reservation> Reservations { get; set; }
+
         #endregion PROPERTIES
 
     }
