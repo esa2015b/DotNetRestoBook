@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System;
 using RestoBook.Common.Model.Models;
-using RestoBook.Model.Common.Models;
 
 namespace RestoBook.Common.Business.Managers
 {

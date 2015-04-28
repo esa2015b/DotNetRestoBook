@@ -1,6 +1,5 @@
 ﻿using RestoBook.Common.Model;
-using RestoBook.Model;
-using RestoBook.Model.Common.Models;
+using RestoBook.Common.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

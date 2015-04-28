@@ -1,6 +1,6 @@
 ﻿using RestoBook.Common.Business.Managers;
 using RestoBook.Common.Model.Models;
-using RestoBook.Model.Common.Models;
+using RestoBook.Common.Model;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
