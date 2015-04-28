@@ -16,7 +16,7 @@ namespace RestoBook.Common.Model.Models
         /// <summary>
         /// Customer Id
         /// </summary>
-        [DataMember(IsRequired=true)]
+        [DataMember(IsRequired = true)]
         public int Id { get; set; }
 
         /// <summary>
