@@ -11,7 +11,7 @@ namespace RestoBook.Common.Model.Models
     /// Customer who've made a reservation 
     /// </summary>
     [DataContract()]
-    class Customer
+    public class Customer
     {
         /// <summary>
         /// Customer Id
