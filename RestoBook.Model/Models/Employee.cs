@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RestoBook.Model.Common.Models
+namespace RestoBook.Common.Model.Models
 {
     /// <summary>
     /// A restaurant employee.
