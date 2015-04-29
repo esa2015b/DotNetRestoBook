@@ -2,6 +2,7 @@
 {
     using RestoBook.Common.Business.Managers;
     using RestoBook.Common.Model.Models;
+    using RestoBook.Common.Model;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -199,6 +200,13 @@
 
             return restaurant;
 
+        }
+
+        public bool CreateReservation(Reservation reservation, Customer customer)
+        {
+
+
+            return true;
         }
 
 

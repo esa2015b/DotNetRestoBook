@@ -1,11 +1,10 @@
 ﻿using RestoBook.Common;
 using RestoBook.Common.Model;
+using RestoBook.Common.Model.Models;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System;
-using RestoBook.Common.Model.Models;
-using RestoBook.Model.Common.Models;
 
 namespace RestoBook.Common.Business.Managers
 {

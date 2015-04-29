@@ -1,4 +1,5 @@
-﻿using RestoBook.Model.Common.Models;
+﻿using RestoBook.Common.Model;
+using RestoBook.Common.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
