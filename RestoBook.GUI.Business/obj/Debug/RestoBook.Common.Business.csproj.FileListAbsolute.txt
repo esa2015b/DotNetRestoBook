@@ -16,12 +16,21 @@ C:\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\Ninject.xml
 C:\DotNetRestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.csprojResolveAssemblyReference.cache
 C:\DotNetRestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.dll
 C:\DotNetRestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.pdb
-D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.csprojResolveAssemblyReference.cache
+C:\Projects\RestoBook\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Business.dll
+C:\Projects\RestoBook\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Business.pdb
+C:\Projects\RestoBook\RestoBook.GUI.Business\bin\Debug\Ninject.dll
+C:\Projects\RestoBook\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Model.dll
+C:\Projects\RestoBook\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Model.pdb
+C:\Projects\RestoBook\RestoBook.GUI.Business\bin\Debug\Ninject.xml
+C:\Projects\RestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.csprojResolveAssemblyReference.cache
+C:\Projects\RestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.dll
+C:\Projects\RestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.pdb
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Business.dll
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Business.pdb
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\Ninject.dll
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Model.dll
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Model.pdb
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Business\bin\Debug\Ninject.xml
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.csprojResolveAssemblyReference.cache
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.dll
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.pdb
