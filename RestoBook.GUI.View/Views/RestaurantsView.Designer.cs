@@ -55,7 +55,10 @@
             this.buttonAddServiceRow = new System.Windows.Forms.Button();
             this.dataGridViewListServices = new System.Windows.Forms.DataGridView();
             this.groupBoxPriceList = new System.Windows.Forms.GroupBox();
+            this.buttonAddPricelists = new System.Windows.Forms.Button();
             this.dataGridViewListPrice = new System.Windows.Forms.DataGridView();
+            this.buttonRemovePricelists = new System.Windows.Forms.Button();
+            this.buttonAddPriceListRow = new System.Windows.Forms.Button();
             this.groupBoxAddress = new System.Windows.Forms.GroupBox();
             this.buttonCancelAddress = new System.Windows.Forms.Button();
             this.buttonDeleteAddress = new System.Windows.Forms.Button();
@@ -80,10 +83,12 @@
             this.buttonDeleteRestaurant = new System.Windows.Forms.Button();
             this.buttonNewRestaurant = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.buttonAddPricelists = new System.Windows.Forms.Button();
-            this.buttonRemovePricelists = new System.Windows.Forms.Button();
-            this.buttonAddPriceListRow = new System.Windows.Forms.Button();
             this.buttonRefreshRestaurantData = new System.Windows.Forms.Button();
+            this.groupBoxEmployees = new System.Windows.Forms.GroupBox();
+            this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
+            this.buttonAddEmployeeRow = new System.Windows.Forms.Button();
+            this.buttonRemoveEmployees = new System.Windows.Forms.Button();
+            this.buttonAddNewEmployees = new System.Windows.Forms.Button();
             this.groupBoxRestaurant.SuspendLayout();
             this.groupBoxOwner.SuspendLayout();
             this.groupBoxServices.SuspendLayout();
@@ -91,6 +96,8 @@
             this.groupBoxPriceList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListPrice)).BeginInit();
             this.groupBoxAddress.SuspendLayout();
+            this.groupBoxEmployees.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
             this.SuspendLayout();
             // 
             // labelRestaurantsList
@@ -320,14 +327,14 @@
             this.groupBoxServices.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxServices.Name = "groupBoxServices";
             this.groupBoxServices.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxServices.Size = new System.Drawing.Size(799, 241);
+            this.groupBoxServices.Size = new System.Drawing.Size(880, 306);
             this.groupBoxServices.TabIndex = 20;
             this.groupBoxServices.TabStop = false;
             this.groupBoxServices.Text = "Services";
             // 
             // buttonAddNewServices
             // 
-            this.buttonAddNewServices.Location = new System.Drawing.Point(659, 213);
+            this.buttonAddNewServices.Location = new System.Drawing.Point(733, 275);
             this.buttonAddNewServices.Name = "buttonAddNewServices";
             this.buttonAddNewServices.Size = new System.Drawing.Size(135, 23);
             this.buttonAddNewServices.TabIndex = 32;
@@ -337,7 +344,7 @@
             // 
             // buttonRemoveServices
             // 
-            this.buttonRemoveServices.Location = new System.Drawing.Point(312, 213);
+            this.buttonRemoveServices.Location = new System.Drawing.Point(387, 275);
             this.buttonRemoveServices.Name = "buttonRemoveServices";
             this.buttonRemoveServices.Size = new System.Drawing.Size(135, 23);
             this.buttonRemoveServices.TabIndex = 31;
@@ -347,7 +354,7 @@
             // 
             // buttonAddServiceRow
             // 
-            this.buttonAddServiceRow.Location = new System.Drawing.Point(16, 212);
+            this.buttonAddServiceRow.Location = new System.Drawing.Point(11, 277);
             this.buttonAddServiceRow.Name = "buttonAddServiceRow";
             this.buttonAddServiceRow.Size = new System.Drawing.Size(84, 23);
             this.buttonAddServiceRow.TabIndex = 30;
@@ -364,7 +371,7 @@
             this.dataGridViewListServices.RowHeadersVisible = false;
             this.dataGridViewListServices.RowTemplate.Height = 24;
             this.dataGridViewListServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewListServices.Size = new System.Drawing.Size(791, 188);
+            this.dataGridViewListServices.Size = new System.Drawing.Size(869, 253);
             this.dataGridViewListServices.TabIndex = 23;
             // 
             // groupBoxPriceList
@@ -373,7 +380,7 @@
             this.groupBoxPriceList.Controls.Add(this.dataGridViewListPrice);
             this.groupBoxPriceList.Controls.Add(this.buttonRemovePricelists);
             this.groupBoxPriceList.Controls.Add(this.buttonAddPriceListRow);
-            this.groupBoxPriceList.Location = new System.Drawing.Point(12, 402);
+            this.groupBoxPriceList.Location = new System.Drawing.Point(12, 470);
             this.groupBoxPriceList.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxPriceList.Name = "groupBoxPriceList";
             this.groupBoxPriceList.Padding = new System.Windows.Forms.Padding(2);
@@ -382,14 +389,44 @@
             this.groupBoxPriceList.TabStop = false;
             this.groupBoxPriceList.Text = "Pricelists";
             // 
+            // buttonAddPricelists
+            // 
+            this.buttonAddPricelists.Location = new System.Drawing.Point(493, 117);
+            this.buttonAddPricelists.Name = "buttonAddPricelists";
+            this.buttonAddPricelists.Size = new System.Drawing.Size(135, 23);
+            this.buttonAddPricelists.TabIndex = 35;
+            this.buttonAddPricelists.Text = "Add new pricelists";
+            this.buttonAddPricelists.UseVisualStyleBackColor = true;
+            this.buttonAddPricelists.Click += new System.EventHandler(this.buttonAddPricelists_Click);
+            // 
             // dataGridViewListPrice
             // 
             this.dataGridViewListPrice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewListPrice.Location = new System.Drawing.Point(4, 17);
+            this.dataGridViewListPrice.Location = new System.Drawing.Point(4, 15);
             this.dataGridViewListPrice.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewListPrice.Name = "dataGridViewListPrice";
             this.dataGridViewListPrice.Size = new System.Drawing.Size(625, 93);
             this.dataGridViewListPrice.TabIndex = 14;
+            // 
+            // buttonRemovePricelists
+            // 
+            this.buttonRemovePricelists.Location = new System.Drawing.Point(200, 117);
+            this.buttonRemovePricelists.Name = "buttonRemovePricelists";
+            this.buttonRemovePricelists.Size = new System.Drawing.Size(135, 23);
+            this.buttonRemovePricelists.TabIndex = 34;
+            this.buttonRemovePricelists.Text = "Remove pricelists / rows";
+            this.buttonRemovePricelists.UseVisualStyleBackColor = true;
+            this.buttonRemovePricelists.Click += new System.EventHandler(this.buttonRemovePricelists_Click);
+            // 
+            // buttonAddPriceListRow
+            // 
+            this.buttonAddPriceListRow.Location = new System.Drawing.Point(8, 117);
+            this.buttonAddPriceListRow.Name = "buttonAddPriceListRow";
+            this.buttonAddPriceListRow.Size = new System.Drawing.Size(84, 23);
+            this.buttonAddPriceListRow.TabIndex = 33;
+            this.buttonAddPriceListRow.Text = "Add a row";
+            this.buttonAddPriceListRow.UseVisualStyleBackColor = true;
+            this.buttonAddPriceListRow.Click += new System.EventHandler(this.buttonAddPriceListRow_Click);
             // 
             // groupBoxAddress
             // 
@@ -410,7 +447,7 @@
             this.groupBoxAddress.Controls.Add(this.labelCountry);
             this.groupBoxAddress.Controls.Add(this.labelZipCode);
             this.groupBoxAddress.Controls.Add(this.labelStreet);
-            this.groupBoxAddress.Location = new System.Drawing.Point(649, 405);
+            this.groupBoxAddress.Location = new System.Drawing.Point(779, 547);
             this.groupBoxAddress.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxAddress.Name = "groupBoxAddress";
             this.groupBoxAddress.Padding = new System.Windows.Forms.Padding(2);
@@ -584,7 +621,7 @@
             // 
             this.buttonAddRestaurant.BackColor = System.Drawing.Color.Chartreuse;
             this.buttonAddRestaurant.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonAddRestaurant.Location = new System.Drawing.Point(20, 574);
+            this.buttonAddRestaurant.Location = new System.Drawing.Point(20, 639);
             this.buttonAddRestaurant.Name = "buttonAddRestaurant";
             this.buttonAddRestaurant.Size = new System.Drawing.Size(118, 23);
             this.buttonAddRestaurant.TabIndex = 25;
@@ -595,7 +632,7 @@
             // buttonModifyRestaurant
             // 
             this.buttonModifyRestaurant.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.buttonModifyRestaurant.Location = new System.Drawing.Point(197, 574);
+            this.buttonModifyRestaurant.Location = new System.Drawing.Point(197, 639);
             this.buttonModifyRestaurant.Name = "buttonModifyRestaurant";
             this.buttonModifyRestaurant.Size = new System.Drawing.Size(118, 23);
             this.buttonModifyRestaurant.TabIndex = 26;
@@ -606,7 +643,7 @@
             // buttonDeleteRestaurant
             // 
             this.buttonDeleteRestaurant.BackColor = System.Drawing.Color.Crimson;
-            this.buttonDeleteRestaurant.Location = new System.Drawing.Point(375, 574);
+            this.buttonDeleteRestaurant.Location = new System.Drawing.Point(375, 639);
             this.buttonDeleteRestaurant.Name = "buttonDeleteRestaurant";
             this.buttonDeleteRestaurant.Size = new System.Drawing.Size(118, 23);
             this.buttonDeleteRestaurant.TabIndex = 27;
@@ -634,36 +671,6 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // buttonAddPricelists
-            // 
-            this.buttonAddPricelists.Location = new System.Drawing.Point(493, 119);
-            this.buttonAddPricelists.Name = "buttonAddPricelists";
-            this.buttonAddPricelists.Size = new System.Drawing.Size(135, 23);
-            this.buttonAddPricelists.TabIndex = 35;
-            this.buttonAddPricelists.Text = "Add new pricelists";
-            this.buttonAddPricelists.UseVisualStyleBackColor = true;
-            this.buttonAddPricelists.Click += new System.EventHandler(this.buttonAddPricelists_Click);
-            // 
-            // buttonRemovePricelists
-            // 
-            this.buttonRemovePricelists.Location = new System.Drawing.Point(200, 119);
-            this.buttonRemovePricelists.Name = "buttonRemovePricelists";
-            this.buttonRemovePricelists.Size = new System.Drawing.Size(135, 23);
-            this.buttonRemovePricelists.TabIndex = 34;
-            this.buttonRemovePricelists.Text = "Remove pricelists / rows";
-            this.buttonRemovePricelists.UseVisualStyleBackColor = true;
-            this.buttonRemovePricelists.Click += new System.EventHandler(this.buttonRemovePricelists_Click);
-            // 
-            // buttonAddPriceListRow
-            // 
-            this.buttonAddPriceListRow.Location = new System.Drawing.Point(8, 119);
-            this.buttonAddPriceListRow.Name = "buttonAddPriceListRow";
-            this.buttonAddPriceListRow.Size = new System.Drawing.Size(84, 23);
-            this.buttonAddPriceListRow.TabIndex = 33;
-            this.buttonAddPriceListRow.Text = "Add a row";
-            this.buttonAddPriceListRow.UseVisualStyleBackColor = true;
-            this.buttonAddPriceListRow.Click += new System.EventHandler(this.buttonAddPriceListRow_Click);
-            // 
             // buttonRefreshRestaurantData
             // 
             this.buttonRefreshRestaurantData.Location = new System.Drawing.Point(413, 119);
@@ -674,10 +681,62 @@
             this.buttonRefreshRestaurantData.UseVisualStyleBackColor = true;
             this.buttonRefreshRestaurantData.Click += new System.EventHandler(this.buttonRefreshRestaurantData_Click);
             // 
+            // groupBoxEmployees
+            // 
+            this.groupBoxEmployees.Controls.Add(this.buttonAddNewEmployees);
+            this.groupBoxEmployees.Controls.Add(this.buttonRemoveEmployees);
+            this.groupBoxEmployees.Controls.Add(this.buttonAddEmployeeRow);
+            this.groupBoxEmployees.Controls.Add(this.dataGridViewEmployees);
+            this.groupBoxEmployees.Location = new System.Drawing.Point(567, 8);
+            this.groupBoxEmployees.Name = "groupBoxEmployees";
+            this.groupBoxEmployees.Size = new System.Drawing.Size(877, 150);
+            this.groupBoxEmployees.TabIndex = 31;
+            this.groupBoxEmployees.TabStop = false;
+            this.groupBoxEmployees.Text = "Employees";
+            // 
+            // dataGridViewEmployees
+            // 
+            this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEmployees.Location = new System.Drawing.Point(7, 20);
+            this.dataGridViewEmployees.Name = "dataGridViewEmployees";
+            this.dataGridViewEmployees.Size = new System.Drawing.Size(863, 98);
+            this.dataGridViewEmployees.TabIndex = 0;
+            // 
+            // buttonAddEmployeeRow
+            // 
+            this.buttonAddEmployeeRow.Location = new System.Drawing.Point(13, 121);
+            this.buttonAddEmployeeRow.Name = "buttonAddEmployeeRow";
+            this.buttonAddEmployeeRow.Size = new System.Drawing.Size(84, 23);
+            this.buttonAddEmployeeRow.TabIndex = 1;
+            this.buttonAddEmployeeRow.Text = "Add a row";
+            this.buttonAddEmployeeRow.UseVisualStyleBackColor = true;
+            this.buttonAddEmployeeRow.Click += new System.EventHandler(this.buttonAddEmployeeRow_Click);
+            // 
+            // buttonRemoveEmployees
+            // 
+            this.buttonRemoveEmployees.Location = new System.Drawing.Point(374, 121);
+            this.buttonRemoveEmployees.Name = "buttonRemoveEmployees";
+            this.buttonRemoveEmployees.Size = new System.Drawing.Size(153, 23);
+            this.buttonRemoveEmployees.TabIndex = 2;
+            this.buttonRemoveEmployees.Text = "Remove employees / rows";
+            this.buttonRemoveEmployees.UseVisualStyleBackColor = true;
+            this.buttonRemoveEmployees.Click += new System.EventHandler(this.buttonRemoveEmployees_Click);
+            // 
+            // buttonAddNewEmployees
+            // 
+            this.buttonAddNewEmployees.Location = new System.Drawing.Point(738, 121);
+            this.buttonAddNewEmployees.Name = "buttonAddNewEmployees";
+            this.buttonAddNewEmployees.Size = new System.Drawing.Size(132, 23);
+            this.buttonAddNewEmployees.TabIndex = 3;
+            this.buttonAddNewEmployees.Text = "Add new employees";
+            this.buttonAddNewEmployees.UseVisualStyleBackColor = true;
+            this.buttonAddNewEmployees.Click += new System.EventHandler(this.buttonAddNewEmployees_Click);
+            // 
             // RestaurantsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBoxEmployees);
             this.Controls.Add(this.buttonRefreshRestaurantData);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonNewRestaurant);
@@ -692,7 +751,7 @@
             this.Controls.Add(this.groupBoxRestaurant);
             this.Controls.Add(this.labelRestaurantsList);
             this.Name = "RestaurantsView";
-            this.Size = new System.Drawing.Size(1365, 600);
+            this.Size = new System.Drawing.Size(1448, 676);
             this.groupBoxRestaurant.ResumeLayout(false);
             this.groupBoxRestaurant.PerformLayout();
             this.groupBoxOwner.ResumeLayout(false);
@@ -703,6 +762,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListPrice)).EndInit();
             this.groupBoxAddress.ResumeLayout(false);
             this.groupBoxAddress.PerformLayout();
+            this.groupBoxEmployees.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -766,6 +827,11 @@
         private System.Windows.Forms.Button buttonRemovePricelists;
         private System.Windows.Forms.Button buttonAddPriceListRow;
         private System.Windows.Forms.Button buttonRefreshRestaurantData;
+        private System.Windows.Forms.GroupBox groupBoxEmployees;
+        private System.Windows.Forms.Button buttonAddNewEmployees;
+        private System.Windows.Forms.Button buttonRemoveEmployees;
+        private System.Windows.Forms.Button buttonAddEmployeeRow;
+        private System.Windows.Forms.DataGridView dataGridViewEmployees;
 
     }
 }

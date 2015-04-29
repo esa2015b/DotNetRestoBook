@@ -58,6 +58,30 @@ namespace RestoBook.Common.Business.Managers
         }
 
         /// <summary>
+        /// Creates a new employee row in the database for a given restaurant.
+        /// </summary>
+        /// <param name="employee">The employee to create.</param>
+        /// <param name="restaurantId">The employee's restaurant identifier.</param>
+        /// <returns>True in case of successful creation, false in case of failure.</returns>
+        public bool CreateEmployee(Employee employee, int restaurantId)
+        {
+            int nbrRowsCreated = -1;
+
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.EMPLOYEETableAdapter daEmployees = new Model.DataSetRestoBookTableAdapters.EMPLOYEETableAdapter())
+            {
+                nbrRowsCreated = daEmployees.Insert(restaurantId,
+                                                    employee.FirstName,
+                                                    employee.LastName,
+                                                    employee.Email,
+                                                    employee.Mobile,
+                                                    employee.Login,
+                                                    employee.Password,
+                                                    employee.IsEnabled);
+            }
+            return nbrRowsCreated > 0;
+        }
+
+        /// <summary>
         /// Deletes an employee for a given restaurant.
         /// </summary>
         /// <param name="employee">The employee to delete.</param>

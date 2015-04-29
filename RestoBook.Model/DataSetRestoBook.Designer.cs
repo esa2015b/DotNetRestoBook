@@ -1986,7 +1986,7 @@ namespace RestoBook.Common.Model {
                 this.columnEMPLOYEEID.Unique = true;
                 this.columnFIRSTNAME.MaxLength = 60;
                 this.columnLASTNAME.MaxLength = 60;
-                this.columnMAIL.MaxLength = 30;
+                this.columnMAIL.MaxLength = 254;
                 this.columnMOBILE.MaxLength = 20;
                 this.columnLOGIN.MaxLength = 32;
                 this.columnPASSWORD.MaxLength = 32;
@@ -7704,7 +7704,7 @@ SELECT ADDRESSID, RESTAURANTID, STREET, NUMBER, ZIPCODE, CITY, COUNTRY, HEADOFFI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString;
+            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8298,7 +8298,7 @@ SELECT USERID, RESTOBOOKID, FIRSTNAME, LASTNAME, LOGIN, PASSWORD, ADMIN, ENABLE 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString;
+            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9223,7 +9223,7 @@ SELECT EMPLOYEEID, RESTAURANTID, FIRSTNAME, LASTNAME, MAIL, MOBILE, LOGIN, PASSW
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString;
+            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9792,7 +9792,7 @@ SELECT FOODTYPEID, NAME, DESCRIPTION, ENABLE FROM FOODTYPE WHERE (FOODTYPEID = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString;
+            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10185,7 +10185,7 @@ SELECT OWNERID, FIRSTNAME, LASTNAME, ENABLE FROM OWNER WHERE (OWNERID = @OWNERID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString;
+            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10591,7 +10591,7 @@ SELECT PRICELISTID, RESTAURANTID, DESCRIPTION, MINIMUMPRICE, MAXIMUMPRICE, ENABL
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString;
+            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11100,7 +11100,7 @@ SELECT RESERVATIONID, CUSTOMERID, SERVICEID, RESERVATIONDATE, SERVICE, PLACEQUAN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString;
+            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11749,7 +11749,7 @@ SELECT RESTAURANTID, OWNERID, FOODTYPEID, NAME, MAIL, PHONE, DESCRIPTION, PLACEQ
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString;
+            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12406,7 +12406,7 @@ SELECT RESTOBOOKID, PHONE, MAIL, LEGALSINFO, ABOUT, GENERALCONDITIONS, FIRSTNAME
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString;
+            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13066,7 +13066,7 @@ SELECT SERVICEID, RESTAURANTID, SERVICEDAY, TYPESERVICE, STARTSHIFT, ENDSHIFT, P
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString;
+            this._connection.ConnectionString = global::RestoBook.Common.Model.Properties.Settings.Default.RestoBookDBConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -55,7 +55,7 @@ namespace RestoBook.GUI.View.Views
             this.comboBoxRestaurants.DataSource = new BindingSource(this.restaurants, null);
             this.comboBoxRestaurants.DisplayMember = "Value";
             this.comboBoxRestaurants.ValueMember = "Key";
-            
+
             this.comboBoxFoodType.DataSource = this.foodTypes;
             this.comboBoxFoodType.DisplayMember = "Name";
             this.comboBoxFoodType.ValueMember = "Id";
@@ -76,12 +76,17 @@ namespace RestoBook.GUI.View.Views
         /// </summary>
         private void BindRestaurantDetails()
         {
-            dataGridViewListServices.DataSource = this.restaurantFocus;
-            dataGridViewListServices.DataMember = "Services";
-            dataGridViewListServices.Columns[0].ReadOnly = true;
+            this.dataGridViewListServices.DataSource = this.restaurantFocus;
+            this.dataGridViewListServices.DataMember = "Services";
+            this.dataGridViewListServices.Columns[0].ReadOnly = true;
 
-            dataGridViewListPrice.DataSource = this.restaurantFocus;
-            dataGridViewListPrice.DataMember = "PriceLists";
+            this.dataGridViewListPrice.DataSource = this.restaurantFocus;
+            this.dataGridViewListPrice.DataMember = "PriceLists";
+            this.dataGridViewListPrice.Columns[0].ReadOnly = true;
+
+            this.dataGridViewEmployees.DataSource = this.restaurantFocus;
+            this.dataGridViewEmployees.DataMember = "Employees";
+            this.dataGridViewEmployees.Columns[0].ReadOnly = true;
 
             // if the page has been loaded before, clear all existing bindings
             // in order to avoid conflicts.
@@ -156,7 +161,7 @@ namespace RestoBook.GUI.View.Views
                 !string.IsNullOrEmpty(restaurantFocus.Phone) &&
                 restaurantFocus.PlaceQuantity != 0 &&
                 restaurantFocus.Addresses != null &&
-                restaurantFocus.Addresses.Count > 0&&
+                restaurantFocus.Addresses.Count > 0 &&
 
                 //!string.IsNullOrEmpty(restaurantFocus.Address.City) &&
                 //!string.IsNullOrEmpty(restaurantFocus.Address.Country) &&
@@ -223,7 +228,7 @@ namespace RestoBook.GUI.View.Views
             this.buttonModifyRestaurant.Enabled = false;
             this.groupBoxAddress.Enabled = false;
             this.buttonCancel.Enabled = true;
-        }       
+        }
 
         /// <summary>
         /// Enables the address creation items.
@@ -325,7 +330,7 @@ namespace RestoBook.GUI.View.Views
 
         #region EVENTS
 
-        #region RESTAURANT 
+        #region RESTAURANT
 
         /// <summary>
         /// On selected index change of combobox, call populateandbindrestaurantdetails.
@@ -597,7 +602,7 @@ namespace RestoBook.GUI.View.Views
             this.PopulateAndBindRestaurantDetails();
             this.ResultShowMessagePluralRows(true, "created");
         }
-        
+
         /// <summary>
         /// Removes the rows from the service collection.
         /// If the rows aren't created in the database yet, they are simply removed from the services in the restaurantFocus object,
@@ -607,17 +612,21 @@ namespace RestoBook.GUI.View.Views
         /// <param name="e"></param>
         private void buttonRemoveServices_Click(object sender, EventArgs e)
         {
-            bool result = false;
-            foreach (DataGridViewRow row in this.dataGridViewListServices.SelectedRows)
+            DialogResult sure = MessageBox.Show("Are you sure you want to delete the selected services?", "Delete Services", MessageBoxButtons.YesNo);
+            if (sure == DialogResult.Yes)
             {
-                if ((int)row.Cells[0].Value == 0)
-                    this.restaurantFocus.Services.RemoveAt(row.Index);
-                else
+                bool result = false;
+                foreach (DataGridViewRow row in this.dataGridViewListServices.SelectedRows)
                 {
-                    result = this.restaurantController
-                                 .DeleteService(this.restaurantFocus.Services.Where(s => s.Id == (int)row.Cells[0].Value).FirstOrDefault(), this.restaurantFocus.Id);
-                }
+                    if ((int)row.Cells[0].Value == 0)
+                        this.restaurantFocus.Services.RemoveAt(row.Index);
+                    else
+                    {
+                        result = this.restaurantController
+                                     .DeleteService(this.restaurantFocus.Services.Where(s => s.Id == (int)row.Cells[0].Value).FirstOrDefault(), this.restaurantFocus.Id);
+                    }
 
+                }
                 this.PopulateAndBindRestaurantDetails();
                 this.ResultShowMessagePluralRows(result, "deleted");
             }
@@ -667,15 +676,19 @@ namespace RestoBook.GUI.View.Views
         /// <param name="e"></param>
         private void buttonRemovePricelists_Click(object sender, EventArgs e)
         {
-            bool result = false;
-            foreach (DataGridViewRow row in this.dataGridViewListPrice.SelectedRows)
+            DialogResult sure = MessageBox.Show("Are you sure you want to delete the selected pricelists?", "Delete pricelists", MessageBoxButtons.YesNo);
+            if (sure == DialogResult.Yes)
             {
-                if ((int)row.Cells[0].Value == 0)
-                { this.restaurantFocus.Services.RemoveAt(row.Index); result = true; }
-                else
+                bool result = false;
+                foreach (DataGridViewRow row in this.dataGridViewListPrice.SelectedRows)
                 {
-                    result = this.restaurantController
-                                 .DeletePriceList(this.restaurantFocus.PriceLists.Where(p => p.Id == (int)row.Cells[0].Value).FirstOrDefault(), this.restaurantFocus.Id);
+                    if ((int)row.Cells[0].Value == 0)
+                    { this.restaurantFocus.Services.RemoveAt(row.Index); result = true; }
+                    else
+                    {
+                        result = this.restaurantController
+                                     .DeletePriceList(this.restaurantFocus.PriceLists.Where(p => p.Id == (int)row.Cells[0].Value).FirstOrDefault(), this.restaurantFocus.Id);
+                    }
                 }
                 this.PopulateAndBindRestaurantDetails();
 
@@ -685,7 +698,76 @@ namespace RestoBook.GUI.View.Views
 
         #endregion PRICELISTS
 
-        #endregion EVENTS
+        #region EMPLOYEES
+        /// <summary>
+        /// Adds an employee to the restaurantFocus.Employees.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddEmployeeRow_Click(object sender, EventArgs e)
+        {
+            this.restaurantFocus.Employees.Add(new Employee()
+                {
+                    Id = 0,
+                    Email = string.Empty,
+                    FirstName = string.Empty,
+                    IsEnabled = true,
+                    LastName = string.Empty,
+                    Login = string.Empty,
+                    Mobile = string.Empty,
+                    Password = string.Empty,
+                    RestaurantId = new List<int>() { this.restaurantFocus.Id }
+                });
+            this.ClearDGVBindingsAndPopulate(this.dataGridViewEmployees, "Employees");
+            this.dataGridViewEmployees.FirstDisplayedScrollingRowIndex = this.dataGridViewEmployees.Rows.Count - 1;
+            this.dataGridViewEmployees.Rows[this.dataGridViewEmployees.Rows.Count - 1].Cells[1].Selected = true;
+        }
 
+        /// <summary>
+        /// Adds all the newly created employees to the database, by calling the required method from the restaurantcontroller.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddNewEmployees_Click(object sender, EventArgs e)
+        {
+            this.restaurantFocus.Employees.Where(em => em.Id == 0).ToList().ForEach(em => this.restaurantController.CreateEmployee(em, this.restaurantFocus.Id));
+
+            this.PopulateAndBindRestaurantDetails();
+            this.ResultShowMessagePluralRows(true, "created");
+        }
+
+        /// <summary>
+        /// Removes the selected employees from the restaurantFocus.Employees OR from the database if required.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRemoveEmployees_Click(object sender, EventArgs e)
+        {
+            DialogResult sure = MessageBox.Show("Are you sure you want to delete the selected employees?", "Delete employees", MessageBoxButtons.YesNo);
+            if (sure == DialogResult.Yes)
+            {
+                bool result = false;
+                foreach (DataGridViewRow row in this.dataGridViewEmployees.SelectedRows)
+                {
+                    if ((int)row.Cells[0].Value == 0)
+                    {
+                        this.restaurantFocus.Services.RemoveAt(row.Index);
+                        result = true;
+                    }
+                    else
+                    {
+                        result = this.restaurantController.DeleteEmployee(this.restaurantFocus.Employees.Where(em => em.Id == (int)row.Cells[0].Value).FirstOrDefault(), this.restaurantFocus.Id);
+                    }
+                }
+
+                this.PopulateAndBindRestaurantDetails();
+
+                this.ResultShowMessagePluralRows(result, "deleted");
+            }
+        }
+
+        #endregion EMPLOYEES
+
+        #endregion EVENTS
     }
 }

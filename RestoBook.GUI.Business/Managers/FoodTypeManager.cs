@@ -79,7 +79,7 @@ namespace RestoBook.Common.Business.Managers
         /// Creates a new Food Type
         /// </summary>
         /// <param name="ft">The foodtype to insert in the database.</param>
-        /// <returns>True in case of successful update, false in case of failure.</returns>
+        /// <returns>True in case of successful creation, false in case of failure.</returns>
         public bool CreateFoodType(FoodType ft)
         {
             int nbrRowsCreated = -1;

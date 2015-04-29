@@ -291,6 +291,28 @@ namespace RestoBook.GUI.View.Controllers
             return this.priceListManager.DeletePriceList(priceList, restaurantId);
         }
 
+
+        /// <summary>
+        /// Creates the employee in the database for a given restaurant.
+        /// </summary>
+        /// <param name="employee">The employee to create.</param>
+        /// <param name="restaurantId">The restaurant identifier.</param>
+        /// <returns>True if successfuly created, false if failed.</returns>
+        public bool CreateEmployee(Employee employee, int restaurantId)
+        {
+            return this.employeeManager.CreateEmployee(employee, restaurantId);
+        }
+
+        /// <summary>
+        /// Deletes the employee from the database.
+        /// </summary>
+        /// <param name="employee">The employee that needs to be removed from the database.</param>
+        /// <param name="restaurantId">The restaurant identifier.</param>
+        /// <returns>True if successfuly deleted, false if failed.</returns>
+        public bool DeleteEmployee(Employee employee, int restaurantId)
+        {
+            return this.employeeManager.DeleteEmployee(employee, restaurantId);
+        }
 		#endregion PUBLIC METHODS
 	}
 }
