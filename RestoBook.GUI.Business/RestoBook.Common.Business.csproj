@@ -53,10 +53,12 @@
     <Compile Include="Managers\IAddressManager.cs" />
     <Compile Include="Managers\IEmployeeManager.cs" />
     <Compile Include="Managers\IFoodTypeManager.cs" />
+    <Compile Include="Managers\ILightRestaurantManager.cs" />
     <Compile Include="Managers\IOwnerManager.cs" />
     <Compile Include="Managers\IPriceListManager.cs" />
     <Compile Include="Managers\IRestaurantManager.cs" />
     <Compile Include="Managers\IServiceManager.cs" />
+    <Compile Include="Managers\LightRestaurantManager.cs" />
     <Compile Include="Managers\OwnerManager.cs" />
     <Compile Include="Managers\PriceListManager.cs" />
     <Compile Include="Managers\RestaurantManager.cs" />
@@ -64,16 +66,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RestoBook.Model\RestoBook.Common.Model.csproj">
-      <Project>{8df10cc2-71eb-4fcd-80a1-74a90d9b831a}</Project>
-      <Name>RestoBook.Common.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RestoBook.Model\RestoBook.Common.Model.csproj">
+      <Project>{8df10cc2-71eb-4fcd-80a1-74a90d9b831a}</Project>
+      <Name>RestoBook.Common.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

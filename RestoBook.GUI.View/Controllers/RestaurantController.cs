@@ -217,12 +217,80 @@ namespace RestoBook.GUI.View.Controllers
         /// </summary>
         /// <param name="address">The address to delete.</param>
         /// <param name="restaurantId">The address's restaurant identifier.</param>
-        /// <returns></returns>
+        /// <returns>True if successfuly deleted, false if failed.</returns>
         public bool DeleteAddress(Address address, int restaurantId)
         {
             bool successful = this.addressManager.DeleteAddress(address, restaurantId);
             return successful;
         }
+
+
+        /// <summary>
+        /// Creates a service for a given restaurant (given by the restaurantId);
+        /// </summary>
+        /// <param name="service">The service to add to the database.</param>
+        /// <param name="restaurantId">The service's restaurant identifier.</param>
+        /// <returns>True if successfuly created, false if failed.</returns>
+        public bool CreateService(Service service, int restaurantId)
+        {
+            bool result = this.serviceManager.CreateService(service, restaurantId);
+            return result;
+        }
+
+        /// <summary>
+        /// Gets all the existing services for a given restaurant.
+        /// </summary>
+        /// <param name="restaurantId">The restaurant identifier.</param>
+        /// <returns>A list of services.</returns>
+        public List<Service> GetAllServices(int restaurantId)
+        {
+            return this.serviceManager.GetServices(restaurantId);
+        }
+
+        /// <summary>
+        /// Deletes a service for a given restaurant.
+        /// </summary>
+        /// <param name="service">The service to delete.</param>
+        /// <param name="restaurantId">The service's restaurant identifier.</param>
+        /// <returns>True if successfuly deleted, false if failed.</returns>
+        public bool DeleteService(Service service, int restaurantId)
+        {
+            return this.serviceManager.DeleteService(service, restaurantId);
+        }
+
+
+        /// <summary>
+        /// Gets all the pricelists for a given restaurant.
+        /// </summary>
+        /// <param name="restaurantId">The restaurant identifier.</param>
+        /// <returns>A list of pricelists.</returns>
+        public List<PriceList> GetAllPriceLists(int restaurantId)
+        {
+            return this.priceListManager.GetPriceLists(restaurantId);
+        }
+
+        /// <summary>
+        /// Creates a new pricelist entry in the database for a given restaurant.
+        /// </summary>
+        /// <param name="priceList">The pricelist to insert in the database.</param>
+        /// <param name="restaurantId">The restaurant identifier.</param>
+        /// <returns>True if successfuly created, false if failed.</returns>
+        public bool CreatePriceList(PriceList priceList, int restaurantId)
+        {
+            return this.priceListManager.CreatePriceList(priceList, restaurantId);
+        }
+
+        /// <summary>
+        /// Deletes the pricelist from the database.
+        /// </summary>
+        /// <param name="priceList">The pricelist to delete.</param>
+        /// <param name="restaurantId">The restaurant identifier.</param>
+        /// <returns>True if successfuly deleted, false if failed.</returns>
+        public bool DeletePriceList(PriceList priceList, int restaurantId)
+        {
+            return this.priceListManager.DeletePriceList(priceList, restaurantId);
+        }
+
 		#endregion PUBLIC METHODS
 	}
 }

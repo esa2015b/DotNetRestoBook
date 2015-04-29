@@ -36,6 +36,7 @@ namespace RestoBook.GUI.View.Views
         }
         #endregion CONSTRUCTOR
 
+
         #region METHODS
         /// <summary>
         /// Method that binds datas coming from RestoBook.GUI.Business layer to MainForm's controls.
@@ -75,9 +76,9 @@ namespace RestoBook.GUI.View.Views
         /// </summary>
         private void BindRestaurantDetails()
         {
-
             dataGridViewListServices.DataSource = this.restaurantFocus;
             dataGridViewListServices.DataMember = "Services";
+            dataGridViewListServices.Columns[0].ReadOnly = true;
 
             dataGridViewListPrice.DataSource = this.restaurantFocus;
             dataGridViewListPrice.DataMember = "PriceLists";
@@ -98,27 +99,26 @@ namespace RestoBook.GUI.View.Views
             this.comboBoxAddresses.DisplayMember = "City";
             this.comboBoxAddresses.ValueMember = "Id";
 
-            comboBoxFoodType.SelectedValue = this.restaurantFocus.FoodType.Id;
-            textBoxRestaurantsName.DataBindings.Add("Text", this.restaurantFocus, "Name");
-            textBoxPlaceQuantity.DataBindings.Add("Text", this.restaurantFocus, "PlaceQuantity");
-            textBoxDescription.DataBindings.Add("Text", this.restaurantFocus, "Description");
-            
-            comboBoxDayOfClosing.SelectedValue = this.restaurantFocus.DayOfClosing.ToLower();
-            textBoxMail.DataBindings.Add("Text", this.restaurantFocus, "Mail");
-            textBoxPhone.DataBindings.Add("Text", this.restaurantFocus, "Phone");
+            this.comboBoxFoodType.SelectedValue = this.restaurantFocus.FoodType.Id;
+            this.textBoxRestaurantsName.DataBindings.Add("Text", this.restaurantFocus, "Name");
+            this.textBoxPlaceQuantity.DataBindings.Add("Text", this.restaurantFocus, "PlaceQuantity");
+            this.textBoxDescription.DataBindings.Add("Text", this.restaurantFocus, "Description");
 
-            textBoxOwnersFirstName.DataBindings.Add("Text", this.restaurantFocus, "Owner.FirstName");
-            textBoxOwnerLastName.DataBindings.Add("Text", this.restaurantFocus, ("Owner.LastName"));
+            this.comboBoxDayOfClosing.SelectedValue = this.restaurantFocus.DayOfClosing.ToLower();
+            this.textBoxMail.DataBindings.Add("Text", this.restaurantFocus, "Mail");
+            this.textBoxPhone.DataBindings.Add("Text", this.restaurantFocus, "Phone");
 
-            comboBoxAddresses.SelectedValue = this.restaurantFocus.Addresses[0].Id;
-            textBoxStreet.DataBindings.Add("Text", this.restaurantFocus.Addresses, "Street");
-            textBoxStreetNumber.DataBindings.Add("Text", this.restaurantFocus.Addresses, "Number");
-            textBoxZipCode.DataBindings.Add("Text", this.restaurantFocus.Addresses, "Zipcode");
-            textBoxCity.DataBindings.Add("Text", this.restaurantFocus.Addresses, "City");
-            textBoxCountry.DataBindings.Add("Text", this.restaurantFocus.Addresses, "Country");
-            checkBoxAddressIsEnabled.DataBindings.Add("CheckState", this.restaurantFocus.Addresses, "IsEnabled", true);
-            checkBoxHeadOffice.DataBindings.Add("CheckState", this.restaurantFocus.Addresses, "HeadOffice", true);
+            this.textBoxOwnersFirstName.DataBindings.Add("Text", this.restaurantFocus, "Owner.FirstName");
+            this.textBoxOwnerLastName.DataBindings.Add("Text", this.restaurantFocus, ("Owner.LastName"));
 
+            this.comboBoxAddresses.SelectedValue = this.restaurantFocus.Addresses[0].Id;
+            this.textBoxStreet.DataBindings.Add("Text", this.restaurantFocus.Addresses, "Street");
+            this.textBoxStreetNumber.DataBindings.Add("Text", this.restaurantFocus.Addresses, "Number");
+            this.textBoxZipCode.DataBindings.Add("Text", this.restaurantFocus.Addresses, "Zipcode");
+            this.textBoxCity.DataBindings.Add("Text", this.restaurantFocus.Addresses, "City");
+            this.textBoxCountry.DataBindings.Add("Text", this.restaurantFocus.Addresses, "Country");
+            this.checkBoxAddressIsEnabled.DataBindings.Add("CheckState", this.restaurantFocus.Addresses, "IsEnabled", true);
+            this.checkBoxHeadOffice.DataBindings.Add("CheckState", this.restaurantFocus.Addresses, "HeadOffice", true);
         }
 
         /// <summary>
@@ -283,26 +283,66 @@ namespace RestoBook.GUI.View.Views
         }
 
         /// <summary>
-        /// Shows the creation result message in a messagebox.
+        /// Shows the result message in a messagebox.
         /// </summary>
-        /// <param name="creationResult">True for successful message, false for unsuccessful.</param>
-        private void CreationResultShowMessage(bool creationResult, string action)
+        /// <param name="result">True for successful message, false for unsuccessful.</param>
+        private void ResultShowMessage(bool result, string action)
         {
-            string message = creationResult ?
+            string message = result ?
                                 string.Format("Record successfully {0}.", action) :
                                 string.Format("The record could not be {0}, please try again or contact your administrator.", action);
             MessageBox.Show(message);
+        }
+
+        /// <summary>
+        /// Shows the result message for plural rows in a messagebox.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="action"></parparam>
+        private void ResultShowMessagePluralRows(bool result, string action)
+        {
+            string message = result ?
+                                string.Format("All requested records have been successfully {0}.", action) :
+                                string.Format("The records could not be {0}, please try again or contact your administrator.", action);
+            MessageBox.Show(message);
+        }
+
+        /// <summary>
+        /// Clears the existing datagridview's datasource, and reconnects the required binding.
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="bindingObject"></param>
+        /// <param name="dataMember"></param>
+        public void ClearDGVBindingsAndPopulate(DataGridView dgv, string dataMember)
+        {
+            dgv.DataSource = null;
+            dgv.DataSource = this.restaurantFocus;
+            dgv.DataMember = dataMember;
+            dgv.Refresh();
         }
         #endregion METHODS
 
 
         #region EVENTS
+
+        #region RESTAURANT 
+
         /// <summary>
         /// On selected index change of combobox, call populateandbindrestaurantdetails.
         /// </summary>
         /// <param name="sender">The comboboxRestaurants.</param>
         /// <param name="e">The combobox event args (the keyvaluepair)</param>
         private void comboBoxRestaurants_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.PopulateAndBindRestaurantDetails();
+        }
+
+        /// <summary>
+        /// Refreshes the data for the current restaurant.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRefreshRestaurantData_Click(object sender, EventArgs e)
         {
             this.PopulateAndBindRestaurantDetails();
         }
@@ -388,7 +428,7 @@ namespace RestoBook.GUI.View.Views
             if (this.CheckCreationConditions())
             {
                 bool creationResult = this.restaurantController.CreateRestaurant(this.restaurantFocus);
-                CreationResultShowMessage(creationResult, "created");
+                ResultShowMessage(creationResult, "created");
                 this.PopulateAndBindRestaurantList();
                 this.EnableRestaurantSelection();
             }
@@ -405,7 +445,7 @@ namespace RestoBook.GUI.View.Views
             if (dialogResult == DialogResult.Yes)
             {
                 bool result = this.restaurantController.ModifyRestaurant(this.restaurantFocus);
-                this.CreationResultShowMessage(result, "modified");
+                this.ResultShowMessage(result, "modified");
                 this.PopulateAndBindRestaurantDetails();
                 //this.DisableAddressCreation();
             }
@@ -428,6 +468,9 @@ namespace RestoBook.GUI.View.Views
             }
         }
 
+        #endregion RESTAURANT
+
+        #region ADDRESS
 
         /// <summary>
         /// In order to create a new address.
@@ -489,7 +532,7 @@ namespace RestoBook.GUI.View.Views
                 )
             {
                 bool creationResult = this.restaurantController.CreateAddress(this.restaurantFocus.Addresses.LastOrDefault(), this.restaurantFocus.Id);
-                this.CreationResultShowMessage(creationResult, "created");
+                this.ResultShowMessage(creationResult, "created");
                 this.PopulateAndBindRestaurantDetails();
                 this.DisableAddressCreation();
             }
@@ -506,13 +549,143 @@ namespace RestoBook.GUI.View.Views
             if (dialogResult == DialogResult.Yes)
             {
                 bool result = this.restaurantController.DeleteAddress(this.restaurantFocus.Addresses.Where(a => a.Id == (int)this.comboBoxAddresses.SelectedValue).FirstOrDefault(), this.restaurantFocus.Id);
-                this.CreationResultShowMessage(result, "deleted");
+                this.ResultShowMessage(result, "deleted");
                 this.PopulateAndBindRestaurantDetails();
                 //this.DisableAddressCreation();
             }
         }
-        #endregion EVENTS
 
+        #endregion ADDRESS
+
+        #region SERVICES
+
+        /// <summary>
+        /// Adds a service object to the restaurant object.
+        /// A.T.T.E.N.T.I.O.N. => ! ! ! This event doesn't add the object to the database, in  order
+        ///                       to do so, you'll need to modify/create the restaurant ! ! !
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddServiceRow_Click(object sender, EventArgs e)
+        {
+            this.restaurantFocus.Services.Add(new Service()
+                {
+                    BeginShift = 12,
+                    EndShift = 15,
+                    IsEnabled = true,
+                    PlaceQuantity = 0,
+                    ServiceDate = new DateTime(),
+                    ServiceDay = DayOfWeek.Monday,
+                    TypeService = "Midi"
+                });
+            this.ClearDGVBindingsAndPopulate(this.dataGridViewListServices, "Services");
+            this.dataGridViewListServices.FirstDisplayedScrollingRowIndex = this.dataGridViewListServices.Rows.Count - 1;
+            this.dataGridViewListServices.Rows[this.dataGridViewListServices.Rows.Count - 1].Cells[1].Selected = true;
+
+            //this.PopulateAndBindRestaurantDetails();
+        }
+
+        /// <summary>
+        /// Adds all newly added rows to the database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddServiceRows_Click(object sender, EventArgs e)
+        {
+            this.restaurantFocus.Services.Where(s => s.Id == 0).ToList().ForEach(s => this.restaurantController.CreateService(s, this.restaurantFocus.Id));
+
+            this.PopulateAndBindRestaurantDetails();
+            this.ResultShowMessagePluralRows(true, "created");
+        }
+        
+        /// <summary>
+        /// Removes the rows from the service collection.
+        /// If the rows aren't created in the database yet, they are simply removed from the services in the restaurantFocus object,
+        /// otherwise a call is made to the controler in order to also remove them from the database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRemoveServices_Click(object sender, EventArgs e)
+        {
+            bool result = false;
+            foreach (DataGridViewRow row in this.dataGridViewListServices.SelectedRows)
+            {
+                if ((int)row.Cells[0].Value == 0)
+                    this.restaurantFocus.Services.RemoveAt(row.Index);
+                else
+                {
+                    result = this.restaurantController
+                                 .DeleteService(this.restaurantFocus.Services.Where(s => s.Id == (int)row.Cells[0].Value).FirstOrDefault(), this.restaurantFocus.Id);
+                }
+
+                this.PopulateAndBindRestaurantDetails();
+                this.ResultShowMessagePluralRows(result, "deleted");
+            }
+        }
+
+        #endregion SERVICES
+
+        #region PRICELISTS
+        /// <summary>
+        /// Adds a pricelist object to the restaurantFocus.pricelists.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddPriceListRow_Click(object sender, EventArgs e)
+        {
+            this.restaurantFocus.PriceLists.Add(new PriceList()
+                {
+                    Id = 0,
+                    Description = string.Empty,
+                    IsEnabled = true,
+                    MaximumPrice = 0,
+                    MinimumPrice = 0
+                });
+            this.ClearDGVBindingsAndPopulate(this.dataGridViewListPrice, "PriceLists");
+            this.dataGridViewListPrice.FirstDisplayedScrollingRowIndex = this.dataGridViewListPrice.Rows.Count - 1;
+            this.dataGridViewListPrice.Rows[this.dataGridViewListPrice.Rows.Count - 1].Cells[1].Selected = true;
+            //this.PopulateAndBindRestaurantDetails();
+        }
+
+        /// <summary>
+        /// Adds all the newly created pricelists to the database, by calling the controller.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddPricelists_Click(object sender, EventArgs e)
+        {
+            this.restaurantFocus.PriceLists.Where(p => p.Id == 0).ToList().ForEach(p => this.restaurantController.CreatePriceList(p, this.restaurantFocus.Id));
+
+            this.PopulateAndBindRestaurantDetails();
+            this.ResultShowMessagePluralRows(true, "created");
+        }
+
+        /// <summary>
+        /// Removes the pricelists from the restaurantFocus.PriceLists OR from the database if required.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRemovePricelists_Click(object sender, EventArgs e)
+        {
+            bool result = false;
+            foreach (DataGridViewRow row in this.dataGridViewListPrice.SelectedRows)
+            {
+                if ((int)row.Cells[0].Value == 0)
+                { this.restaurantFocus.Services.RemoveAt(row.Index); result = true; }
+                else
+                {
+                    result = this.restaurantController
+                                 .DeletePriceList(this.restaurantFocus.PriceLists.Where(p => p.Id == (int)row.Cells[0].Value).FirstOrDefault(), this.restaurantFocus.Id);
+                }
+                this.PopulateAndBindRestaurantDetails();
+
+                this.ResultShowMessagePluralRows(result, "deleted");
+            }
+        }
+
+        #endregion PRICELISTS
+
+        #endregion EVENTS
 
     }
 }

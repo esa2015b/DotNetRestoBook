@@ -214,7 +214,6 @@ namespace RestoBook.Common.Business.Managers
                             IsPremium = r.ISPREMIUM,
                             IsEnabled = r.ENABLE
                         }).OrderBy(x => Guid.NewGuid()).First();
-
             return restaurant;
         }
 

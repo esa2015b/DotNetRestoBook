@@ -30,7 +30,7 @@ namespace RestoBook.GUI.View.Views
         }
         #endregion CONSTRUCTOR
 
-        #region PUBLIC METHODS
+        #region METHODS
         /// <summary>
         /// Populates the local foodtypes list with the foodtypes from database.
         /// </summary>
@@ -38,7 +38,7 @@ namespace RestoBook.GUI.View.Views
         {
             this.foodTypes = null;
             this.foodTypes = this.foodTypeController.GetAllFoodTypes();
-            this.BindFoodTypes();            
+            this.BindFoodTypes();
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace RestoBook.GUI.View.Views
             this.cbbExistingFoodTypes.DisplayMember = "Name";
             this.cbbExistingFoodTypes.ValueMember = "Id";
 
-            if(tbFoodTypeName.DataBindings.Count > 0)
+            if (tbFoodTypeName.DataBindings.Count > 0)
             {
                 this.tbFoodTypeName.DataBindings.Clear();
                 this.tbFoodTypeDescription.DataBindings.Clear();
@@ -59,7 +59,20 @@ namespace RestoBook.GUI.View.Views
             this.tbFoodTypeName.DataBindings.Add("Text", this.foodTypes, "Name");
             this.tbFoodTypeDescription.DataBindings.Add("Text", this.foodTypes, "Description");
         }
-        #endregion PUBLIC METHODS
+
+        /// <summary>
+        /// Shows the result message in a messagebox.
+        /// </summary>
+        /// <param name="result">True for successful message, false for unsuccessful.</param>
+        private void ResultShowMessage(bool result, string action)
+        {
+            string message = result ?
+                                string.Format("Record successfully {0}.", action) :
+                                string.Format("The record could not be {0}, please try again or contact your administrator.", action);
+            MessageBox.Show(message);
+        }
+
+        #endregion METHODS
 
         #region EVENTS
         /// <summary>
@@ -76,12 +89,16 @@ namespace RestoBook.GUI.View.Views
                 Description = this.tbFoodTypeDescription.Text
             };
 
-            this.foodTypeController.CreateFoodType(this.newFoodType);
-            this.PopulateAndBindFoodTypes();
-            this.btnClear.Enabled = true;
-            this.btnCancel.Enabled = false;
-            this.btnModifyFoodType.Enabled = true;
-            this.btnDeleteFoodType.Enabled = true;
+            bool result = this.foodTypeController.CreateFoodType(this.newFoodType);
+            this.ResultShowMessage(result, "created");
+            if (result)
+            {
+                this.PopulateAndBindFoodTypes();
+                this.btnClear.Enabled = true;
+                this.btnCancel.Enabled = false;
+                this.btnModifyFoodType.Enabled = true;
+                this.btnDeleteFoodType.Enabled = true;
+            }
         }
 
         /// <summary>
@@ -120,8 +137,13 @@ namespace RestoBook.GUI.View.Views
         /// <param name="e"></param>
         private void btnModifyFoodType_Click(object sender, EventArgs e)
         {
-            this.foodTypeController.ModifyFoodType(this.foodTypes[this.cbbExistingFoodTypes.SelectedIndex]);
-            this.PopulateAndBindFoodTypes();
+            bool result = this.foodTypeController.ModifyFoodType(this.foodTypes[this.cbbExistingFoodTypes.SelectedIndex]);
+            this.ResultShowMessage(result, "modified");
+
+            if (result)
+            {
+                this.PopulateAndBindFoodTypes();
+            }
         }
 
         /// <summary>
@@ -131,8 +153,12 @@ namespace RestoBook.GUI.View.Views
         /// <param name="e"></param>
         private void btnDeleteFoodType_Click(object sender, EventArgs e)
         {
-            this.foodTypeController.DeleteFoodType(this.foodTypes[this.cbbExistingFoodTypes.SelectedIndex]);
-            this.PopulateAndBindFoodTypes();
+            bool result = this.foodTypeController.DeleteFoodType(this.foodTypes[this.cbbExistingFoodTypes.SelectedIndex]);
+            this.ResultShowMessage(result, "deleted");
+            if (result)
+            {
+                this.PopulateAndBindFoodTypes();
+            }
         }
 
         #endregion EVENTS
