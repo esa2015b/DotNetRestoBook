@@ -54,11 +54,13 @@
       <DependentUpon>DataSetRestoBook.xsd</DependentUpon>
     </Compile>
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\FoodType.cs" />
     <Compile Include="Models\LightRestaurant.cs" />
     <Compile Include="Models\Owner.cs" />
     <Compile Include="Models\PriceList.cs" />
+    <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
