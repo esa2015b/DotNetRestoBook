@@ -21,6 +21,19 @@ namespace RestoBook.Common.Model.Models
         public int Id { get; set; }
 
         /// <summary>
+        /// Customer's Id (foreign key)
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public int ServiceId { get; set; }
+
+
+        /// <summary>
+        /// Service 's Id (foreign key)
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public int CustomerId { get; set; }
+
+        /// <summary>
         /// Reservation's date.
         /// Ideally the resto confirmation must be sent into 24 hours
         /// </summary>
@@ -33,6 +46,9 @@ namespace RestoBook.Common.Model.Models
         [DataMember(IsRequired = true)]
         public int PlaceQuantity { get; set; }
 
+        [DataMember(IsRequired = true)]
+        public string Service { get; set; }
+
         /// <summary>
         /// Is this reservation confirmed ?
         /// </summary>
@@ -44,7 +60,7 @@ namespace RestoBook.Common.Model.Models
         /// ideally in 24 hours of reservation date
         /// </summary>
         [DataMember(IsRequired = true)]
-        public DateTime RestoCofirmationDate { get; set; }
+        public DateTime RestoConfirmationDate { get; set; }
 
         /// <summary>
         /// Comments from restaurant for this reservation
