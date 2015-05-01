@@ -133,6 +133,31 @@ namespace RestoBook.Common.Model
                 daEmployee.Fill(ds.EMPLOYEE);
             }
         }
+        /// <summary>
+        /// Prepare a DataAdapter for Reservation table
+        /// </summary>
+        public void PrepareReservationDP()
+        {
+            using (DataSetRestoBookTableAdapters.RESERVATIONTableAdapter daReservation = new DataSetRestoBookTableAdapters.RESERVATIONTableAdapter())
+            {
+                daReservation.Fill(ds.RESERVATION);
+            }
+        }
+
+        public void PrepareCustomerDP()
+        {
+            using (DataSetRestoBookTableAdapters.CUSTOMERTableAdapter daCustomer = new DataSetRestoBookTableAdapters.CUSTOMERTableAdapter())
+            {
+                daCustomer.Fill(ds.CUSTOMER);
+            }
+        }
+
+        public void PrepareFullReservation()
+        {
+            PrepareReservationDP();
+            PrepareServiceDP();
+            PrepareCustomerDP();
+        }
 
         #endregion PREPARE DATAPROVIDER METHODS
     }
