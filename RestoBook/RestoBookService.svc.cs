@@ -26,6 +26,7 @@
         private FoodTypeManager foodTypeManager;
         private AddressManager addressManager;
         private LightRestaurantManager lightRestaurantManager;
+        private ReservationManager reservationManager;
         #endregion PROPERTIES
 
         #region CONSTRUCTOR
@@ -39,6 +40,7 @@
             this.foodTypeManager = new FoodTypeManager();
             this.addressManager = new AddressManager();
             this.lightRestaurantManager = new LightRestaurantManager();
+            this.reservationManager = new ReservationManager();
         }
         #endregion CONSTRUCTOR
 
@@ -195,20 +197,33 @@
                 {
                     r.FoodTypeName = this.foodTypeManager.GetFoodTypeById(r.Id).Name;
                 }
-
             }
 
             return restaurant;
-
         }
 
-        public bool CreateReservation(Reservation reservation, Customer customer)
+        /// <summary>
+        /// Gets a list of reservation by service
+        /// </summary>
+        /// <param name="serviceId"></param>
+        /// <returns></returns>
+
+        public List<Reservation> GetReservationByService(int serviceId)
         {
-
-
-            return true;
+            List<Reservation> reservations = this.reservationManager.GetReservationByService (serviceId);
+            return reservations;
         }
-
+        /// <summary>
+        /// Create a reservation
+        ///Attention actually this methods is not using RestoConformationDate property
+        /// It must be review by JLM
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns>bool</returns>
+        public bool CreateReservation(Reservation reservation)
+        {
+            return reservationManager.CreateReservation(reservation);
+        }
 
         #endregion PUBLIC METHODS
     }
