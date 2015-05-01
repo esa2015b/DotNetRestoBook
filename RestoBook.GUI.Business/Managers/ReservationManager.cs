@@ -24,6 +24,13 @@ namespace RestoBook.Common.Business.Managers
         }
         #endregion
         
+        /// <summary>
+        /// Gets a list of reservation 
+        /// Attention actually this methods is not using RestoConformationDate property
+        /// It must be review by JLM
+        /// </summary>
+        /// <param name="serviceId"></param>
+        /// <returns>A list of reservation</returns>
         public List<Reservation> GetReservationByService(int serviceId)
         {
             List<Reservation> reservations = (from r in dp.ds.RESERVATION
@@ -31,6 +38,8 @@ namespace RestoBook.Common.Business.Managers
                                               select new Reservation()
                                               {
                                                   Id = r.RESERVATIONID,
+                                                  CustomerId = r.CUSTOMERID,
+                                                  ServiceId = r.SERVICEID,
                                                   ReservationDate = r.RESERVATIONDATE,
                                                   PlaceQuantity = r.PLACEQUANTITY,
                                                   RestoConfirmation = r.RESTOCONFIRMATION,
@@ -39,6 +48,14 @@ namespace RestoBook.Common.Business.Managers
                                               }).ToList();
             return reservations;
         }
+
+        /// <summary>
+        /// Create a reservation
+        ///Attention actually this methods is not using RestoConformationDate property
+        /// It must be review by JLM
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns></returns>
 
         public bool CreateReservation (Reservation reservation)
         {
@@ -61,7 +78,13 @@ namespace RestoBook.Common.Business.Managers
             return nbrRowsCreated > 0;
           }
 
-
+/// <summary>
+/// This method allow to modify a reservation's properties
+/// except customerId and serviceId
+/// A reservation must be deleted and recreated in place to modify customer or service
+/// </summary>
+/// <param name="reservation"></param>
+/// <returns></returns>
         public bool ModifyReservation (Reservation reservation)
         {
             int nbrRowsUpdated = -1;
