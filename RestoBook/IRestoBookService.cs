@@ -71,5 +71,22 @@ namespace RestoBook
 
         [OperationContract()]
         List<LightRestaurant> GetLightRestaurantByName(string restaurantName);
+
+        /// <summary>
+        /// Gets a list of reservation by service
+        /// </summary>
+        /// <param name="serviceId"></param>
+        /// <returns>List of Reservation</returns>
+        [OperationContract()]
+        List<Reservation> GetReservationByService(int serviceId);
+        
+        /// <summary>
+        ///Creat a reservation 
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns>bool</returns>
+        [OperationContract()]
+        bool CreateReservation(Reservation reservation);
+
     }
 }
