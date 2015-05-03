@@ -215,11 +215,9 @@
         }
         /// <summary>
         /// Create a reservation
-        ///Attention actually this methods is not using RestoConformationDate property
-        /// It must be review by JLM
         /// </summary>
         /// <param name="reservation"></param>
-        /// <returns>bool</returns>
+        /// <returns>bool if creation succeed</returns>
         public bool CreateReservation(Reservation reservation)
         {
             return reservationManager.CreateReservation(reservation);
