@@ -51,8 +51,8 @@ namespace RestoBook.Common.Business.Managers
 
         /// <summary>
         /// Create a reservation
-        ///Attention actually this methods is not using RestoConformationDate property
-        /// It must be review by JLM
+        /// ReservationDate equals to DateTime.Now
+        /// RestoConfirmationDate is a Nullable type
         /// </summary>
         /// <param name="reservation"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace RestoBook.Common.Business.Managers
                 nbrRowsCreated = daReservation.Insert(
                                                         reservation.CustomerId,
                                                         reservation.ServiceId,
-                                                        reservation.ReservationDate,
+                                                        reservation.ReservationDate = DateTime.Now,
                                                         reservation.Service,
                                                         reservation.PlaceQuantity,
                                                         reservation.RestoConfirmation,
@@ -80,20 +80,20 @@ namespace RestoBook.Common.Business.Managers
 
 /// <summary>
 /// This method allow to modify a reservation's properties
-/// except customerId and serviceId
+/// except ReservationDate, customerId and serviceId
 /// A reservation must be deleted and recreated in place to modify customer or service
+/// RestoConfirmationDate is a Nullable type then no need to test this value
 /// </summary>
 /// <param name="reservation"></param>
-/// <returns></returns>
+/// <returns>bool if creation succeed</returns>
         public bool ModifyReservation (Reservation reservation)
         {
             int nbrRowsUpdated = -1;
 
             DataRow row = dp.ds.RESERVATION.Select(string.Format("RESERVATIONID = '{0}'", reservation.Id)).FirstOrDefault();
-            row["RESERVATIONDATE"] = reservation.ReservationDate;
             row["PLACEQUANTITY"] = reservation.PlaceQuantity;
             row["RESTOCONFIRMATION"] = reservation.RestoConfirmation;
-            //row["RESTOCONFIRMATIONDATE"] = reservation.RestoConfirmationDate;
+            row["RESTOCONFIRMATIONDATE"] = reservation.RestoConfirmationDate;
             row["RESTOCOMMENTS"] = reservation.RestoComments;
             row["ENABLE"] = reservation.IsEnabled;
 
