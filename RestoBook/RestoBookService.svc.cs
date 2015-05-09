@@ -173,17 +173,15 @@
 
         public List<LightRestaurant> GetLightRestaurantByFoodType(int foodTypeId)
         {
-            List<LightRestaurant> restaurant = this.lightRestaurantManager.GetLightRestaurantByFoodType(foodTypeId);
+            List<LightRestaurant> restaurants = this.lightRestaurantManager.GetLightRestaurantByFoodType(foodTypeId);
 
-            if (restaurant != null)
+            if (restaurants != null)
             {
-                foreach (LightRestaurant r in restaurant)
-                {
-                    r.FoodTypeName = this.foodTypeManager.GetFoodTypeById(r.Id).Name;
-                }
+                string foodTypeName =this.foodTypeManager.GetFoodTypeById(restaurants.FirstOrDefault().FoodTypeId).Name; 
+                restaurants.ForEach(r => r.FoodTypeName = foodTypeName);
             }
 
-            return restaurant;
+            return restaurants;
         }
 
         public List<LightRestaurant> GetLightRestaurantByName(string restaurantName)

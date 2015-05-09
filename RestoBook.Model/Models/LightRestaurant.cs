@@ -13,9 +13,9 @@ namespace RestoBook.Common.Model.Models
     /// </summary>
     [DataContract()]
     public class LightRestaurant
-
     {
-    #region PROPERTIES
+
+        #region PROPERTIES
         /// <summary>
         /// The restaurant's identifier.
         /// </summary>
@@ -41,10 +41,15 @@ namespace RestoBook.Common.Model.Models
         public string PictureLocation { get; set; }
 
         /// <summary>
-        /// The restaurant's food type
+        /// The restaurant's food type name.
         /// </summary>
         [DataMember(IsRequired = true)]
         public string FoodTypeName { get; set; }
+
+        /// <summary>
+        /// The food type id.
+        /// </summary>
+        public int FoodTypeId { get; set; }
 
         /// <summary>
         /// Is the restaurant still active?

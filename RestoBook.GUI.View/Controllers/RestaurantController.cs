@@ -86,14 +86,6 @@ namespace RestoBook.GUI.View.Controllers
 				successful = this.restaurantManager.CreateRestaurant(newRestaurant);
                 newRestaurant.Id = this.restaurantManager.GetRestaurantByName(newRestaurant.Name).LastOrDefault().Id;
 			}
-			if (successful)
-			{
-                foreach (Address a in newRestaurant.Addresses)
-                {
-                    successful = this.addressManager.CreateAddres(a, newRestaurant.Id);
-                }
-			}
-
 			foreach (Service service in newRestaurant.Services)
 			{
 				if (successful)
@@ -108,6 +100,13 @@ namespace RestoBook.GUI.View.Controllers
 					successful = this.priceListManager.CreatePriceList(priceList, newRestaurant.Id);
 				}
 			}
+            foreach (Employee employee in newRestaurant.Employees)
+            {
+                if (successful)
+                {
+                    successful = this.employeeManager.CreateEmployee(employee, newRestaurant.Id);
+                }
+            }
 			return successful;
 		}
 
