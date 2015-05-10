@@ -125,6 +125,5 @@ namespace RestoBook.Common.Business.Managers
             this.dp.PrepareRestaurantDP();
         }
         #endregion PRIVATE METHODS
-
     }
 }

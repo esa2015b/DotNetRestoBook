@@ -41,7 +41,7 @@ namespace RestoBook.Common.Model.Models
         public string PictureLocation { get; set; }
 
         /// <summary>
-        /// The restaurant's food type name
+        /// The restaurant's food type name.
         /// </summary>
         [DataMember(IsRequired = true)]
         public string FoodTypeName { get; set; }
