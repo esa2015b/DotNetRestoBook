@@ -18,7 +18,7 @@ namespace RestoBook.Common.Business.Managers
         public LightRestaurantManager()
         {
             dp = new DataProvider();
-            dp.PrepareFullDataProvider();
+            dp.PrepareRestaurantDP();
         }
         #endregion CONSTRUCTOR
 
@@ -31,6 +31,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns></returns>
         public List<LightRestaurant> GetLightRestaurantByName(String restaurantName)
         {
+            this.RefreshDataSet();
             List<LightRestaurant> restaurant = new List<LightRestaurant>();
 
             var query = from r in this.dp.ds.RESTAURANT
@@ -63,6 +64,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns></returns>
         public List<LightRestaurant> GetLightRestaurantAdvanced(string name, string foodTypeName, string city)
         {
+            this.RefreshDataSet();
             List<LightRestaurant> restaurant = new List<LightRestaurant>();
 
             var query = from r in this.dp.ds.RESTAURANT
@@ -90,6 +92,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns></returns>
         public List<LightRestaurant> GetLightRestaurantByFoodType(int foodTypeID)
         {
+            this.RefreshDataSet();
             List<LightRestaurant> restaurant = new List<LightRestaurant>();
 
             var query = from r in this.dp.ds.RESTAURANT
@@ -102,13 +105,26 @@ namespace RestoBook.Common.Business.Managers
                 Name = r.NAME,
                 Description = r.DESCRIPTION,
                 PictureLocation = r.PICTURELOCATION,
-                IsEnabled = r.ENABLE
+                IsEnabled = r.ENABLE,
+                FoodTypeId = r.FOODTYPEID
 
             }));
 
             return restaurant;
         }
         #endregion PUBLIC METHODS
+
+        #region PRIVATE METHODS
+        /// <summary>
+        /// Refreshes the dataset, so that the new data from database becomes available.
+        /// </summary>
+        private void RefreshDataSet()
+        {
+            // refresh the dataset
+            this.dp.ds.Reset();
+            this.dp.PrepareRestaurantDP();
+        }
+        #endregion PRIVATE METHODS
 
     }
 }
