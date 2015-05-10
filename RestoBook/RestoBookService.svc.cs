@@ -173,17 +173,15 @@
 
         public List<LightRestaurant> GetLightRestaurantByFoodType(int foodTypeId)
         {
-            List<LightRestaurant> restaurant = this.lightRestaurantManager.GetLightRestaurantByFoodType(foodTypeId);
+            List<LightRestaurant> restaurants = this.lightRestaurantManager.GetLightRestaurantByFoodType(foodTypeId);
 
-            if (restaurant != null)
+            if (restaurants != null)
             {
-                foreach (LightRestaurant r in restaurant)
-                {
-                    r.FoodTypeName = this.foodTypeManager.GetFoodTypeById(r.Id).Name;
-                }
+                string foodTypeName = this.foodTypeManager.GetFoodTypeById(restaurants.FirstOrDefault().FoodTypeId).Name;
+                restaurants.ForEach(r => r.FoodTypeName = foodTypeName);
             }
 
-            return restaurant;
+            return restaurants;
         }
 
         public List<LightRestaurant> GetLightRestaurantByName(string restaurantName)
@@ -202,25 +200,42 @@
             return restaurant;
         }
 
-        /// <summary>
-        /// Gets a list of reservation by service
-        /// </summary>
-        /// <param name="serviceId"></param>
-        /// <returns></returns>
-
-        public List<Reservation> GetReservationByService(int serviceId)
+        public List<Reservation> GetReservationConfirmedByService(int serviceId)
         {
-            List<Reservation> reservations = this.reservationManager.GetReservationByService (serviceId);
+            List<Reservation> reservations = this.reservationManager.GetReservationConfirmedByService (serviceId);
             return reservations;
         }
-        /// <summary>
-        /// Create a reservation
-        /// </summary>
-        /// <param name="reservation"></param>
-        /// <returns>bool if creation succeed</returns>
+
+        public List<Reservation> GetReservationNotConfirmedByService(int serviceId)
+        {
+            List<Reservation> reservations = this.reservationManager.GetReservationNotConfirmedByService(serviceId);
+            return reservations;
+        }
+
+        public List<Reservation> GetReservationNotConfirmedWithin24Hours()
+        {
+            List<Reservation> reservations = this.reservationManager.GetReservationNotConfirmedWithin23Hours();
+            return reservations;
+        }
+
         public bool CreateReservation(Reservation reservation)
         {
             return reservationManager.CreateReservation(reservation);
+        }
+
+        public bool ConfirmReservationsFromResto (Reservation reservation)
+        {
+            return this.reservationManager.ConfirmReservationFromResto(reservation);
+        }
+
+        public bool ModifyReservationsFromCustomer(Reservation reservation)
+        {
+            return this.reservationManager.ModifyReservationFromCustomer(reservation);
+        }
+
+        public List<Reservation> GetAllReservations()
+        {
+            return  this.reservationManager.GetAllReservations();
         }
 
         #endregion PUBLIC METHODS
