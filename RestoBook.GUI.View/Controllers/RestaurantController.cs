@@ -70,46 +70,45 @@ namespace RestoBook.GUI.View.Controllers
 			return restaurant;
 		}
 
-		/// <summary>
-		/// Creates a new restaurant, and all depending objects.
-		/// </summary>
-		/// <param name="newRestaurant">The new restaurant to create.</param>
-		/// <returns>True in case of successful creation, false in case of failure.</returns>
-		public bool CreateRestaurant(Restaurant newRestaurant)
-		{
-			bool successful = false;
-			successful = this.ownerManager.CreateOwner(newRestaurant.Owner);
+        /// <summary>
+        /// Creates a new restaurant, and all depending objects.
+        /// </summary>
+        /// <param name="newRestaurant">The new restaurant to create.</param>
+        /// <returns>True in case of successful creation, false in case of failure.</returns>
+        public bool CreateRestaurant(Restaurant newRestaurant)
+        {
+            bool successful = false;
+            successful = this.ownerManager.CreateOwner(newRestaurant.Owner);
             newRestaurant.Owner.Id = this.ownerManager.GetOwnerByFirstAndLastName(newRestaurant.Owner.FirstName, newRestaurant.Owner.LastName).LastOrDefault().Id;
 
-			if (successful)
-			{
-				successful = this.restaurantManager.CreateRestaurant(newRestaurant);
+            if (successful)
+            {
+                successful = this.restaurantManager.CreateRestaurant(newRestaurant);
                 newRestaurant.Id = this.restaurantManager.GetRestaurantByName(newRestaurant.Name).LastOrDefault().Id;
-			}
-			if (successful)
-			{
-                foreach (Address a in newRestaurant.Addresses)
+            }
+            foreach (Service service in newRestaurant.Services)
+            {
+                if (successful)
                 {
-                    successful = this.addressManager.CreateAddres(a, newRestaurant.Id);
+                    successful = this.serviceManager.CreateService(service, newRestaurant.Id);
                 }
-			}
-
-			foreach (Service service in newRestaurant.Services)
-			{
-				if (successful)
-				{
-					successful = this.serviceManager.CreateService(service, newRestaurant.Id);
-				}
-			}
-			foreach (PriceList priceList in newRestaurant.PriceLists)
-			{
-				if (successful)
-				{
-					successful = this.priceListManager.CreatePriceList(priceList, newRestaurant.Id);
-				}
-			}
-			return successful;
-		}
+            }
+            foreach (PriceList priceList in newRestaurant.PriceLists)
+            {
+                if (successful)
+                {
+                    successful = this.priceListManager.CreatePriceList(priceList, newRestaurant.Id);
+                }
+            }
+            foreach (Employee employee in newRestaurant.Employees)
+            {
+                if (successful)
+                {
+                    successful = this.employeeManager.CreateEmployee(employee, newRestaurant.Id);
+                }
+            }
+            return successful;
+        }
 
         /// <summary>
         /// Modifies a restaurant, and all depending objects, in database.
