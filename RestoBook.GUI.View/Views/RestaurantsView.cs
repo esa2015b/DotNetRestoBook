@@ -406,6 +406,20 @@ namespace RestoBook.GUI.View.Views
                         TypeService = string.Empty
                     }
                 },
+                Employees = new List<Employee>()
+                {
+                    new Employee()
+                    {
+                        Id = 0,
+                        Email = string.Empty,
+                        FirstName = string.Empty,
+                        IsEnabled = true,
+                        LastName = string.Empty,
+                        Login = string.Empty,
+                        Mobile = string.Empty,
+                        Password = string.Empty
+                    }
+                },
                 FoodType = this.foodTypes.FirstOrDefault(),
                 DayOfClosing = this.daysOfWeek.FirstOrDefault().Value
             };
@@ -706,6 +720,10 @@ namespace RestoBook.GUI.View.Views
         /// <param name="e"></param>
         private void buttonAddEmployeeRow_Click(object sender, EventArgs e)
         {
+            if (this.restaurantFocus.Employees == null)
+            {
+                this.restaurantFocus.Employees = new List<Employee>();
+            }
             this.restaurantFocus.Employees.Add(new Employee()
                 {
                     Id = 0,
