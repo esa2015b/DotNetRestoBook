@@ -45,6 +45,8 @@
         #endregion CONSTRUCTOR
 
         #region PUBLIC METHODS
+
+        #region RESTAURANTS
         /// <summary>
         /// Gets a restaurant by it's identifier.
         /// </summary>
@@ -199,27 +201,45 @@
 
             return restaurant;
         }
+        #endregion
 
-        /// <summary>
-        /// Gets a list of reservation by service
-        /// </summary>
-        /// <param name="serviceId"></param>
-        /// <returns></returns>
-        public List<Reservation> GetReservationByService(int serviceId)
-        {
-            List<Reservation> reservations = this.reservationManager.GetReservationByService (serviceId);
-            return reservations;
-        }
-
-        /// <summary>
-        /// Create a reservation
-        /// </summary>
-        /// <param name="reservation"></param>
-        /// <returns>bool if creation succeed</returns>
+        #region RESERVATIONS
         public bool CreateReservation(Reservation reservation)
         {
-            return reservationManager.CreateReservation(reservation);
+            return this.reservationManager.CreateReservation(reservation);
         }
+
+        public bool ModifyReservationsFromCustomer(Reservation reservation)
+        {
+            return this.reservationManager.ModifyReservationFromCustomer(reservation);
+        }
+
+        public bool ConfirmReservationsFromResto(Reservation reservation)
+        {
+            return this.reservationManager.ConfirmReservationFromResto(reservation);
+        }
+
+        public List<Reservation> GetReservationConfirmedByService(int serviceId)
+        {
+            return this.reservationManager.GetReservationConfirmedByService(serviceId);
+        }
+
+        public List<Reservation> GetReservationNotConfirmedByService(int serviceId)
+        {
+            return this.reservationManager.GetReservationNotConfirmedByService(serviceId);
+        }
+
+        public List<Reservation> GetReservationNotConfirmedWithin24Hours()
+        {
+            return this.reservationManager.GetReservationNotConfirmedWithin24Hours();
+        }
+
+        public List<Reservation> GetAllReservations()
+        {
+            return this.reservationManager.GetAllReservations();
+        }
+
+        #endregion
 
         #endregion PUBLIC METHODS
     }

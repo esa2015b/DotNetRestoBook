@@ -60,7 +60,7 @@ namespace RestoBook.Common.Model.Models
         /// ideally in 24 hours of reservation date
         /// </summary>
         [DataMember(IsRequired = true)]
-        public Nullable<DateTime> RestoConfirmationDate { get; set; }
+        public DateTime RestoConfirmationDate { get; set; }
 
         /// <summary>
         /// Comments from restaurant for this reservation
