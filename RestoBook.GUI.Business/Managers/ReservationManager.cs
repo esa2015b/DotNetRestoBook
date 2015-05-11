@@ -55,23 +55,23 @@ namespace RestoBook.Common.Business.Managers
             return nbrRowsCreated > 0;
           }
 
-            catch (System.Data.SqlClient.SqlException e)
+            catch (System.Data.SqlClient.SqlException)
             {
                 return false;
             }
 
-            catch (System.Data.StrongTypingException e)
+            catch (System.Data.StrongTypingException)
             {
                 return false;
             }
             
-            catch (System.NullReferenceException e)
+            catch (System.NullReferenceException)
             {
                 return false;
             }
         }
 
-/// <summary>
+        /// <summary>
         /// Only used by backoffice to change all reservation's data except foreign keys (serviceId, customerId)
         /// </summary>
         /// <param name="reservation"></param>
@@ -97,7 +97,7 @@ namespace RestoBook.Common.Business.Managers
                 return nbrRowsUpdated > 0;
             }
 
-            catch (System.NullReferenceException e)
+            catch (System.NullReferenceException)
             {
                 return false;
             }
@@ -106,10 +106,10 @@ namespace RestoBook.Common.Business.Managers
         /// <summary>
         /// This method allow customer to modify number of places reserved
         /// Other datas can't be modified
-/// A reservation must be deleted and recreated in place to modify customer or service
-/// </summary>
-/// <param name="reservation"></param>
-/// <returns>bool if creation succeed</returns>
+        /// A reservation must be deleted and recreated in place to modify customer or service
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns>bool if creation succeed</returns>
         public bool ModifyReservationFromCustomer(Reservation reservation)
         {
             int nbrRowsUpdated = -1;
@@ -125,7 +125,7 @@ namespace RestoBook.Common.Business.Managers
                 }
                 return nbrRowsUpdated > 0;
             }
-            catch (System.NullReferenceException e)
+            catch (System.NullReferenceException)
             {
                 return false;
             }
@@ -158,7 +158,7 @@ namespace RestoBook.Common.Business.Managers
             return nbrRowsUpdated > 0;
         }
 
-            catch (System.NullReferenceException e)
+            catch (System.NullReferenceException)
             {
                 return false;
             }
@@ -191,7 +191,7 @@ namespace RestoBook.Common.Business.Managers
                                                   }).ToList();
                 return reservations;
             }
-            catch (System.Data.StrongTypingException e)
+            catch (System.Data.StrongTypingException)
             {
                 return reservations;
             }
@@ -224,7 +224,7 @@ namespace RestoBook.Common.Business.Managers
                 
                 return reservations;
             }
-            catch (System.Data.StrongTypingException e)
+            catch (System.Data.StrongTypingException)
             {
                 return reservations;
             }
@@ -256,7 +256,7 @@ namespace RestoBook.Common.Business.Managers
                 return reservations;
             }
 
-            catch (System.Data.StrongTypingException e)
+            catch (System.Data.StrongTypingException)
             {
                 return reservations;
             }
@@ -289,7 +289,7 @@ namespace RestoBook.Common.Business.Managers
                                 }).ToList();
                 return reservations;
             }
-            catch (System.Data.StrongTypingException e)
+            catch (System.Data.StrongTypingException)
             {
                 return reservations;
             }

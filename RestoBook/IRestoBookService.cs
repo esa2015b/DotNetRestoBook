@@ -82,7 +82,7 @@ namespace RestoBook
         List<Reservation> GetReservationNotConfirmedWithin24Hours();
 
         [OperationContract()]
-        bool CreateReservation(Reservation reservation);
+        bool CreateReservation(Reservation reservation, Customer customer);
 
         [OperationContract()]
         bool ConfirmReservationsFromResto(Reservation reservation);

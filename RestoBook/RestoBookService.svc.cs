@@ -27,7 +27,9 @@
         private AddressManager addressManager;
         private LightRestaurantManager lightRestaurantManager;
         private ReservationManager reservationManager;
+        private CustomerManager customerManager;
         #endregion PROPERTIES
+
 
         #region CONSTRUCTOR
         public RestoBookService()
@@ -41,8 +43,10 @@
             this.addressManager = new AddressManager();
             this.lightRestaurantManager = new LightRestaurantManager();
             this.reservationManager = new ReservationManager();
+            this.customerManager = new CustomerManager();
         }
         #endregion CONSTRUCTOR
+
 
         #region PUBLIC METHODS
 
@@ -204,8 +208,13 @@
         #endregion
 
         #region RESERVATIONS
-        public bool CreateReservation(Reservation reservation)
+        public bool CreateReservation(Reservation reservation, Customer customer)
         {
+            var custExists = this.customerManager.GetCustomerByMail(customer.Mail);
+            if (custExists == null)
+            {
+                this.customerManager.CreateCustomer(customer);
+            }
             return this.reservationManager.CreateReservation(reservation);
         }
 
