@@ -66,7 +66,7 @@ namespace RestoBook.Common.Business.Managers
                 nbrRowsCreated = daReservation.Insert(
                                                         reservation.CustomerId,
                                                         reservation.ServiceId,
-                                                        reservation.ReservationDate = DateTime.Now,
+                                                        reservation.ReservationDate,
                                                         reservation.Service,
                                                         reservation.PlaceQuantity,
                                                         reservation.RestoConfirmation,
@@ -78,14 +78,14 @@ namespace RestoBook.Common.Business.Managers
             return nbrRowsCreated > 0;
           }
 
-/// <summary>
-/// This method allow to modify a reservation's properties
-/// except ReservationDate, customerId and serviceId
-/// A reservation must be deleted and recreated in place to modify customer or service
-/// RestoConfirmationDate is a Nullable type then no need to test this value
-/// </summary>
-/// <param name="reservation"></param>
-/// <returns>bool if creation succeed</returns>
+        /// <summary>
+        /// This method allow to modify a reservation's properties
+        /// except ReservationDate, customerId and serviceId
+        /// A reservation must be deleted and recreated in place to modify customer or service
+        /// RestoConfirmationDate is a Nullable type then no need to test this value
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns>bool if creation succeed</returns>
         public bool ModifyReservation (Reservation reservation)
         {
             int nbrRowsUpdated = -1;

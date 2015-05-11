@@ -205,12 +205,12 @@
         /// </summary>
         /// <param name="serviceId"></param>
         /// <returns></returns>
-
         public List<Reservation> GetReservationByService(int serviceId)
         {
             List<Reservation> reservations = this.reservationManager.GetReservationByService (serviceId);
             return reservations;
         }
+
         /// <summary>
         /// Create a reservation
         /// </summary>
