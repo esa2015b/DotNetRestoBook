@@ -14,13 +14,16 @@ namespace RestoBook.Common.Business.Managers
         DataProvider dp;
         #endregion PROPERTIES
 
+
         #region CONSTRUCTOR
         public LightRestaurantManager()
         {
-            dp = new DataProvider();
-            dp.PrepareRestaurantDP();
+            this.dp = new DataProvider();
+            this.dp.PrepareRestaurantDP();
+            this.dp.PrepareFoodTypeDP();
         }
         #endregion CONSTRUCTOR
+
 
         #region PUBLIC METHODS
 
@@ -32,27 +35,27 @@ namespace RestoBook.Common.Business.Managers
         public List<LightRestaurant> GetLightRestaurantByName(String restaurantName)
         {
             this.RefreshDataSet();
-            List<LightRestaurant> restaurant = new List<LightRestaurant>();
+            List<LightRestaurant> restaurants = new List<LightRestaurant>();
 
-            var query = from r in this.dp.ds.RESTAURANT
-                        where r.NAME.ToLower().Contains(restaurantName.ToLower())
-                        join f in this.dp.ds.FOODTYPE on r.FOODTYPEID equals f.FOODTYPEID
-                        select r;
+            restaurants = (from r in this.dp.ds.RESTAURANT
+                         where r.NAME.ToLower().Contains(restaurantName.ToLower())
+                           join f in this.dp.ds.FOODTYPE on r.FOODTYPEID equals f.FOODTYPEID
+                         select new LightRestaurant()
+                         {
+                             Id = (int)r.RESTAURANTID,
+                             Name = r.NAME,
+                             Description = r.DESCRIPTION,
+                             IsEnabled = r.ENABLE,
+                             PictureLocation = r.PICTURELOCATION,
+                             FoodTypeId = f.FOODTYPEID,
+                             FoodTypeName = f.NAME
+                         }).ToList();
 
-            query.ToList().ForEach(r => restaurant.Add(new LightRestaurant()
-            {
-                Id = (int)r.RESTAURANTID,
-                Name = r.NAME,
-                Description = r.DESCRIPTION,
-                PictureLocation = r.PICTURELOCATION,
-
-            }));
-
-            if (restaurant == null)
+            if (restaurants == null)
             {
                 throw new Exception("No restaurant found with this name.");
             }
-            return restaurant;
+            return restaurants;
         }
 
         /// <summary>
@@ -65,24 +68,26 @@ namespace RestoBook.Common.Business.Managers
         public List<LightRestaurant> GetLightRestaurantAdvanced(string name, string foodTypeName, string city)
         {
             this.RefreshDataSet();
-            List<LightRestaurant> restaurant = new List<LightRestaurant>();
+            List<LightRestaurant> restaurants = new List<LightRestaurant>();
 
-            var query = from r in this.dp.ds.RESTAURANT
-                        where r.NAME.ToLower().Contains(name.ToLower())
-                        join f in this.dp.ds.FOODTYPE on r.FOODTYPEID equals f.FOODTYPEID
-                        where f.NAME.ToLower().Contains(foodTypeName)
-                        select r;
-            query.ToList().ForEach(r => restaurant.Add(new LightRestaurant()
-            {
-                Id = (int)r.RESTAURANTID,
-                Name = r.NAME,
-                Description = r.DESCRIPTION,
-                PictureLocation = r.PICTURELOCATION,
-                IsEnabled = r.ENABLE
+            restaurants = (from r in this.dp.ds.RESTAURANT
+                           where r.NAME.ToLower().Contains(name.ToLower())
+                           join f in this.dp.ds.FOODTYPE on r.FOODTYPEID equals f.FOODTYPEID
+                           where f.NAME.ToLower().Contains(foodTypeName)
+                           join a in this.dp.ds.ADDRESS on r.RESTAURANTID equals a.RESTAURANTID
+                           where a.CITY.ToLower().Contains(city) || a.ZIPCODE.ToLower().Contains(city)
+                           select new LightRestaurant()
+                           {
+                               Id = (int)r.RESTAURANTID,
+                               Name = r.NAME,
+                               Description = r.DESCRIPTION,
+                               IsEnabled = r.ENABLE,
+                               PictureLocation = r.PICTURELOCATION,
+                               FoodTypeId = f.FOODTYPEID,
+                               FoodTypeName = f.NAME
+                           }).ToList();
 
-            }));
-
-            return restaurant;
+            return restaurants;
         }
 
         /// <summary>
@@ -93,24 +98,23 @@ namespace RestoBook.Common.Business.Managers
         public List<LightRestaurant> GetLightRestaurantByFoodType(int foodTypeID)
         {
             this.RefreshDataSet();
-            List<LightRestaurant> restaurant = new List<LightRestaurant>();
+            List<LightRestaurant> restaurants = new List<LightRestaurant>();
 
-            var query = from r in this.dp.ds.RESTAURANT
-                        where r.FOODTYPEID == foodTypeID
-                        select r;
+            restaurants = (from r in this.dp.ds.RESTAURANT
+                           where r.FOODTYPEID == foodTypeID
+                           join f in this.dp.ds.FOODTYPE on r.FOODTYPEID equals f.FOODTYPEID
+                           select new LightRestaurant()
+                           {
+                               Id = (int)r.RESTAURANTID,
+                               Name = r.NAME,
+                               Description = r.DESCRIPTION,
+                               IsEnabled = r.ENABLE,
+                               PictureLocation = r.PICTURELOCATION,
+                               FoodTypeId = f.FOODTYPEID,
+                               FoodTypeName = f.NAME
+                           }).ToList();
 
-            query.ToList().ForEach(r => restaurant.Add(new LightRestaurant()
-            {
-                Id = (int)r.RESTAURANTID,
-                Name = r.NAME,
-                Description = r.DESCRIPTION,
-                PictureLocation = r.PICTURELOCATION,
-                IsEnabled = r.ENABLE,
-                FoodTypeId = r.FOODTYPEID
-
-            }));
-
-            return restaurant;
+            return restaurants;
         }
         #endregion PUBLIC METHODS
 
@@ -123,6 +127,8 @@ namespace RestoBook.Common.Business.Managers
             // refresh the dataset
             this.dp.ds.Reset();
             this.dp.PrepareRestaurantDP();
+            this.dp.PrepareFoodTypeDP();
+            this.dp.PrepareAddressDP();
         }
         #endregion PRIVATE METHODS
     }

@@ -13,6 +13,20 @@ namespace RestoBook.Common.Business.Managers
     public interface IServiceManager
     {
         /// <summary>
+        /// Gets a service by it's ID
+        /// </summary>
+        /// <param name="serviceId"></param>
+        /// <returns></returns>
+        Service GetServiceById(int serviceId);
+
+
+        /// <summary>
+        /// Gets a Dictionary of Services linked to the restaurant
+        /// </summary>
+        /// <returns></returns>
+        Dictionary<int, string> GetServicesDictionary(int restaurantId);
+
+        /// <summary>
         /// Gets a list of services linked to the restaurant.
         /// </summary>
         /// <param name="restaurantId">The restaurant identifier.</param>

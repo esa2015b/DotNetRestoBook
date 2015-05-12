@@ -58,6 +58,8 @@ namespace RestoBook.GUI.View.Views
             }
             else if(e.TabPage == tabPageReservations /*&& !this.reservationsTabIsInstantiated*/)
             {
+                ReservationView reservationView = new ReservationView();
+                tabPageReservations.Controls.Add(reservationView);
                 //this.reservationsTabIsInstantiated = true;
             }
 
