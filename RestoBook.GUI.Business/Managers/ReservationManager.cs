@@ -13,8 +13,9 @@ namespace RestoBook.Common.Business.Managers
     public class ReservationManager
     {
         #region PROPERTIES
-            DataProvider dp;
+        DataProvider dp;
         #endregion
+
 
         #region CONSTRUCTOR
         public ReservationManager()
@@ -23,7 +24,8 @@ namespace RestoBook.Common.Business.Managers
             dp.PrepareFullReservation();
         }
         #endregion
-        
+
+
         /// <summary>
         /// Create a reservation
         /// ReservationDate has value DateTime.Now
@@ -36,24 +38,22 @@ namespace RestoBook.Common.Business.Managers
             int nbrRowsCreated = -1;
 
             try
-        {
-
-            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter daReservation = new Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter())
             {
-                nbrRowsCreated = daReservation.Insert(
-                                                        reservation.CustomerId,
-                                                        reservation.ServiceId,
-                                                        reservation.ReservationDate,
-                                                        reservation.Service,
-                                                        reservation.PlaceQuantity,
+                using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter daReservation = new Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter())
+                {
+                    nbrRowsCreated = daReservation.Insert(
+                                                            reservation.CustomerId,
+                                                            reservation.ServiceId,
+                                                            reservation.ReservationDate,
+                                                            reservation.Service,
+                                                            reservation.PlaceQuantity,
                                                             reservation.RestoConfirmation = false,
                                                             reservation.RestoConfirmationDate = DateTime.MaxValue.Date,
-                                                            reservation.RestoComments = "",
-                                                            reservation.IsEnabled = true
-                                                        );
+                                                            reservation.RestoComments = reservation.RestoComments,
+                                                            reservation.IsEnabled = true);
+                }
+                return nbrRowsCreated > 0;
             }
-            return nbrRowsCreated > 0;
-          }
 
             catch (System.Data.SqlClient.SqlException)
             {
@@ -64,7 +64,7 @@ namespace RestoBook.Common.Business.Managers
             {
                 return false;
             }
-            
+
             catch (System.NullReferenceException)
             {
                 return false;
@@ -85,7 +85,7 @@ namespace RestoBook.Common.Business.Managers
                 DataRow row = dp.ds.RESERVATION.Select(string.Format("RESERVATIONID = '{0}'", reservation.Id)).FirstOrDefault();
                 row["RESERVATIONDATE"] = reservation.ReservationDate;
                 row["PLACEQUANTITY"] = reservation.PlaceQuantity;
-                row["SERVICE"]= reservation.Service;
+                row["SERVICE"] = reservation.Service;
                 row["RESTOCONFIRMATION"] = reservation.RestoConfirmation;
                 row["RESTOCONFIRMATIONDATE"] = DateTime.Now;
                 row["RESTOCOMMENTS"] = reservation.RestoComments;
@@ -116,8 +116,8 @@ namespace RestoBook.Common.Business.Managers
 
             try
             {
-            DataRow row = dp.ds.RESERVATION.Select(string.Format("RESERVATIONID = '{0}'", reservation.Id)).FirstOrDefault();
-            row["PLACEQUANTITY"] = reservation.PlaceQuantity;
+                DataRow row = dp.ds.RESERVATION.Select(string.Format("RESERVATIONID = '{0}'", reservation.Id)).FirstOrDefault();
+                row["PLACEQUANTITY"] = reservation.PlaceQuantity;
 
                 using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter daReservation = new Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter())
                 {
@@ -149,14 +149,14 @@ namespace RestoBook.Common.Business.Managers
                 DataRow row = dp.ds.RESERVATION.Select(string.Format("RESERVATIONID = '{0}'", reservation.Id)).FirstOrDefault();
                 row["RESTOCONFIRMATION"] = true;
                 row["RESTOCONFIRMATIONDATE"] = DateTime.Now;
-            row["RESTOCOMMENTS"] = reservation.RestoComments;
+                row["RESTOCOMMENTS"] = reservation.RestoComments;
 
-            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter daReservation = new Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter())
-            {
-                nbrRowsUpdated = daReservation.Update(row);
+                using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter daReservation = new Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter())
+                {
+                    nbrRowsUpdated = daReservation.Update(row);
+                }
+                return nbrRowsUpdated > 0;
             }
-            return nbrRowsUpdated > 0;
-        }
 
             catch (System.NullReferenceException)
             {
@@ -176,19 +176,19 @@ namespace RestoBook.Common.Business.Managers
             try
             {
                 reservations = (from r in dp.ds.RESERVATION
-                                                  where ((r.SERVICEID == serviceId) && (r.RESTOCONFIRMATIONDATE.Year != DateTime.MaxValue.Year))
-                                                  select new Reservation()
-                                                  {
-                                                      Id = r.RESERVATIONID,
-                                                      CustomerId = r.CUSTOMERID,
-                                                      ServiceId = r.SERVICEID,
-                                                      ReservationDate = r.RESERVATIONDATE,
-                                                      PlaceQuantity = r.PLACEQUANTITY,
-                                                      RestoConfirmation = r.RESTOCONFIRMATION,
-                                                      RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,
-                                                      RestoComments = r.RESTOCOMMENTS,
-                                                      IsEnabled = r.ENABLE
-                                                  }).ToList();
+                                where ((r.SERVICEID == serviceId) && (r.RESTOCONFIRMATIONDATE.Year != DateTime.MaxValue.Year))
+                                select new Reservation()
+                                {
+                                    Id = r.RESERVATIONID,
+                                    CustomerId = r.CUSTOMERID,
+                                    ServiceId = r.SERVICEID,
+                                    ReservationDate = r.RESERVATIONDATE,
+                                    PlaceQuantity = r.PLACEQUANTITY,
+                                    RestoConfirmation = r.RESTOCONFIRMATION,
+                                    RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,
+                                    RestoComments = r.RESTOCOMMENTS,
+                                    IsEnabled = r.ENABLE
+                                }).ToList();
                 return reservations;
             }
             catch (System.Data.StrongTypingException)
@@ -208,20 +208,20 @@ namespace RestoBook.Common.Business.Managers
             try
             {
                 reservations = (from r in dp.ds.RESERVATION
-                                                  where r.SERVICEID == serviceId && r.RESTOCONFIRMATIONDATE.Year == DateTime.MaxValue.Year
-                                                  select new Reservation()
-                                                  {
-                                                      Id = r.RESERVATIONID,
-                                                      CustomerId = r.CUSTOMERID,
-                                                      ServiceId = r.SERVICEID,
-                                                      PlaceQuantity = r.PLACEQUANTITY,
-                                                      RestoConfirmation = r.RESTOCONFIRMATION,
-                                                      ReservationDate = r.RESERVATIONDATE,
-                                                      RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,
-                                                      RestoComments = r.RESTOCOMMENTS,
-                                                      IsEnabled = r.ENABLE
-                                                  }).ToList();
-                
+                                where r.SERVICEID == serviceId && r.RESTOCONFIRMATIONDATE.Year == DateTime.MaxValue.Year
+                                select new Reservation()
+                                {
+                                    Id = r.RESERVATIONID,
+                                    CustomerId = r.CUSTOMERID,
+                                    ServiceId = r.SERVICEID,
+                                    PlaceQuantity = r.PLACEQUANTITY,
+                                    RestoConfirmation = r.RESTOCONFIRMATION,
+                                    ReservationDate = r.RESERVATIONDATE,
+                                    RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,
+                                    RestoComments = r.RESTOCOMMENTS,
+                                    IsEnabled = r.ENABLE
+                                }).ToList();
+
                 return reservations;
             }
             catch (System.Data.StrongTypingException)
@@ -234,25 +234,25 @@ namespace RestoBook.Common.Business.Managers
         /// Gets reservation made within 24 hours     
         /// </summary>
         /// <returns>A List of Reservations</returns>
-        public List<Reservation> GetReservationNotConfirmedWithin24Hours ()
+        public List<Reservation> GetReservationNotConfirmedWithin24Hours()
         {
             List<Reservation> reservations = new List<Reservation>();
 
             try
             {
                 reservations = (from r in dp.ds.RESERVATION
-                                                  where (r.RESTOCONFIRMATIONDATE.Year == DateTime.MaxValue.Year && (r.RESERVATIONDATE).AddHours(24) >= DateTime.Now)
-                                                  orderby r.RESERVATIONDATE
-                                                  select new Reservation()
-                                                  {
-                                                      Id = r.RESERVATIONID,
-                                                      CustomerId = r.CUSTOMERID,
-                                                      ServiceId = r.SERVICEID,
-                                                      ReservationDate = r.RESERVATIONDATE,
-                                                      RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,
-                                                      PlaceQuantity = r.PLACEQUANTITY,
-                                                      IsEnabled = r.ENABLE
-                                                  }).ToList();
+                                where (r.RESTOCONFIRMATIONDATE.Year == DateTime.MaxValue.Year && (r.RESERVATIONDATE).AddHours(24) >= DateTime.Now)
+                                orderby r.RESERVATIONDATE
+                                select new Reservation()
+                                {
+                                    Id = r.RESERVATIONID,
+                                    CustomerId = r.CUSTOMERID,
+                                    ServiceId = r.SERVICEID,
+                                    ReservationDate = r.RESERVATIONDATE,
+                                    RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,
+                                    PlaceQuantity = r.PLACEQUANTITY,
+                                    IsEnabled = r.ENABLE
+                                }).ToList();
                 return reservations;
             }
 
@@ -263,9 +263,9 @@ namespace RestoBook.Common.Business.Managers
         }
 
         /// <summary>
-     /// Reteurn all reservations
-     /// </summary>
-     /// <returns>A list of all reservations</returns>
+        /// Reteurn all reservations
+        /// </summary>
+        /// <returns>A list of all reservations</returns>
         public List<Reservation> GetAllReservations()
         {
             List<Reservation> reservations = new List<Reservation>();

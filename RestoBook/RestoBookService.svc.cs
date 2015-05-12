@@ -81,8 +81,7 @@
                 {
                     int restaurantId = r.Id;
 
-                    r.FoodType = this.foodTypeManager.GetFoodTypeById(restaurantId);
-                    r.Owner = this.ownerManager.GetOwner(restaurantId);
+                    r.Addresses = this.addressManager.GetAddressesByRestaurantId(restaurantId);
                     r.Employees = this.employeeManager.GetEmployees(restaurantId);
                     r.PriceLists = this.priceListManager.GetPriceLists(restaurantId);
                     r.Services = this.serviceManager.GetServices(restaurantId);
@@ -145,8 +144,7 @@
             {
                 int id = restaurant.Id;
 
-                restaurant.FoodType = this.foodTypeManager.GetFoodTypeById(id);
-                restaurant.Owner = this.ownerManager.GetOwner(id);
+                restaurant.Addresses = this.addressManager.GetAddressesByRestaurantId(id);
                 restaurant.Employees = this.employeeManager.GetEmployees(id);
                 restaurant.PriceLists = this.priceListManager.GetPriceLists(id);
                 restaurant.Services = this.serviceManager.GetServices(id);
@@ -164,17 +162,17 @@
 
         public List<LightRestaurant> GetLightRestaurantAdvanced(string name, string foodTypeName, string city)
         {
-            List<LightRestaurant> restaurant = lightRestaurantManager.GetLightRestaurantAdvanced(name, foodTypeName, city);
-            if (restaurant != null)
+            List<LightRestaurant> restaurants = lightRestaurantManager.GetLightRestaurantAdvanced(name, foodTypeName, city);
+            
+            if (restaurants != null)
             {
-                foreach (LightRestaurant r in restaurant)
+                foreach (LightRestaurant lr in restaurants)
                 {
-                    r.FoodTypeName = this.foodTypeManager.GetFoodTypeById(r.Id).Name;
+                    lr.City = this.addressManager.GetAddressesByRestaurantId(lr.Id).FirstOrDefault().City;
                 }
-
             }
-
-            return restaurant;
+            
+            return restaurants;
         }
 
         public List<LightRestaurant> GetLightRestaurantByFoodType(int foodTypeId)
@@ -183,8 +181,10 @@
 
             if (restaurants != null)
             {
-                string foodTypeName =this.foodTypeManager.GetFoodTypeById(restaurants.FirstOrDefault().FoodTypeId).Name; 
-                restaurants.ForEach(r => r.FoodTypeName = foodTypeName);
+                foreach (LightRestaurant lr in restaurants)
+                {
+                    lr.City = this.addressManager.GetAddressesByRestaurantId(lr.Id).FirstOrDefault().City;
+                }
             }
 
             return restaurants;
@@ -193,29 +193,34 @@
         public List<LightRestaurant> GetLightRestaurantByName(string restaurantName)
         {
 
-            List<LightRestaurant> restaurant = this.lightRestaurantManager.GetLightRestaurantByName(restaurantName);
+            List<LightRestaurant> restaurants = this.lightRestaurantManager.GetLightRestaurantByName(restaurantName);
 
-            if (restaurant != null)
+            if (restaurants != null)
             {
-                foreach (LightRestaurant r in restaurant)
+                foreach (LightRestaurant lr in restaurants)
                 {
-                    r.FoodTypeName = this.foodTypeManager.GetFoodTypeById(r.Id).Name;
+                    lr.FoodTypeName = this.foodTypeManager.GetFoodTypeById(lr.Id).Name; lr.City = this.addressManager.GetAddressesByRestaurantId(lr.Id).FirstOrDefault().City;
                 }
             }
 
-            return restaurant;
+            return restaurants;
         }
         #endregion
 
         #region RESERVATIONS
         public bool CreateReservation(Reservation reservation, Customer customer)
         {
-            var custExists = this.customerManager.GetCustomerByMail(customer.Mail);
-            if (custExists == null)
+            Customer cust;
+            cust = this.customerManager.GetCustomerByMail(customer.Mail);
+            if (cust == null)
             {
+                cust = new Customer();
                 this.customerManager.CreateCustomer(customer);
+                cust = this.customerManager.GetCustomerByMail(customer.Mail);
             }
-            return this.reservationManager.CreateReservation(reservation);
+            reservation.CustomerId = cust.Id;
+            bool createResa = this.reservationManager.CreateReservation(reservation);
+            return createResa;
         }
 
         public bool ModifyReservationsFromCustomer(Reservation reservation)

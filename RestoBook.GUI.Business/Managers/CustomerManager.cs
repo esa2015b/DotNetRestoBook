@@ -35,13 +35,20 @@ namespace RestoBook.Common.Business.Managers
         {
             this.RefreshDataSet();
             RestoBook.Common.Model.DataSetRestoBook.CUSTOMERRow customerRow = this.dp.ds.CUSTOMER.Where(c => c.MAIL.ToLower() == email.ToLower()).FirstOrDefault();
-            return new Customer()
+
+            Customer returnedCustomer = null;
+
+            if (customerRow != null)
             {
-                Id = customerRow.CUSTOMERID,
-                IsEnable = customerRow.ENABLE,
-                Mail = customerRow.MAIL,
-                Phone = customerRow.PHONE
-            };
+                returnedCustomer = new Customer()
+                {
+                    Id = customerRow.CUSTOMERID,
+                    IsEnable = customerRow.ENABLE,
+                    Mail = customerRow.MAIL,
+                    Phone = customerRow.PHONE
+                };
+            }
+            return returnedCustomer;
         }
 
         /// <summary>

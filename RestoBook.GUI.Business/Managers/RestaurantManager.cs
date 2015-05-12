@@ -62,20 +62,6 @@ namespace RestoBook.Common.Business.Managers
                                                   IsEnabled = r.ENABLE,
                                                   FoodType = new FoodType() { Description = f.DESCRIPTION, Id = (int)f.FOODTYPEID, IsEnabled = f.ENABLE, Name = f.NAME },
                                                   Owner = new Owner() { FirstName = o.FIRSTNAME, Id = (int)o.OWNERID, IsEnabled = o.ENABLE, LastName = o.LASTNAME, OwnedRestaurants = new List<Restaurant>() }
-                                                  //Employees = new List<RestoBook.Model.Common.Models.Employee>()
-                                                  //{
-                                                  //    new Employee()
-                                                  //    {
-                                                  //        Id = (int)e.EMPLOYEEID,
-                                                  //        Email = e.MAIL,
-                                                  //        FirstName = e.FIRSTNAME,
-                                                  //        IsEnabled = e.ENABLE,
-                                                  //        LastName = e.LASTNAME,
-                                                  //        Login = e.LOGIN,
-                                                  //        Mobile = e.MOBILE,
-                                                  //        Password = e.PASSWORD
-                                                  //    }
-                                                  //}
                                               }).FirstOrDefault();
             if (resto == null)
             {
@@ -98,23 +84,23 @@ namespace RestoBook.Common.Business.Managers
                         where r.NAME.ToLower().Contains(restaurantName.ToLower())
                         join o in this.dp.ds.OWNER on r.OWNERID equals o.OWNERID
                         join f in this.dp.ds.FOODTYPE on r.FOODTYPEID equals f.FOODTYPEID
-                        select r;
-
-            query.ToList().ForEach(r => restaurant.Add(new Restaurant()
-            {
-                Id = (int)r.RESTAURANTID,
-                Name = r.NAME,
-                Mail = r.MAIL,
-                Phone = r.PHONE,
-                Description = r.DESCRIPTION,
-                PlaceQuantity = (int)r.PLACEQUANTITY,
-                DayOfClosing = r.DAYOFCLOSING,
-                PictureLocation = r.PICTURELOCATION,
-                IsPremium = r.ISPREMIUM,
-                IsEnabled = r.ENABLE
-
-            }));
-
+                        select new Restaurant()
+                                              {
+                                                  Id = (int)r.RESTAURANTID,
+                                                  Name = r.NAME,
+                                                  Mail = r.MAIL,
+                                                  Phone = r.PHONE,
+                                                  Description = r.DESCRIPTION,
+                                                  PlaceQuantity = (int)r.PLACEQUANTITY,
+                                                  DayOfClosing = r.DAYOFCLOSING,
+                                                  PictureLocation = r.PICTURELOCATION,
+                                                  IsPremium = r.ISPREMIUM,
+                                                  IsEnabled = r.ENABLE,
+                                                  FoodType = new FoodType() { Description = f.DESCRIPTION, Id = (int)f.FOODTYPEID, IsEnabled = f.ENABLE, Name = f.NAME },
+                                                  Owner = new Owner() { FirstName = o.FIRSTNAME, Id = (int)o.OWNERID, IsEnabled = o.ENABLE, LastName = o.LASTNAME, OwnedRestaurants = new List<Restaurant>() }
+                                              };
+            restaurant = query.ToList();
+            
             if (restaurant == null)
             {
                 throw new Exception("No restaurant found with this name.");
@@ -200,6 +186,8 @@ namespace RestoBook.Common.Business.Managers
             Restaurant restaurant = new Restaurant();
 
             restaurant = (from r in this.dp.ds.RESTAURANT
+                          join f in this.dp.ds.FOODTYPE on r.FOODTYPEID equals f.FOODTYPEID
+                          join o in this.dp.ds.OWNER on r.OWNERID equals o.OWNERID
                           select new Restaurant()
                         {
                             Id = (int)r.RESTAURANTID,
@@ -211,7 +199,9 @@ namespace RestoBook.Common.Business.Managers
                             DayOfClosing = r.DAYOFCLOSING,
                             PictureLocation = r.PICTURELOCATION,
                             IsPremium = r.ISPREMIUM,
-                            IsEnabled = r.ENABLE
+                            IsEnabled = r.ENABLE,
+                            FoodType = new FoodType() { Description = f.DESCRIPTION, Id = (int)f.FOODTYPEID, IsEnabled = f.ENABLE, Name = f.NAME },
+                            Owner = new Owner() { FirstName = o.FIRSTNAME, Id = (int)o.OWNERID, IsEnabled = o.ENABLE, LastName = o.LASTNAME, OwnedRestaurants = new List<Restaurant>() }
                         }).OrderBy(x => Guid.NewGuid()).First();
             return restaurant;
         }

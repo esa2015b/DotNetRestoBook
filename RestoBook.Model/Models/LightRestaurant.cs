@@ -35,6 +35,12 @@ namespace RestoBook.Common.Model.Models
         public string Description { get; set; }
 
         /// <summary>
+        /// The restaurant's city.
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public string City { get; set; }
+
+        /// <summary>
         /// The restaurant's picture location.
         /// </summary>
         [DataMember(IsRequired = true)]
