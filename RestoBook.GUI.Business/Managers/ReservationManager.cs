@@ -273,19 +273,21 @@ namespace RestoBook.Common.Business.Managers
             try
             {
                 reservations = (from r in dp.ds.RESERVATION
-
+                                join c in dp.ds.CUSTOMER on r.CUSTOMERID equals c.CUSTOMERID
+                                join s in dp.ds.SERVICE on r.SERVICEID equals s.SERVICEID
                                 select new Reservation()
                                 {
                                     Id = r.RESERVATIONID,
                                     CustomerId = r.CUSTOMERID,
                                     ServiceId = r.SERVICEID,
                                     ReservationDate = r.RESERVATIONDATE,
-                                    //Service = r.SERVICE,
+                                    Service = s.TYPESERVICE,
                                     PlaceQuantity = r.PLACEQUANTITY,
                                     RestoConfirmation = r.RESTOCONFIRMATION,
                                     RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,
                                     RestoComments = r.RESTOCOMMENTS,
-                                    IsEnabled = r.ENABLE
+                                    IsEnabled = r.ENABLE,
+                                    Customer = new Customer() { Id = c.CUSTOMERID, IsEnable = c.ENABLE, Mail = c.MAIL, Phone = c.PHONE }
                                 }).ToList();
                 return reservations;
             }
