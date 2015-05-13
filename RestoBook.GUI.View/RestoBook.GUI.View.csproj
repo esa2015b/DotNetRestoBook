@@ -51,8 +51,10 @@
     <Compile Include="Controllers\IFoodTypeController.cs" />
     <Compile Include="Controllers\IReservationController.cs" />
     <Compile Include="Controllers\IRestaurantController.cs" />
+    <Compile Include="Controllers\IServiceController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Views\FoodTypeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -68,6 +70,12 @@
     <Compile Include="NinjectBindings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ReservationView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ReservationView.Designer.cs">
+      <DependentUpon>ReservationView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\RestaurantsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,6 +97,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\ReservationView.resx">
+      <DependentUpon>ReservationView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\RestaurantsView.resx">
       <DependentUpon>RestaurantsView.cs</DependentUpon>
     </EmbeddedResource>

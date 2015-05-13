@@ -35,6 +35,8 @@ namespace RestoBook.Common.Business.Managers
         /// <returns></returns>
         public bool CreateReservation(Reservation reservation)
         {
+            this.RefreshDataSet();
+
             int nbrRowsCreated = -1;
 
             try
@@ -78,6 +80,8 @@ namespace RestoBook.Common.Business.Managers
         /// <returns></returns>
         public bool ModifyReservationsFromBackOffice(Reservation reservation)
         {
+            this.RefreshDataSet();
+
             int nbrRowsUpdated = -1;
 
             try
@@ -112,6 +116,8 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>bool if creation succeed</returns>
         public bool ModifyReservationFromCustomer(Reservation reservation)
         {
+            this.RefreshDataSet();
+
             int nbrRowsUpdated = -1;
 
             try
@@ -142,6 +148,8 @@ namespace RestoBook.Common.Business.Managers
         /// <returns></returns>
         public bool ConfirmReservationFromResto(Reservation reservation)
         {
+            this.RefreshDataSet();
+
             int nbrRowsUpdated = -1;
 
             try
@@ -165,12 +173,49 @@ namespace RestoBook.Common.Business.Managers
         }
 
         /// <summary>
+        /// Gets all reservations for a given service
+        /// </summary>
+        /// <param name="serviceId"></param>
+        /// <returns></returns>
+        public List<Reservation> GetReservationByService(int serviceId)
+        {
+            this.RefreshDataSet();
+
+            List<Reservation> reservations = new List<Reservation>();
+
+            try
+            {
+                reservations = (from r in dp.ds.RESERVATION
+                                where r.SERVICEID == serviceId
+                                select new Reservation()
+                                {
+                                    Id = r.RESERVATIONID,
+                                    CustomerId = r.CUSTOMERID,
+                                    ServiceId = r.SERVICEID,
+                                    ReservationDate = r.RESERVATIONDATE,
+                                    PlaceQuantity = r.PLACEQUANTITY,
+                                    RestoConfirmation = r.RESTOCONFIRMATION,
+                                    RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,
+                                    RestoComments = r.RESTOCOMMENTS,
+                                    IsEnabled = r.ENABLE
+                                }).ToList();
+                return reservations;
+            }
+            catch (System.Data.StrongTypingException)
+            {
+                return reservations;
+            }
+        }
+
+        /// <summary>
         /// Gets a list of reservations confirmed and filtred by service 
         /// </summary>
         /// <param name="serviceId"></param>
         /// <returns>A list of reservation</returns>
         public List<Reservation> GetReservationConfirmedByService(int serviceId)
         {
+            this.RefreshDataSet();
+
             List<Reservation> reservations = new List<Reservation>();
 
             try
@@ -204,6 +249,8 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>A list of reservation</returns>
         public List<Reservation> GetReservationNotConfirmedByService(int serviceId)
         {
+            this.RefreshDataSet();
+
             List<Reservation> reservations = new List<Reservation>();
             try
             {
@@ -236,6 +283,8 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>A List of Reservations</returns>
         public List<Reservation> GetReservationNotConfirmedWithin24Hours()
         {
+            this.RefreshDataSet();
+
             List<Reservation> reservations = new List<Reservation>();
 
             try
@@ -268,6 +317,8 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>A list of all reservations</returns>
         public List<Reservation> GetAllReservations()
         {
+            this.RefreshDataSet();
+
             List<Reservation> reservations = new List<Reservation>();
 
             try

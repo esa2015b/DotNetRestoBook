@@ -31,6 +31,53 @@ namespace RestoBook.Common.Business.Managers
 
         #region PUBLIC METHODS
         /// <summary>
+        /// Gets a service by it's ID
+        /// </summary>
+        /// <param name="serviceId"></param>
+        /// <returns></returns>
+        public Service GetServiceById(int serviceId)
+        {
+            this.RefreshDataSet();
+            Service service = new Service();
+            service = (from s in this.dp.ds.SERVICE
+                     where s.SERVICEID == serviceId
+                     select new Service()
+                     {
+                         Id = (int)s.SERVICEID,
+                         BeginShift = s.STARTSHIFT,
+                         EndShift = s.ENDSHIFT,
+                         IsEnabled = s.ENABLE,
+                         PlaceQuantity = s.PLACEQUANTITY,
+                         ServiceDay = s.SERVICEDAY.DayOfWeek,
+                         ServiceDate = s.SERVICEDAY,
+                         TypeService = s.TYPESERVICE
+                     }).FirstOrDefault();
+            if (service == null)
+            {
+                //throw new Exception("No restaurant found with this id.");
+            }
+            return service;
+        }
+        /// <summary>
+        /// Gets a Dictionary of services linked to the restaurant
+        /// </summary>
+        /// <param name="restaurantId"></param>
+        /// <returns></returns>
+        public Dictionary<int, string> GetServicesDictionary(int restaurantId)
+        {
+            this.RefreshDataSet();
+            Dictionary<int, string> services = new Dictionary<int, string>();
+
+            this.dp.ds.SERVICE.Where(s => s.RESTAURANTID == restaurantId)
+                              .ToList()
+                              .ForEach(s => services.Add(
+                                  (int)s.SERVICEID,
+                                  s.PLACEQUANTITY.ToString()+ " " + s.SERVICEDAY.DayOfWeek.ToString() + " " + s.SERVICEDAY.ToString() + " " + s.TYPESERVICE
+                              ));
+            return services;
+        }
+
+        /// <summary>
         /// Gets a list of services linked to the restaurant.
         /// </summary>
         /// <param name="restaurantId">The restaurant identifier.</param>
