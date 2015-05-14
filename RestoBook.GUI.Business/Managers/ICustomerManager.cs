@@ -17,6 +17,12 @@ namespace RestoBook.Common.Business.Managers
         /// <param name="email"></param>
         /// <returns></returns>
         Customer GetCustomerByMail(string email);
+        
+        /// <summary>
+        /// Gets a List containing all customers
+        /// </summary>
+        /// <returns></returns>
+        List<Customer> GetAllCustomers();
 
     }
 }

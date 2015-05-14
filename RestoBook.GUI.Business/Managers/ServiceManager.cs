@@ -58,6 +58,7 @@ namespace RestoBook.Common.Business.Managers
             }
             return service;
         }
+
         /// <summary>
         /// Gets a Dictionary of services linked to the restaurant
         /// </summary>
@@ -72,7 +73,7 @@ namespace RestoBook.Common.Business.Managers
                               .ToList()
                               .ForEach(s => services.Add(
                                   (int)s.SERVICEID,
-                                  s.PLACEQUANTITY.ToString()+ " " + s.SERVICEDAY.DayOfWeek.ToString() + " " + s.SERVICEDAY.ToString() + " " + s.TYPESERVICE
+                                  s.SERVICEDAY.DayOfWeek.ToString() + " " + s.SERVICEDAY.ToString() + " " + s.TYPESERVICE + " - " + s.PLACEQUANTITY.ToString()
                               ));
             return services;
         }

@@ -32,31 +32,29 @@
             this.comboBoxService = new System.Windows.Forms.ComboBox();
             this.dataGridViewReservation = new System.Windows.Forms.DataGridView();
             this.Reservations = new System.Windows.Forms.GroupBox();
-            this.labelRestaurants = new System.Windows.Forms.Label();
-            this.labelServices = new System.Windows.Forms.Label();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.buttonDelete = new System.Windows.Forms.Button();
-            this.groupBoxCustomer = new System.Windows.Forms.GroupBox();
-            this.textBoxSearchCustomer = new System.Windows.Forms.TextBox();
-            this.buttonSearchCustomer = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBoxNewReservation = new System.Windows.Forms.GroupBox();
             this.buttonAddNewReservation = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxComment = new System.Windows.Forms.RichTextBox();
             this.labelComment = new System.Windows.Forms.Label();
             this.textBoxPlaceQuantity = new System.Windows.Forms.TextBox();
             this.labelPlaceQuantity = new System.Windows.Forms.Label();
             this.textBoxService = new System.Windows.Forms.TextBox();
             this.labelService = new System.Windows.Forms.Label();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.labelReservationDate = new System.Windows.Forms.Label();
             this.textBoxCustomerId = new System.Windows.Forms.TextBox();
             this.labelCustomerId = new System.Windows.Forms.Label();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.labelRestaurants = new System.Windows.Forms.Label();
+            this.labelServices = new System.Windows.Forms.Label();
+            this.groupBoxCustomer = new System.Windows.Forms.GroupBox();
+            this.dataGridViewCustomers = new System.Windows.Forms.DataGridView();
+            this.buttonSearchCustomer = new System.Windows.Forms.Button();
+            this.textBoxSearchCustomer = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReservation)).BeginInit();
             this.Reservations.SuspendLayout();
-            this.groupBoxCustomer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBoxNewReservation.SuspendLayout();
+            this.groupBoxCustomer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomers)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBoxRestaurant
@@ -83,9 +81,8 @@
             this.dataGridViewReservation.Location = new System.Drawing.Point(6, 32);
             this.dataGridViewReservation.Name = "dataGridViewReservation";
             this.dataGridViewReservation.RowTemplate.Height = 24;
-            this.dataGridViewReservation.Size = new System.Drawing.Size(1081, 291);
+            this.dataGridViewReservation.Size = new System.Drawing.Size(1165, 291);
             this.dataGridViewReservation.TabIndex = 2;
-            this.dataGridViewReservation.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewReservation_CellContentClick);
             // 
             // Reservations
             // 
@@ -95,97 +92,20 @@
             this.Reservations.Controls.Add(this.dataGridViewReservation);
             this.Reservations.Location = new System.Drawing.Point(15, 77);
             this.Reservations.Name = "Reservations";
-            this.Reservations.Size = new System.Drawing.Size(1093, 587);
+            this.Reservations.Size = new System.Drawing.Size(1177, 587);
             this.Reservations.TabIndex = 7;
             this.Reservations.TabStop = false;
             this.Reservations.Text = "Reservations";
             // 
-            // labelRestaurants
-            // 
-            this.labelRestaurants.AutoSize = true;
-            this.labelRestaurants.Location = new System.Drawing.Point(15, 19);
-            this.labelRestaurants.Name = "labelRestaurants";
-            this.labelRestaurants.Size = new System.Drawing.Size(85, 17);
-            this.labelRestaurants.TabIndex = 8;
-            this.labelRestaurants.Text = "Restaurants";
-            // 
-            // labelServices
-            // 
-            this.labelServices.AutoSize = true;
-            this.labelServices.Location = new System.Drawing.Point(326, 19);
-            this.labelServices.Name = "labelServices";
-            this.labelServices.Size = new System.Drawing.Size(62, 17);
-            this.labelServices.TabIndex = 9;
-            this.labelServices.Text = "Services";
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Location = new System.Drawing.Point(842, 335);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(245, 23);
-            this.buttonSave.TabIndex = 14;
-            this.buttonSave.Text = "Save Changes";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // buttonDelete
-            // 
-            this.buttonDelete.Location = new System.Drawing.Point(842, 365);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(245, 23);
-            this.buttonDelete.TabIndex = 15;
-            this.buttonDelete.Text = "Delete Row";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
-            // 
-            // groupBoxCustomer
-            // 
-            this.groupBoxCustomer.Controls.Add(this.dataGridView1);
-            this.groupBoxCustomer.Controls.Add(this.buttonSearchCustomer);
-            this.groupBoxCustomer.Controls.Add(this.textBoxSearchCustomer);
-            this.groupBoxCustomer.Location = new System.Drawing.Point(1115, 77);
-            this.groupBoxCustomer.Name = "groupBoxCustomer";
-            this.groupBoxCustomer.Size = new System.Drawing.Size(469, 449);
-            this.groupBoxCustomer.TabIndex = 10;
-            this.groupBoxCustomer.TabStop = false;
-            this.groupBoxCustomer.Text = "Customers";
-            // 
-            // textBoxSearchCustomer
-            // 
-            this.textBoxSearchCustomer.Location = new System.Drawing.Point(7, 32);
-            this.textBoxSearchCustomer.Name = "textBoxSearchCustomer";
-            this.textBoxSearchCustomer.Size = new System.Drawing.Size(320, 22);
-            this.textBoxSearchCustomer.TabIndex = 0;
-            // 
-            // buttonSearchCustomer
-            // 
-            this.buttonSearchCustomer.Location = new System.Drawing.Point(333, 31);
-            this.buttonSearchCustomer.Name = "buttonSearchCustomer";
-            this.buttonSearchCustomer.Size = new System.Drawing.Size(130, 23);
-            this.buttonSearchCustomer.TabIndex = 1;
-            this.buttonSearchCustomer.Text = "Search";
-            this.buttonSearchCustomer.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(7, 61);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(456, 374);
-            this.dataGridView1.TabIndex = 2;
-            // 
             // groupBoxNewReservation
             // 
             this.groupBoxNewReservation.Controls.Add(this.buttonAddNewReservation);
-            this.groupBoxNewReservation.Controls.Add(this.richTextBox1);
+            this.groupBoxNewReservation.Controls.Add(this.richTextBoxComment);
             this.groupBoxNewReservation.Controls.Add(this.labelComment);
             this.groupBoxNewReservation.Controls.Add(this.textBoxPlaceQuantity);
             this.groupBoxNewReservation.Controls.Add(this.labelPlaceQuantity);
             this.groupBoxNewReservation.Controls.Add(this.textBoxService);
             this.groupBoxNewReservation.Controls.Add(this.labelService);
-            this.groupBoxNewReservation.Controls.Add(this.monthCalendar1);
-            this.groupBoxNewReservation.Controls.Add(this.labelReservationDate);
             this.groupBoxNewReservation.Controls.Add(this.textBoxCustomerId);
             this.groupBoxNewReservation.Controls.Add(this.labelCustomerId);
             this.groupBoxNewReservation.Location = new System.Drawing.Point(7, 330);
@@ -204,13 +124,13 @@
             this.buttonAddNewReservation.Text = "Add New Reservation";
             this.buttonAddNewReservation.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // richTextBoxComment
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(129, 115);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(367, 89);
-            this.richTextBox1.TabIndex = 23;
-            this.richTextBox1.Text = "";
+            this.richTextBoxComment.Location = new System.Drawing.Point(129, 115);
+            this.richTextBoxComment.Name = "richTextBoxComment";
+            this.richTextBoxComment.Size = new System.Drawing.Size(367, 89);
+            this.richTextBoxComment.TabIndex = 23;
+            this.richTextBoxComment.Text = "";
             // 
             // labelComment
             // 
@@ -253,21 +173,6 @@
             this.labelService.TabIndex = 18;
             this.labelService.Text = "Service ";
             // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(508, 35);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 17;
-            // 
-            // labelReservationDate
-            // 
-            this.labelReservationDate.AutoSize = true;
-            this.labelReservationDate.Location = new System.Drawing.Point(378, 32);
-            this.labelReservationDate.Name = "labelReservationDate";
-            this.labelReservationDate.Size = new System.Drawing.Size(118, 17);
-            this.labelReservationDate.TabIndex = 16;
-            this.labelReservationDate.Text = "Reservation Date";
-            // 
             // textBoxCustomerId
             // 
             this.textBoxCustomerId.Location = new System.Drawing.Point(129, 29);
@@ -284,6 +189,81 @@
             this.labelCustomerId.TabIndex = 14;
             this.labelCustomerId.Text = "Customer ID";
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(888, 365);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(245, 23);
+            this.buttonDelete.TabIndex = 15;
+            this.buttonDelete.Text = "Delete Row";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(888, 336);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(245, 23);
+            this.buttonSave.TabIndex = 14;
+            this.buttonSave.Text = "Save Changes";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // labelRestaurants
+            // 
+            this.labelRestaurants.AutoSize = true;
+            this.labelRestaurants.Location = new System.Drawing.Point(15, 19);
+            this.labelRestaurants.Name = "labelRestaurants";
+            this.labelRestaurants.Size = new System.Drawing.Size(85, 17);
+            this.labelRestaurants.TabIndex = 8;
+            this.labelRestaurants.Text = "Restaurants";
+            // 
+            // labelServices
+            // 
+            this.labelServices.AutoSize = true;
+            this.labelServices.Location = new System.Drawing.Point(326, 19);
+            this.labelServices.Name = "labelServices";
+            this.labelServices.Size = new System.Drawing.Size(62, 17);
+            this.labelServices.TabIndex = 9;
+            this.labelServices.Text = "Services";
+            // 
+            // groupBoxCustomer
+            // 
+            this.groupBoxCustomer.Controls.Add(this.dataGridViewCustomers);
+            this.groupBoxCustomer.Controls.Add(this.buttonSearchCustomer);
+            this.groupBoxCustomer.Controls.Add(this.textBoxSearchCustomer);
+            this.groupBoxCustomer.Location = new System.Drawing.Point(1198, 77);
+            this.groupBoxCustomer.Name = "groupBoxCustomer";
+            this.groupBoxCustomer.Size = new System.Drawing.Size(488, 449);
+            this.groupBoxCustomer.TabIndex = 10;
+            this.groupBoxCustomer.TabStop = false;
+            this.groupBoxCustomer.Text = "Customers";
+            // 
+            // dataGridViewCustomers
+            // 
+            this.dataGridViewCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCustomers.Location = new System.Drawing.Point(6, 60);
+            this.dataGridViewCustomers.Name = "dataGridViewCustomers";
+            this.dataGridViewCustomers.RowTemplate.Height = 24;
+            this.dataGridViewCustomers.Size = new System.Drawing.Size(476, 383);
+            this.dataGridViewCustomers.TabIndex = 2;
+            // 
+            // buttonSearchCustomer
+            // 
+            this.buttonSearchCustomer.Location = new System.Drawing.Point(352, 31);
+            this.buttonSearchCustomer.Name = "buttonSearchCustomer";
+            this.buttonSearchCustomer.Size = new System.Drawing.Size(130, 23);
+            this.buttonSearchCustomer.TabIndex = 1;
+            this.buttonSearchCustomer.Text = "Search";
+            this.buttonSearchCustomer.UseVisualStyleBackColor = true;
+            // 
+            // textBoxSearchCustomer
+            // 
+            this.textBoxSearchCustomer.Location = new System.Drawing.Point(7, 32);
+            this.textBoxSearchCustomer.Name = "textBoxSearchCustomer";
+            this.textBoxSearchCustomer.Size = new System.Drawing.Size(348, 22);
+            this.textBoxSearchCustomer.TabIndex = 0;
+            // 
             // ReservationView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -295,14 +275,14 @@
             this.Controls.Add(this.comboBoxService);
             this.Controls.Add(this.comboBoxRestaurant);
             this.Name = "ReservationView";
-            this.Size = new System.Drawing.Size(1601, 713);
+            this.Size = new System.Drawing.Size(1689, 713);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReservation)).EndInit();
             this.Reservations.ResumeLayout(false);
-            this.groupBoxCustomer.ResumeLayout(false);
-            this.groupBoxCustomer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBoxNewReservation.ResumeLayout(false);
             this.groupBoxNewReservation.PerformLayout();
+            this.groupBoxCustomer.ResumeLayout(false);
+            this.groupBoxCustomer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -319,19 +299,17 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.GroupBox groupBoxCustomer;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewCustomers;
         private System.Windows.Forms.Button buttonSearchCustomer;
         private System.Windows.Forms.TextBox textBoxSearchCustomer;
         private System.Windows.Forms.GroupBox groupBoxNewReservation;
         private System.Windows.Forms.Button buttonAddNewReservation;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxComment;
         private System.Windows.Forms.Label labelComment;
         private System.Windows.Forms.TextBox textBoxPlaceQuantity;
         private System.Windows.Forms.Label labelPlaceQuantity;
         private System.Windows.Forms.TextBox textBoxService;
         private System.Windows.Forms.Label labelService;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.Label labelReservationDate;
         private System.Windows.Forms.TextBox textBoxCustomerId;
         private System.Windows.Forms.Label labelCustomerId;
     }
