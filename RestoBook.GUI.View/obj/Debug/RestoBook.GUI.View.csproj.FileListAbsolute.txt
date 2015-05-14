@@ -124,3 +124,4 @@ C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook.GUI.View\obj\Debug\R
 C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Properties.Resources.resources
 C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Views.RestaurantsView.resources
 C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.csproj.GenerateResource.Cache
+C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook.GUI.View\obj\Debug\RestoBook.GUI.View.Views.ReservationView.resources
