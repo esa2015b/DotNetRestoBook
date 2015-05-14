@@ -1,0 +1,9 @@
+C:\Projects\C#\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Business.dll
+C:\Projects\C#\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Business.pdb
+C:\Projects\C#\RestoBook.GUI.Business\bin\Debug\Ninject.dll
+C:\Projects\C#\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Model.dll
+C:\Projects\C#\RestoBook.GUI.Business\bin\Debug\RestoBook.Common.Model.pdb
+C:\Projects\C#\RestoBook.GUI.Business\bin\Debug\Ninject.xml
+C:\Projects\C#\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.csprojResolveAssemblyReference.cache
+C:\Projects\C#\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.dll
+C:\Projects\C#\RestoBook.GUI.Business\obj\Debug\RestoBook.Common.Business.pdb

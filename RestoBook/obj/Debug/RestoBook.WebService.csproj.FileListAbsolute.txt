@@ -82,3 +82,4 @@ D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBo
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook\obj\Debug\RestoBook.WebService.csprojResolveAssemblyReference.cache
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook\obj\Debug\RestoBook.dll
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook\obj\Debug\RestoBook.pdb
+C:\Projects\C#\RestoBook\obj\Debug\RestoBook.WebService.csprojResolveAssemblyReference.cache

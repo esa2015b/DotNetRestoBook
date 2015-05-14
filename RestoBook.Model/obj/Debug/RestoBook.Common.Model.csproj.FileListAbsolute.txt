@@ -35,3 +35,11 @@ D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBo
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.Model\bin\Debug\Ninject.xml
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.Model\obj\Debug\RestoBook.Common.Model.dll
 D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.Model\obj\Debug\RestoBook.Common.Model.pdb
+C:\Projects\C#\RestoBook.Model\bin\Debug\RestoBook.Common.Model.dll.config
+C:\Projects\C#\RestoBook.Model\bin\Debug\RestoBook.Common.Model.dll
+C:\Projects\C#\RestoBook.Model\bin\Debug\RestoBook.Common.Model.pdb
+C:\Projects\C#\RestoBook.Model\bin\Debug\Ninject.dll
+C:\Projects\C#\RestoBook.Model\bin\Debug\Ninject.xml
+C:\Projects\C#\RestoBook.Model\obj\Debug\RestoBook.Common.Model.csprojResolveAssemblyReference.cache
+C:\Projects\C#\RestoBook.Model\obj\Debug\RestoBook.Common.Model.dll
+C:\Projects\C#\RestoBook.Model\obj\Debug\RestoBook.Common.Model.pdb
