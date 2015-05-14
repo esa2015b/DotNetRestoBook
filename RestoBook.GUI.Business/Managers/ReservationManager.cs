@@ -26,8 +26,6 @@ namespace RestoBook.Common.Business.Managers
         #endregion
 
 
-        #region PUBLIC METHODS
-
         /// <summary>
         /// Create a reservation
         /// ReservationDate has value DateTime.Now
@@ -175,33 +173,6 @@ namespace RestoBook.Common.Business.Managers
         }
 
         /// <summary>
-        /// Delete given reservation
-        /// </summary>
-        /// <param name="reservation"></param>
-        /// <param name="serviceId"></param>
-        /// <returns></returns>
-        public bool DeleteReservation(Reservation reservation)
-        {
-            this.RefreshDataSet();
-
-            int nbrRowsDeleted = -1;
-            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter daReservation = new Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter())
-            {
-                nbrRowsDeleted = daReservation.Delete(reservation.Id,
-                                                      reservation.CustomerId,
-                                                      reservation.ServiceId,
-                                                      reservation.ReservationDate,
-                                                      reservation.Service,
-                                                      reservation.PlaceQuantity,
-                                                      reservation.RestoConfirmation,
-                                                      reservation.RestoConfirmationDate,
-                                                      reservation.RestoComments,
-                                                      reservation.IsEnabled);
-            }
-            return nbrRowsDeleted > 0;
-        }
-
-        /// <summary>
         /// Gets all reservations for a given service
         /// </summary>
         /// <param name="serviceId"></param>
@@ -221,7 +192,6 @@ namespace RestoBook.Common.Business.Managers
                                     Id = r.RESERVATIONID,
                                     CustomerId = r.CUSTOMERID,
                                     ServiceId = r.SERVICEID,
-                                    Service = r.SERVICE,
                                     ReservationDate = r.RESERVATIONDATE,
                                     PlaceQuantity = r.PLACEQUANTITY,
                                     RestoConfirmation = r.RESTOCONFIRMATION,
@@ -342,33 +312,6 @@ namespace RestoBook.Common.Business.Managers
         }
 
         /// <summary>
-        /// Gets a reservation by it's id
-        /// </summary>
-        /// <param name="reservationId"></param>
-        /// <returns></returns>
-        public Reservation GetReservationById(int reservationId)
-        {
-            this.RefreshDataSet();
-            Reservation reservation = new Reservation();
-            reservation = (from r in this.dp.ds.RESERVATION
-                           where r.RESERVATIONID == reservationId
-                           select new Reservation(){
-                                    Id = r.RESERVATIONID,
-                                    CustomerId = r.CUSTOMERID,
-                                    ServiceId = r.SERVICEID,
-                                    ReservationDate = r.RESERVATIONDATE,
-                                    RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,
-                                    PlaceQuantity = r.PLACEQUANTITY,
-                                    IsEnabled = r.ENABLE
-                           }).FirstOrDefault();
-            if (reservation == null)
-            {
-                //throw new Exception("No reservation found with this id.");
-            }
-            return reservation;
-        }
-
-        /// <summary>
         /// Reteurn all reservations
         /// </summary>
         /// <returns>A list of all reservations</returns>
@@ -381,19 +324,21 @@ namespace RestoBook.Common.Business.Managers
             try
             {
                 reservations = (from r in dp.ds.RESERVATION
-
+                                join c in dp.ds.CUSTOMER on r.CUSTOMERID equals c.CUSTOMERID
+                                join s in dp.ds.SERVICE on r.SERVICEID equals s.SERVICEID
                                 select new Reservation()
                                 {
                                     Id = r.RESERVATIONID,
                                     CustomerId = r.CUSTOMERID,
                                     ServiceId = r.SERVICEID,
                                     ReservationDate = r.RESERVATIONDATE,
-                                    //Service = r.SERVICE,
+                                    Service = s.TYPESERVICE,
                                     PlaceQuantity = r.PLACEQUANTITY,
                                     RestoConfirmation = r.RESTOCONFIRMATION,
                                     RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,
                                     RestoComments = r.RESTOCOMMENTS,
-                                    IsEnabled = r.ENABLE
+                                    IsEnabled = r.ENABLE,
+                                    Customer = new Customer() { Id = c.CUSTOMERID, IsEnable = c.ENABLE, Mail = c.MAIL, Phone = c.PHONE }
                                 }).ToList();
                 return reservations;
             }
@@ -402,9 +347,6 @@ namespace RestoBook.Common.Business.Managers
                 return reservations;
             }
         }
-
-        #endregion PUBLIC METHODS
-
 
         #region PRIVATE METHODS
         /// <summary>
