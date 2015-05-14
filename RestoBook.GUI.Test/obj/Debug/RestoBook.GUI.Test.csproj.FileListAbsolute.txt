@@ -1,0 +1,5 @@
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Test\bin\Debug\RestoBook.GUI.Test.dll
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Test\bin\Debug\RestoBook.GUI.Test.pdb
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Test\obj\Debug\RestoBook.GUI.Test.dll
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Test\obj\Debug\RestoBook.GUI.Test.pdb
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Test\obj\Debug\RestoBook.GUI.Test.csprojResolveAssemblyReference.cache
