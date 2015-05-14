@@ -158,6 +158,7 @@ namespace RestoBook.Common.Model
             PrepareReservationDP();
             PrepareServiceDP();
             PrepareCustomerDP();
+            PrepareRestaurantDP();
         }
 
         #endregion PREPARE DATAPROVIDER METHODS

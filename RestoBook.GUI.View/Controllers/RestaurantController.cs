@@ -223,7 +223,6 @@ namespace RestoBook.GUI.View.Controllers
             return successful;
         }
 
-
         /// <summary>
         /// Creates a service for a given restaurant (given by the restaurantId);
         /// </summary>

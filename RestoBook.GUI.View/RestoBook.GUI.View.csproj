@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\FoodTypeController.cs" />
+    <Compile Include="Controllers\ICustomerController.cs" />
     <Compile Include="Controllers\IFoodTypeController.cs" />
     <Compile Include="Controllers\IReservationController.cs" />
     <Compile Include="Controllers\IRestaurantController.cs" />
