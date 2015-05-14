@@ -1,0 +1,5 @@
+C:\Projects\C#\RestoBook.GUI.Test\bin\Debug\RestoBook.GUI.Test.dll
+C:\Projects\C#\RestoBook.GUI.Test\bin\Debug\RestoBook.GUI.Test.pdb
+C:\Projects\C#\RestoBook.GUI.Test\obj\Debug\RestoBook.GUI.Test.csprojResolveAssemblyReference.cache
+C:\Projects\C#\RestoBook.GUI.Test\obj\Debug\RestoBook.GUI.Test.dll
+C:\Projects\C#\RestoBook.GUI.Test\obj\Debug\RestoBook.GUI.Test.pdb

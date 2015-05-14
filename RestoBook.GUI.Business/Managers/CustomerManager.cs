@@ -65,6 +65,37 @@ namespace RestoBook.Common.Business.Managers
             return nbrRowsCreated > 0;
         }
 
+        /// <summary>
+        /// Gets a list of all customers
+        /// </summary>
+        /// <returns></returns>
+        public List<Customer> GetAllCustomers()
+        {
+            this.RefreshDataSet();
+
+            List<Customer> customers = new List<Customer>();
+
+            try
+            {
+                var query = from c in this.dp.ds.CUSTOMER
+                            select c;
+
+                query.ToList().ForEach(c => customers.Add(new Customer()
+                {
+                    Id = c.CUSTOMERID,
+                    IsEnable = c.ENABLE,
+                    Mail = c.MAIL,
+                    Phone = c.PHONE
+                }));
+
+                return customers;
+            }
+            catch (System.Data.StrongTypingException)
+            {
+                return customers;
+            }
+        }
+
         #endregion PUBLIC METHODS
 
 

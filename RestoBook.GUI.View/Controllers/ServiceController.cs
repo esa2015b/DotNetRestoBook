@@ -27,11 +27,21 @@ namespace RestoBook.GUI.View.Controllers
 
 
 		#region PUBLIC METHODS
+        /// <summary>
+        /// Gets a dictionary of services from a restaurant ID.
+        /// </summary>
+        /// <param name="restaurantId"></param>
+        /// <returns></returns>
         public Dictionary<int, string> GetServiceDictionary(int restaurantId)
         {
             return this.serviceManager.GetServicesDictionary(restaurantId);
         }
 
+        /// <summary>
+        /// Gets a service by it's ID.
+        /// </summary>
+        /// <param name="serviceId"></param>
+        /// <returns></returns>
         public Service GetServiceById(int serviceId)
         {
             Service service = this.serviceManager.GetServiceById(serviceId);
@@ -42,6 +52,7 @@ namespace RestoBook.GUI.View.Controllers
             }
             return service;
         }
-		#endregion PUBLIC METHODS
+
+        #endregion PUBLIC METHODS
     }
 }
