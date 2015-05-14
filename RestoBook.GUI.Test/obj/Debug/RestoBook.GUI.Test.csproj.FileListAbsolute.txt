@@ -3,3 +3,8 @@ C:\Projects\C#\RestoBook.GUI.Test\bin\Debug\RestoBook.GUI.Test.pdb
 C:\Projects\C#\RestoBook.GUI.Test\obj\Debug\RestoBook.GUI.Test.csprojResolveAssemblyReference.cache
 C:\Projects\C#\RestoBook.GUI.Test\obj\Debug\RestoBook.GUI.Test.dll
 C:\Projects\C#\RestoBook.GUI.Test\obj\Debug\RestoBook.GUI.Test.pdb
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Test\bin\Debug\RestoBook.GUI.Test.dll
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Test\bin\Debug\RestoBook.GUI.Test.pdb
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Test\obj\Debug\RestoBook.GUI.Test.csprojResolveAssemblyReference.cache
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Test\obj\Debug\RestoBook.GUI.Test.dll
+D:\Formations\ESA\Year 3\Travail De Programmation\RestoBook GitHub\DotNetRestoBook\RestoBook.GUI.Test\obj\Debug\RestoBook.GUI.Test.pdb
