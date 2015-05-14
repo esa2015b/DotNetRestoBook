@@ -49,6 +49,9 @@ namespace RestoBook.Common.Model.Models
         [DataMember(IsRequired = true)]
         public string Service { get; set; }
 
+        [DataMember(IsRequired = true)]
+        public DateTime ServiceDate { get; set; }
+
         /// <summary>
         /// Is this reservation confirmed ?
         /// </summary>

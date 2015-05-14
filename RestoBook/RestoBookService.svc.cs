@@ -228,12 +228,22 @@
             return this.reservationManager.ModifyReservationFromCustomer(reservation);
         }
 
+        public bool ModifyReservationsFromBackOffice(Reservation reservation)
+        {
+            return this.reservationManager.ModifyReservationsFromBackOffice(reservation);
+        }
+
         public bool ConfirmReservationsFromResto(Reservation reservation)
         {
             return this.reservationManager.ConfirmReservationFromResto(reservation);
         }
 
         public List<Reservation> GetReservationConfirmedByService(int serviceId)
+        {
+            return this.reservationManager.GetReservationConfirmedByService(serviceId);
+        }
+
+        public List<Reservation> GetReservationByService(int serviceId)
         {
             return this.reservationManager.GetReservationConfirmedByService(serviceId);
         }
@@ -246,6 +256,11 @@
         public List<Reservation> GetReservationNotConfirmedWithin24Hours()
         {
             return this.reservationManager.GetReservationNotConfirmedWithin24Hours();
+        }
+
+        public List<Reservation> GetReservationByRestaurant(int restoId)
+        {
+            return this.reservationManager.GetReservationsByRestaurant(restoId);
         }
 
         public List<Reservation> GetAllReservations()

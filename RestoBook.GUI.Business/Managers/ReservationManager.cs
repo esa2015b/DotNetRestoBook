@@ -16,7 +16,6 @@ namespace RestoBook.Common.Business.Managers
         DataProvider dp;
         #endregion
 
-
         #region CONSTRUCTOR
         public ReservationManager()
         {
@@ -25,7 +24,7 @@ namespace RestoBook.Common.Business.Managers
         }
         #endregion
 
-
+        #region PUBLIC METHODS
         /// <summary>
         /// Create a reservation
         /// ReservationDate has value DateTime.Now
@@ -116,7 +115,7 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>bool if creation succeed</returns>
         public bool ModifyReservationFromCustomer(Reservation reservation)
         {
-            this.RefreshDataSet();
+            //this.RefreshDataSet();
 
             int nbrRowsUpdated = -1;
 
@@ -187,6 +186,7 @@ namespace RestoBook.Common.Business.Managers
             {
                 reservations = (from r in dp.ds.RESERVATION
                                 where r.SERVICEID == serviceId
+                                join s in dp.ds.SERVICE on r.SERVICEID equals s.SERVICEID
                                 select new Reservation()
                                 {
                                     Id = r.RESERVATIONID,
@@ -312,6 +312,57 @@ namespace RestoBook.Common.Business.Managers
         }
 
         /// <summary>
+        /// Gets reservation by Restaurant
+        /// </summary>
+        /// <param name="restoId"></param>
+        /// <returns></returns>
+        public List<Reservation> GetReservationsByRestaurant (int restoId)
+        {
+            this.RefreshDataSet();
+
+            List<Reservation> reservations = new List<Reservation>();
+
+            try
+            {
+                reservations = (from r in dp.ds.RESERVATION
+                                join c in dp.ds.CUSTOMER on r.CUSTOMERID equals c.CUSTOMERID
+                                join s in dp.ds.SERVICE on r.SERVICEID equals s.SERVICEID
+                                join rest in dp.ds.RESTAURANT on s.RESTAURANTID equals rest.RESTAURANTID
+                                where rest.RESTAURANTID == restoId
+                                orderby s.SERVICEDAY
+                                select new Reservation()
+                                {
+                                    Id = r.RESERVATIONID,
+                                    CustomerId = r.CUSTOMERID,
+                                    ServiceId = r.SERVICEID,
+                                    ReservationDate = r.RESERVATIONDATE,
+                                    Service = s.TYPESERVICE,
+                                    PlaceQuantity = r.PLACEQUANTITY,
+                                    RestoConfirmation = r.RESTOCONFIRMATION,
+                                    RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,
+                                    RestoComments = r.RESTOCOMMENTS,
+                                    IsEnabled = r.ENABLE,
+                                    Customer = new Customer()
+                                                            { Id = c.CUSTOMERID,
+                                                              IsEnable = c.ENABLE,
+                                                              Mail = c.MAIL,
+                                                              Phone = c.PHONE
+                                                            }
+                                   
+                                }).ToList();
+
+                return reservations;
+            }
+
+            catch
+            {
+                return reservations;
+            }
+
+            
+        }
+
+        /// <summary>
         /// Reteurn all reservations
         /// </summary>
         /// <returns>A list of all reservations</returns>
@@ -347,6 +398,7 @@ namespace RestoBook.Common.Business.Managers
                 return reservations;
             }
         }
+        #endregion
 
         #region PRIVATE METHODS
         /// <summary>
@@ -356,7 +408,7 @@ namespace RestoBook.Common.Business.Managers
         {
             // refresh the dataset
             this.dp.ds.Reset();
-            this.dp.PrepareReservationDP();
+            this.dp.PrepareFullReservation();
         }
         #endregion PRIVATE METHODS
 

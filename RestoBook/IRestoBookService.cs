@@ -82,6 +82,12 @@ namespace RestoBook
         List<Reservation> GetReservationNotConfirmedWithin24Hours();
 
         [OperationContract()]
+        List<Reservation> GetReservationByRestaurant(int restoId);
+
+        [OperationContract()]
+        List<Reservation> GetReservationByService(int restoId);
+
+        [OperationContract()]
         bool CreateReservation(Reservation reservation, Customer customer);
 
         [OperationContract()]
@@ -90,7 +96,9 @@ namespace RestoBook
         [OperationContract()]
         bool ModifyReservationsFromCustomer(Reservation reservation);
 
-        
+        [OperationContract()]
+        bool ModifyReservationsFromBackOffice(Reservation reservation);
+
         [OperationContract()]
         List<Reservation> GetAllReservations();
     }

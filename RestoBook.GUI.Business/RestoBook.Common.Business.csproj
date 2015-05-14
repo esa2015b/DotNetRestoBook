@@ -58,6 +58,7 @@
     <Compile Include="Managers\ILightRestaurantManager.cs" />
     <Compile Include="Managers\IOwnerManager.cs" />
     <Compile Include="Managers\IPriceListManager.cs" />
+    <Compile Include="Managers\IReservationManager.cs" />
     <Compile Include="Managers\IRestaurantManager.cs" />
     <Compile Include="Managers\IServiceManager.cs" />
     <Compile Include="Managers\LightRestaurantManager.cs" />
