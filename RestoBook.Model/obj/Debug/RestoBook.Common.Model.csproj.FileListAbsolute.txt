@@ -44,3 +44,10 @@ C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook.Model\bin\Debug\Ninj
 C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook.Model\obj\Debug\RestoBook.Common.Model.csprojResolveAssemblyReference.cache
 C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook.Model\obj\Debug\RestoBook.Common.Model.dll
 C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook.Model\obj\Debug\RestoBook.Common.Model.pdb
+C:\Projects\C#\RestoBook.Model\bin\Debug\RestoBook.Common.Model.dll.config
+C:\Projects\C#\RestoBook.Model\bin\Debug\RestoBook.Common.Model.dll
+C:\Projects\C#\RestoBook.Model\bin\Debug\RestoBook.Common.Model.pdb
+C:\Projects\C#\RestoBook.Model\bin\Debug\Ninject.dll
+C:\Projects\C#\RestoBook.Model\bin\Debug\Ninject.xml
+C:\Projects\C#\RestoBook.Model\obj\Debug\RestoBook.Common.Model.dll
+C:\Projects\C#\RestoBook.Model\obj\Debug\RestoBook.Common.Model.pdb

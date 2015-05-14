@@ -398,6 +398,62 @@ namespace RestoBook.Common.Business.Managers
                 return reservations;
             }
         }
+
+        /// <summary>
+        /// Gets a reservation by it's id
+        /// </summary>
+        /// <param name="reservationId"></param>
+        /// <returns></returns>
+        public Reservation GetReservationById(int reservationId)
+        {
+            this.RefreshDataSet();
+            Reservation reservation = new Reservation();
+            reservation = (from r in this.dp.ds.RESERVATION
+                           where r.RESERVATIONID == reservationId
+                           select new Reservation()
+                           {
+                               Id = r.RESERVATIONID,
+                               CustomerId = r.CUSTOMERID,
+                               ServiceId = r.SERVICEID,
+                               ReservationDate = r.RESERVATIONDATE,
+                               RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,
+                               PlaceQuantity = r.PLACEQUANTITY,
+                               IsEnabled = r.ENABLE
+                           }).FirstOrDefault();
+            if (reservation == null)
+            {
+                //throw new Exception("No reservation found with this id.");
+            }
+            return reservation;
+        }
+
+        /// <summary>
+        /// Delete given reservation
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <param name="serviceId"></param>
+        /// <returns></returns>
+        public bool DeleteReservation(Reservation reservation)
+        {
+            this.RefreshDataSet();
+
+            int nbrRowsDeleted = -1;
+            using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter daReservation = new Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter())
+            {
+                nbrRowsDeleted = daReservation.Delete(reservation.Id,
+                                                      reservation.CustomerId,
+                                                      reservation.ServiceId,
+                                                      reservation.ReservationDate,
+                                                      reservation.Service,
+                                                      reservation.PlaceQuantity,
+                                                      reservation.RestoConfirmation,
+                                                      reservation.RestoConfirmationDate,
+                                                      reservation.RestoComments,
+                                                      reservation.IsEnabled);
+            }
+            return nbrRowsDeleted > 0;
+        }
+
         #endregion
 
         #region PRIVATE METHODS
