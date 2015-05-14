@@ -18,12 +18,11 @@ namespace RestoBook.GUI.View.Views
         private Dictionary<int, string> restaurants;
         private RestaurantController restaurantController;
         private Service serviceFocus;
-        private Reservation reservationFocus;
-        private List<Customer> customers;
         private CustomerController customerController;
         private ServiceController serviceController;
         private ReservationController reservationController;
         private Dictionary<int, string> services;
+        private Dictionary<int, string> customersDictionary;
         #endregion PROPERTIES
 
 
@@ -49,21 +48,14 @@ namespace RestoBook.GUI.View.Views
             this.comboBoxRestaurant.DisplayMember = "Value";
             this.comboBoxRestaurant.ValueMember = "Key";
 
-            this.BindCustomerList();
+            this.customersDictionary = this.customerController.GetAllCustomerDictionary();
+
+            this.comboBoxCustomer.DataSource = new BindingSource(this.customersDictionary, null);
+            this.comboBoxCustomer.DisplayMember = "Value";
+            this.comboBoxCustomer.ValueMember = "Key";
+
             this.PopulateAndBindServiceList();
 
-
-        }
-
-        private void BindCustomerList()
-        {
-            this.customers = this.customerController.GetAllCustomer();
-            this.dataGridViewCustomers.DataSource = this.customers;
-
-            this.dataGridViewCustomers.Columns[0].ReadOnly = true;
-            this.dataGridViewCustomers.Columns[1].ReadOnly = true;
-            this.dataGridViewCustomers.Columns[2].ReadOnly = true;
-            this.dataGridViewCustomers.Columns[3].Visible = false;
         }
 
         private void PopulateAndBindServiceList()
@@ -85,13 +77,16 @@ namespace RestoBook.GUI.View.Views
         private void BindReservations()
         {
             this.serviceFocus = this.serviceController.GetServiceById(((KeyValuePair<int, string>)this.comboBoxService.SelectedItem).Key);
-
+            
             this.dataGridViewReservation.DataSource = this.serviceFocus;
             this.dataGridViewReservation.DataMember = "Reservations";
             this.dataGridViewReservation.Columns[0].Visible = false;
             this.dataGridViewReservation.Columns[1].Visible = false;
-            this.dataGridViewReservation.Columns[7].ReadOnly = true;
+            this.dataGridViewReservation.Columns[7].ReadOnly = false;
+            this.dataGridViewReservation.Columns[11].Visible = false;
+
         }
+
         public void ClearDGVBindingsAndPopulate(DataGridView dgv, string dataMember)
         {
             dgv.DataSource = null;
@@ -127,7 +122,18 @@ namespace RestoBook.GUI.View.Views
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            DialogResult sure = MessageBox.Show("Are you sure you want to update the selected Reservations?", "Update Reservation", MessageBoxButtons.YesNo);
+            if (sure == DialogResult.Yes)
+            {
+                bool result = false;
+                foreach (DataGridViewRow row in this.dataGridViewReservation.SelectedRows)
+                {
+                    result = this.reservationController.UpdateReservation(this.serviceFocus.Reservations.Where(r => r.Id == (int)row.Cells[0].Value).FirstOrDefault());
+                }
+                this.PopulateAndBindServiceList();
 
+                this.ResultShowMessagePluralRows(result, "updated");
+            }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -138,15 +144,7 @@ namespace RestoBook.GUI.View.Views
                 bool result = false;
                 foreach (DataGridViewRow row in this.dataGridViewReservation.SelectedRows)
                 {
-                    if ((int)row.Cells[0].Value == 0)
-                    {
-                        this.serviceFocus.Reservations.RemoveAt(row.Index);
-                        result = true;
-                    }
-                    else
-                    {
-                        result = this.reservationController.DeleteReservation(this.serviceFocus.Reservations.Where(r => r.Id == (int)row.Cells[0].Value).FirstOrDefault());
-                    }
+                    result = this.reservationController.DeleteReservation(this.serviceFocus.Reservations.Where(r => r.Id == (int)row.Cells[0].Value).FirstOrDefault());
                 }
 
                 this.PopulateAndBindServiceList();
@@ -157,30 +155,31 @@ namespace RestoBook.GUI.View.Views
 
         private void buttonAddNewReservation_Click(object sender, EventArgs e)
         {
+
             Reservation reservation = new Reservation();
-            /*
+            
             reservation.ServiceId = this.serviceFocus.Id;
-            reservation.CustomerId = this.textBoxCustomerId;
-            reservation.PlaceQuantity = this.textBoxPlaceQuantity;
-            reservation.RestoComments = this.richTextBoxComment;
-            reservation.ReservationDate = this.textBoxDate;
-            reservation.Service = this.textBoxService;
+            reservation.CustomerId = ((KeyValuePair<int, string>)this.comboBoxCustomer.SelectedItem).Key;
+            reservation.PlaceQuantity = (int)this.numericUpDownPlaceQuantity.Value;
+            reservation.RestoComments = this.richTextBoxComment.Text;
+            reservation.ReservationDate = DateTime.Now;
+            reservation.Service = this.serviceFocus.TypeService;
             reservation.RestoConfirmation = false;
             reservation.RestoConfirmationDate = DateTime.MaxValue;
             reservation.IsEnabled = true;
 
             bool result = false;
 
-            result = this.reservationController.
+            result = this.reservationController.CreateReservation(reservation);
             
 
             this.PopulateAndBindServiceList();
 
-            this.ResultShowMessagePluralRows(result, "deleted");
-            */
+            this.ResultShowMessagePluralRows(result, "added");
         }
 
         #endregion EVENTS
+
 
     }
 }

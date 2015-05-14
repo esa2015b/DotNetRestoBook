@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RestoBook.Common.Business.Managers
 {
-    public class CustomerManager
+    public class CustomerManager : ICustomerManager
     {
         #region PROPERTIES
         private DataProvider dp;
@@ -96,6 +96,21 @@ namespace RestoBook.Common.Business.Managers
             }
         }
 
+        /// <summary>
+        /// Gets a dictionary of all customers
+        /// </summary>
+        public Dictionary<int, string> GetAllCustomerDictionary()
+        {
+            this.RefreshDataSet();
+            Dictionary<int, string> customers = new Dictionary<int, string>();
+
+            this.dp.ds.CUSTOMER.ToList()
+                              .ForEach(c => customers.Add(
+                                  (int)c.CUSTOMERID,
+                                  c.MAIL
+                              ));
+            return customers;
+        }
         #endregion PUBLIC METHODS
 
 

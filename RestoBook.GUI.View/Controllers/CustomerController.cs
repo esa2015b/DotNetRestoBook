@@ -30,6 +30,15 @@ namespace RestoBook.GUI.View.Controllers
         {
             return this.customerManager.GetAllCustomers();
         }
+
+        /// <summary>
+        /// Gets a dictionary of all customers
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<int, String> GetAllCustomerDictionary()
+        {
+            return this.customerManager.GetAllCustomerDictionary();
+        }
         #endregion METHODS
     }
 }

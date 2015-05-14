@@ -90,7 +90,7 @@ namespace RestoBook.Common.Business.Managers
                 row["PLACEQUANTITY"] = reservation.PlaceQuantity;
                 row["SERVICE"] = reservation.Service;
                 row["RESTOCONFIRMATION"] = reservation.RestoConfirmation;
-                row["RESTOCONFIRMATIONDATE"] = DateTime.Now;
+                row["RESTOCONFIRMATIONDATE"] = (reservation.RestoConfirmation == true) ? DateTime.Now : DateTime.MaxValue;
                 row["RESTOCOMMENTS"] = reservation.RestoComments;
 
                 using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter daReservation = new Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter())
@@ -187,11 +187,14 @@ namespace RestoBook.Common.Business.Managers
                 reservations = (from r in dp.ds.RESERVATION
                                 where r.SERVICEID == serviceId
                                 join s in dp.ds.SERVICE on r.SERVICEID equals s.SERVICEID
+                                join c in dp.ds.CUSTOMER on r.CUSTOMERID equals c.CUSTOMERID
                                 select new Reservation()
                                 {
                                     Id = r.RESERVATIONID,
                                     CustomerId = r.CUSTOMERID,
                                     ServiceId = r.SERVICEID,
+                                    Service = r.SERVICE,
+                                    ServiceDate = s.SERVICEDAY,
                                     ReservationDate = r.RESERVATIONDATE,
                                     PlaceQuantity = r.PLACEQUANTITY,
                                     RestoConfirmation = r.RESTOCONFIRMATION,

@@ -15,5 +15,11 @@ namespace RestoBook.GUI.View.Controllers
         /// <returns></returns>
         List<Customer> GetAllCustomer();
 
+        /// <summary>
+        /// Gets a dictionary of all customers
+        /// </summary>
+        /// <returns></returns>
+        Dictionary<int, String> GetAllCustomerDictionary();
+
     }
 }

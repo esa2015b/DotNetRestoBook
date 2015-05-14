@@ -51,6 +51,17 @@ namespace RestoBook.GUI.View.Controllers
         }
 
         /// <summary>
+        /// Update given reservations
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns></returns>
+        public bool UpdateReservation(Reservation reservation)
+        {
+            bool successful = this.reservationManager.ModifyReservationsFromBackOffice(reservation);
+            return successful;
+        }
+
+        /// <summary>
         /// Gets a reservation by it's id
         /// </summary>
         /// <param name="reservationId"></param>

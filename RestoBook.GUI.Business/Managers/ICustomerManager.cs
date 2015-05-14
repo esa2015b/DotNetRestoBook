@@ -24,5 +24,10 @@ namespace RestoBook.Common.Business.Managers
         /// <returns></returns>
         List<Customer> GetAllCustomers();
 
+        /// <summary>
+        /// Gets a dictionary of all customers
+        /// </summary>
+        Dictionary<int, string> GetAllCustomerDictionary();
+
     }
 }

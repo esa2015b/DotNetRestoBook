@@ -94,3 +94,15 @@ C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook\bin\Ninject.xml
 C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook\obj\Debug\RestoBook.WebService.csprojResolveAssemblyReference.cache
 C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook\obj\Debug\RestoBook.dll
 C:\Users\Jean-Louis\Source\Repos\DotNetRestoBook3\RestoBook\obj\Debug\RestoBook.pdb
+C:\Projects\C#\RestoBook\bin\RestoBook.dll.config
+C:\Projects\C#\RestoBook\bin\RestoBook.dll
+C:\Projects\C#\RestoBook\bin\RestoBook.pdb
+C:\Projects\C#\RestoBook\bin\Ninject.dll
+C:\Projects\C#\RestoBook\bin\RestoBook.Common.Business.dll
+C:\Projects\C#\RestoBook\bin\RestoBook.Common.Model.dll
+C:\Projects\C#\RestoBook\bin\RestoBook.Common.Business.pdb
+C:\Projects\C#\RestoBook\bin\RestoBook.Common.Model.pdb
+C:\Projects\C#\RestoBook\bin\Ninject.xml
+C:\Projects\C#\RestoBook\obj\Debug\RestoBook.WebService.csprojResolveAssemblyReference.cache
+C:\Projects\C#\RestoBook\obj\Debug\RestoBook.dll
+C:\Projects\C#\RestoBook\obj\Debug\RestoBook.pdb

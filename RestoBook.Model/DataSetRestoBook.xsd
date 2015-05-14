@@ -1220,10 +1220,10 @@ SELECT SERVICEID, RESTAURANTID, SERVICEDAY, TYPESERVICE, STARTSHIFT, ENDSHIFT, P
               <xs:element name="PLACEQUANTITY" msprop:Generator_ColumnVarNameInTable="columnPLACEQUANTITY" msprop:Generator_ColumnPropNameInRow="PLACEQUANTITY" msprop:Generator_ColumnPropNameInTable="PLACEQUANTITYColumn" msprop:Generator_UserColumnName="PLACEQUANTITY" type="xs:int" minOccurs="0" />
               <xs:element name="RESTOCONFIRMATION" msprop:Generator_ColumnVarNameInTable="columnRESTOCONFIRMATION" msprop:Generator_ColumnPropNameInRow="RESTOCONFIRMATION" msprop:Generator_ColumnPropNameInTable="RESTOCONFIRMATIONColumn" msprop:Generator_UserColumnName="RESTOCONFIRMATION" type="xs:boolean" minOccurs="0" />
               <xs:element name="RESTOCONFIRMATIONDATE" msprop:Generator_ColumnVarNameInTable="columnRESTOCONFIRMATIONDATE" msprop:Generator_ColumnPropNameInRow="RESTOCONFIRMATIONDATE" msprop:Generator_ColumnPropNameInTable="RESTOCONFIRMATIONDATEColumn" msprop:Generator_UserColumnName="RESTOCONFIRMATIONDATE" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="RESTOCOMMENTS" msprop:Generator_ColumnVarNameInTable="columnRESTOCOMMENTS" msprop:Generator_ColumnPropNameInRow="RESTOCOMMENTS" msprop:Generator_ColumnPropNameInTable="RESTOCOMMENTSColumn" msprop:Generator_UserColumnName="RESTOCOMMENTS" minOccurs="0">
+              <xs:element name="RESTOCOMMENTS" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="RESTOCOMMENTS" msprop:Generator_ColumnVarNameInTable="columnRESTOCOMMENTS" msprop:Generator_ColumnPropNameInTable="RESTOCOMMENTSColumn" msprop:Generator_UserColumnName="RESTOCOMMENTS" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="32" />
+                    <xs:maxLength value="255" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

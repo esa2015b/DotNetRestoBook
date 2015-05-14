@@ -34,5 +34,12 @@ namespace RestoBook.GUI.View.Controllers
         /// <returns></returns>
         Reservation GetReservationById(int reservationId);
 
+        /// <summary>
+        /// Update given reservations
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns></returns>
+        bool UpdateReservation(Reservation reservation);
+
     }
 }
