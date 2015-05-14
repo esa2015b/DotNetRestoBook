@@ -356,7 +356,7 @@ namespace RestoBook.Common.Business.Managers
         {
             // refresh the dataset
             this.dp.ds.Reset();
-            this.dp.PrepareReservationDP();
+            this.dp.PrepareFullReservation();
         }
         #endregion PRIVATE METHODS
 
