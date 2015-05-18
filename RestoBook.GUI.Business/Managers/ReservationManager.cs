@@ -115,14 +115,25 @@ namespace RestoBook.Common.Business.Managers
         /// <returns>bool if creation succeed</returns>
         public bool ModifyReservationFromCustomer(Reservation reservation)
         {
-            //this.RefreshDataSet();
+            this.RefreshDataSet();
 
             int nbrRowsUpdated = -1;
 
             try
             {
                 DataRow row = dp.ds.RESERVATION.Select(string.Format("RESERVATIONID = '{0}'", reservation.Id)).FirstOrDefault();
+                //string test = row["RESERVATIONID"].ToString();
+                //string test1 = row["CUSTOMERID"].ToString();
+                //string test2 = row["SERVICEID"].ToString();
+                //string test3 = row["RESERVATIONDATE"].ToString();
+                row["RESERVATIONDATE"] = reservation.ReservationDate;
+                row["SERVICE"] = reservation.Service;
                 row["PLACEQUANTITY"] = reservation.PlaceQuantity;
+                row["RESTOCONFIRMATION"] = reservation.RestoConfirmation;
+                row["RESTOCONFIRMATIONDATE"] = reservation.RestoConfirmationDate;
+                row["RESTOCOMMENTS"] = reservation.RestoComments;
+                row["ENABLE"] = reservation.IsEnabled;
+
 
                 using (RestoBook.Common.Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter daReservation = new Model.DataSetRestoBookTableAdapters.RESERVATIONTableAdapter())
                 {
@@ -331,7 +342,7 @@ namespace RestoBook.Common.Business.Managers
                                 join c in dp.ds.CUSTOMER on r.CUSTOMERID equals c.CUSTOMERID
                                 join s in dp.ds.SERVICE on r.SERVICEID equals s.SERVICEID
                                 join rest in dp.ds.RESTAURANT on s.RESTAURANTID equals rest.RESTAURANTID
-                                where rest.RESTAURANTID == restoId
+                                where rest.RESTAURANTID == restoId && r.ENABLE
                                 orderby s.SERVICEDAY
                                 select new Reservation()
                                 {
@@ -340,6 +351,7 @@ namespace RestoBook.Common.Business.Managers
                                     ServiceId = r.SERVICEID,
                                     ReservationDate = r.RESERVATIONDATE,
                                     Service = s.TYPESERVICE,
+                                    ServiceDate = r.RESERVATIONDATE,
                                     PlaceQuantity = r.PLACEQUANTITY,
                                     RestoConfirmation = r.RESTOCONFIRMATION,
                                     RestoConfirmationDate = r.RESTOCONFIRMATIONDATE,

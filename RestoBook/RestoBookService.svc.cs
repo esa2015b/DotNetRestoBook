@@ -260,7 +260,11 @@
 
         public List<Reservation> GetReservationByRestaurant(int restoId)
         {
-            return this.reservationManager.GetReservationsByRestaurant(restoId);
+            List<Reservation> reservations =  this.reservationManager.GetReservationsByRestaurant(restoId);
+
+            reservations = reservations.OrderBy(r => r.ServiceDate).ToList();
+
+            return reservations;
         }
 
         public List<Reservation> GetAllReservations()
