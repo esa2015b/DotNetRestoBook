@@ -50,10 +50,12 @@
     <Compile Include="Managers\AddressManager.cs" />
     <Compile Include="Managers\CustomerManager.cs" />
     <Compile Include="Managers\EmployeeManager.cs" />
+    <Compile Include="Managers\ErrorManager.cs" />
     <Compile Include="Managers\FoodTypeManager.cs" />
     <Compile Include="Managers\IAddressManager.cs" />
     <Compile Include="Managers\ICustomerManager.cs" />
     <Compile Include="Managers\IEmployeeManager.cs" />
+    <Compile Include="Managers\IErrorManager.cs" />
     <Compile Include="Managers\IFoodTypeManager.cs" />
     <Compile Include="Managers\ILightRestaurantManager.cs" />
     <Compile Include="Managers\IOwnerManager.cs" />

@@ -73,7 +73,7 @@ namespace RestoBook.Common.Business.Managers
                               .ToList()
                               .ForEach(s => services.Add(
                                   (int)s.SERVICEID,
-                                  s.SERVICEDAY.DayOfWeek.ToString() + " " + s.SERVICEDAY.ToString() + " " + s.TYPESERVICE + " - " + s.PLACEQUANTITY.ToString()
+                                  s.SERVICEDAY.DayOfWeek.ToString() + " " + s.TYPESERVICE + " - " + s.PLACEQUANTITY.ToString()
                               ));
             return services;
         }
