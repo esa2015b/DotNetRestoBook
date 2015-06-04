@@ -1,9 +1,4 @@
-﻿using RestoBook.Common.Business.Managers;
-using RestoBook.Common.Model.Models;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System;
 using System.Windows.Forms;
 
 namespace RestoBook.GUI.View.Views
