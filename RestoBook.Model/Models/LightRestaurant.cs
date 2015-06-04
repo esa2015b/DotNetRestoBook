@@ -1,10 +1,4 @@
-﻿using RestoBook.Common.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace RestoBook.Common.Model.Models
 {
